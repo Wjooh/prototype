@@ -1,0 +1,35 @@
+<%# locals: (title:, price:, image_url: nil, gradient: "from-sky-600 to-emerald-700") %>
+<article class="relative w-40 shrink-0 overflow-hidden rounded-2xl shadow-sm md:w-48">
+  <a href="#" class="relative block aspect-[3/4]">
+    <% if image_url.present? %>
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('<%= image_url %>')"
+        role="img"
+        aria-label="<%= title %>"
+      ></div>
+    <% else %>
+      <div class="absolute inset-0 bg-gradient-to-br <%= gradient %>" aria-hidden="true"></div>
+    <% end %>
+
+    <div class="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/25" aria-hidden="true"></div>
+
+    <h4 class="absolute inset-x-0 top-[16%] px-3 text-center font-serif text-sm font-normal uppercase leading-snug tracking-wide text-white drop-shadow-sm md:text-[15px]">
+      <% title.to_s.split("\n").each do |line| %>
+        <span class="block"><%= line %></span>
+      <% end %>
+    </h4>
+
+    <span class="absolute bottom-2.5 left-2.5 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-gray-800">
+      From <%= price %> per person
+    </span>
+  </a>
+
+  <a
+    href="#"
+    class="absolute right-2.5 top-2.5 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm"
+    aria-label="Add to favourites"
+  >
+    <%= heroicon "heart", options: { class: "text-gray-800" } %>
+  </a>
+</article>

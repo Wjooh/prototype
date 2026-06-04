@@ -1,3 +1,52 @@
+<%
+  bundle_rows = [
+    {
+      heading: "What's On",
+      cards: [
+        { title: "Wimbledon\nGarden Party", price: "£18", gradient: "from-sky-600 to-emerald-700" },
+        { title: "Summer\nBBQ Feast", price: "£22", gradient: "from-orange-500 to-amber-600" },
+        { title: "Rosé &\nCanapés", price: "£25", gradient: "from-rose-400 to-pink-600" },
+        { title: "Garden\nGrazing", price: "£16", gradient: "from-lime-500 to-green-700" },
+        { title: "Afternoon\nTea", price: "£20", gradient: "from-violet-400 to-purple-700" },
+        { title: "Street Food\nNight", price: "£19", gradient: "from-cyan-500 to-blue-700" }
+      ]
+    },
+    {
+      heading: "Birthdays",
+      cards: [
+        { title: "Kids\nParty Box", price: "£12", gradient: "from-yellow-400 to-orange-500" },
+        { title: "Teen\nHangout", price: "£15", gradient: "from-fuchsia-500 to-purple-600" },
+        { title: "Milestone\nCelebration", price: "£28", gradient: "from-indigo-500 to-blue-800" },
+        { title: "Surprise\nBrunch", price: "£21", gradient: "from-pink-400 to-rose-600" },
+        { title: "Cake &\nBubbles", price: "£24", gradient: "from-red-400 to-rose-700" },
+        { title: "Backyard\nBash", price: "£17", gradient: "from-emerald-400 to-teal-700" }
+      ]
+    },
+    {
+      heading: "Get-Togethers",
+      cards: [
+        { title: "Friends\nDinner", price: "£23", gradient: "from-amber-500 to-orange-700" },
+        { title: "Wine &\nCheese", price: "£26", gradient: "from-stone-500 to-amber-800" },
+        { title: "Tapas\nEvening", price: "£22", gradient: "from-red-500 to-orange-600" },
+        { title: "Pizza\nNight", price: "£14", gradient: "from-orange-400 to-red-600" },
+        { title: "Sunday\nRoast", price: "£27", gradient: "from-yellow-600 to-amber-800" },
+        { title: "Potluck\nPlus", price: "£18", gradient: "from-green-500 to-emerald-700" }
+      ]
+    },
+    {
+      heading: "Baby & Family",
+      cards: [
+        { title: "Baby\nShower", price: "£20", gradient: "from-sky-300 to-blue-500" },
+        { title: "Christening\nTea", price: "£19", gradient: "from-violet-300 to-indigo-500" },
+        { title: "Family\nPicnic", price: "£15", gradient: "from-lime-400 to-green-600" },
+        { title: "Playdate\nSnacks", price: "£11", gradient: "from-amber-300 to-orange-500" },
+        { title: "New Parent\nNight In", price: "£24", gradient: "from-slate-500 to-gray-700" },
+        { title: "Grandparents\nLunch", price: "£22", gradient: "from-teal-400 to-cyan-700" }
+      ]
+    }
+  ]
+%>
+
 <section class="px-4 py-10 md:px-6 md:py-14">
   <div class="mx-auto max-w-7xl">
     <div class="mb-8 text-center md:mb-10">
@@ -5,281 +54,21 @@
       <p class="mt-2 text-sm text-gray-500">Ready-made bundles for every occasion</p>
     </div>
 
-    <div class="mb-10 md:mb-12">
-      <div class="mb-4 flex items-center justify-between">
-        <h3 class="text-lg font-semibold text-gray-700 md:text-xl">What's On</h3>
-        <span class="text-sm text-gray-400 underline">View All</span>
+    <% bundle_rows.each do |row| %>
+      <div class="mb-10 md:mb-12">
+        <div class="mb-4 flex items-center justify-between">
+          <h3 class="text-lg font-semibold text-gray-700 md:text-xl"><%= row[:heading] %></h3>
+          <span class="text-sm text-gray-400 underline">View All</span>
+        </div>
+        <div class="flex gap-3 overflow-x-auto pb-2 md:gap-4">
+          <% row[:cards].each do |card| %>
+            <%= render "pages/index/bundle_card", **card %>
+          <% end %>
+        </div>
       </div>
-      <div class="flex gap-3 overflow-x-auto pb-2 md:gap-4">
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
+    <% end %>
   </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
 
-      </div>
-    </div>
-    <div class="mb-10 md:mb-12">
-      <div class="mb-4 flex items-center justify-between">
-        <h3 class="text-lg font-semibold text-gray-700 md:text-xl">Birthdays</h3>
-        <span class="text-sm text-gray-400 underline">View All</span>
-      </div>
-      <div class="flex gap-3 overflow-x-auto pb-2 md:gap-4">
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-
-      </div>
-    </div>
-    <div class="mb-10 md:mb-12">
-      <div class="mb-4 flex items-center justify-between">
-        <h3 class="text-lg font-semibold text-gray-700 md:text-xl">Get-Togethers</h3>
-        <span class="text-sm text-gray-400 underline">View All</span>
-      </div>
-      <div class="flex gap-3 overflow-x-auto pb-2 md:gap-4">
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-
-      </div>
-    </div>
-    <div class="mb-10 md:mb-12">
-      <div class="mb-4 flex items-center justify-between">
-        <h3 class="text-lg font-semibold text-gray-700 md:text-xl">Baby & Family</h3>
-        <span class="text-sm text-gray-400 underline">View All</span>
-      </div>
-      <div class="flex gap-3 overflow-x-auto pb-2 md:gap-4">
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-        <article class="w-36 shrink-0 rounded-lg border border-gray-200 bg-white md:w-44">
-  <div class="aspect-video rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-3/4 rounded bg-gray-300"></div>
-    <div class="flex items-center justify-between">
-      <div class="h-3 w-12 rounded bg-gray-400"></div>
-      <%= heroicon "arrow-right", variant: :mini, options: { class: "text-gray-500" } %>
-    </div>
-  </div>
-</article>
-
-      </div>
-    </div>
-  </div>
+  <%# Ensures gradient utilities used in card data are included in the Tailwind build %>
+  <div class="hidden bg-gradient-to-br from-sky-600 to-emerald-700 from-orange-500 to-amber-600 from-rose-400 to-pink-600 from-lime-500 to-green-700 from-violet-400 to-purple-700 from-cyan-500 to-blue-700 from-yellow-400 to-orange-500 from-fuchsia-500 to-purple-600 from-indigo-500 to-blue-800 from-pink-400 to-rose-600 from-red-400 to-rose-700 from-emerald-400 to-teal-700 from-amber-500 to-orange-700 from-stone-500 to-amber-800 from-red-500 to-orange-600 from-orange-400 to-red-600 from-yellow-600 to-amber-800 from-green-500 to-emerald-700 from-sky-300 to-blue-500 from-violet-300 to-indigo-500 from-lime-400 to-green-600 from-amber-300 to-orange-500 from-slate-500 to-gray-700 from-teal-400 to-cyan-700" aria-hidden="true"></div>
 </section>
