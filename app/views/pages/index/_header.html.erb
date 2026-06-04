@@ -1,0 +1,50 @@
+<header class="border-b border-gray-200 bg-white">
+  <div class="mx-auto max-w-7xl px-4 py-3 md:px-6 md:py-4">
+    <%# Top row: Trustpilot left, utility pills right %>
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <span class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-500 md:text-sm">
+        <span class="flex gap-0.5" aria-hidden="true">
+          <% 5.times do %>
+            <%= heroicon "star", variant: :solid, options: { class: "text-gray-300" } %>
+          <% end %>
+        </span>
+        Trustpilot
+      </span>
+
+      <div class="flex flex-wrap items-center justify-end gap-2 md:gap-2.5">
+        <span class="inline-flex min-w-[10rem] items-center gap-2 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-400 md:min-w-[14rem] md:px-4 md:text-sm">
+          <%= heroicon "magnifying-glass", options: { class: "text-gray-300" } %>
+          Search for a party cake
+        </span>
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600 md:h-9 md:w-9" aria-label="Favourites">
+          <%= heroicon "heart" %>
+        </span>
+        <span class="relative inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600 md:text-sm">
+          <%= heroicon "shopping-cart" %>
+          £394.94
+          <span class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gray-400 text-[10px] font-medium text-white">2</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600 md:px-4 md:text-sm">
+          <%= heroicon "user" %>
+          Sign In
+        </span>
+      </div>
+    </div>
+
+    <%# Logo — no background %>
+    <div class="mt-4 text-center md:mt-5">
+      <div class="text-2xl font-bold tracking-wider text-gray-600 md:text-3xl">
+        TADAAA!
+      </div>
+    </div>
+
+    <%# Navigation %>
+    <nav class="mt-3 flex flex-wrap justify-center gap-4 md:mt-4 md:gap-8">
+      <span class="cursor-default text-sm font-bold text-gray-800 md:text-base">Home</span>
+      <span class="cursor-default text-sm text-gray-400 md:text-base">Packages</span>
+      <span class="cursor-default text-sm text-gray-400 md:text-base">Catalog</span>
+      <span class="cursor-default text-sm text-gray-400 md:text-base">Reviews</span>
+      <span class="cursor-default text-sm text-gray-400 md:text-base">About Us</span>
+    </nav>
+  </div>
+</header>
