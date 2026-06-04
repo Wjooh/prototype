@@ -11,7 +11,7 @@
           <h3 class="text-lg font-semibold text-gray-700 md:text-xl"><%= row[:heading] %></h3>
           <span class="text-sm text-gray-400 underline">View All</span>
         </div>
-        <div class="flex gap-3 overflow-x-auto pb-2 md:gap-4">
+        <div class="scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4">
           <% row[:cards].each do |card| %>
             <%= render "pages/index/bundle_card", **card %>
           <% end %>
@@ -19,7 +19,4 @@
       </div>
     <% end %>
   </div>
-
-  <%# Ensures gradient utilities used in card data are included in the Tailwind build %>
-  <div class="hidden bg-gradient-to-br from-sky-600 to-emerald-700 from-orange-500 to-amber-600 from-rose-400 to-pink-600 from-lime-500 to-green-700 from-violet-400 to-purple-700 from-cyan-500 to-blue-700 from-yellow-400 to-orange-500 from-fuchsia-500 to-purple-600 from-indigo-500 to-blue-800 from-pink-400 to-rose-600 from-red-400 to-rose-700 from-emerald-400 to-teal-700 from-amber-500 to-orange-700 from-stone-500 to-amber-800 from-red-500 to-orange-600 from-orange-400 to-red-600 from-yellow-600 to-amber-800 from-green-500 to-emerald-700 from-sky-300 to-blue-500 from-violet-300 to-indigo-500 from-lime-400 to-green-600 from-amber-300 to-orange-500 from-slate-500 to-gray-700 from-teal-400 to-cyan-700" aria-hidden="true"></div>
 </section>

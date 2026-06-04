@@ -2,82 +2,58 @@
   cards:
     - title: "Wimbledon\nGarden Party"
       price: "£18"
-      gradient: from-sky-600 to-emerald-700
     - title: "Summer\nBBQ Feast"
       price: "£22"
-      gradient: from-orange-500 to-amber-600
     - title: "Rosé &\nCanapés"
       price: "£25"
-      gradient: from-rose-400 to-pink-600
     - title: "Garden\nGrazing"
       price: "£16"
-      gradient: from-lime-500 to-green-700
     - title: "Afternoon\nTea"
       price: "£20"
-      gradient: from-violet-400 to-purple-700
     - title: "Street Food\nNight"
       price: "£19"
-      gradient: from-cyan-500 to-blue-700
 
 - heading: Birthdays
   cards:
     - title: "Kids\nParty Box"
       price: "£12"
-      gradient: from-yellow-400 to-orange-500
     - title: "Teen\nHangout"
       price: "£15"
-      gradient: from-fuchsia-500 to-purple-600
     - title: "Milestone\nCelebration"
       price: "£28"
-      gradient: from-indigo-500 to-blue-800
     - title: "Surprise\nBrunch"
       price: "£21"
-      gradient: from-pink-400 to-rose-600
     - title: "Cake &\nBubbles"
       price: "£24"
-      gradient: from-red-400 to-rose-700
     - title: "Backyard\nBash"
       price: "£17"
-      gradient: from-emerald-400 to-teal-700
 
 - heading: Get-Togethers
   cards:
     - title: "Friends\nDinner"
       price: "£23"
-      gradient: from-amber-500 to-orange-700
     - title: "Wine &\nCheese"
       price: "£26"
-      gradient: from-stone-500 to-amber-800
     - title: "Tapas\nEvening"
       price: "£22"
-      gradient: from-red-500 to-orange-600
     - title: "Pizza\nNight"
       price: "£14"
-      gradient: from-orange-400 to-red-600
     - title: "Sunday\nRoast"
       price: "£27"
-      gradient: from-yellow-600 to-amber-800
     - title: "Potluck\nPlus"
       price: "£18"
-      gradient: from-green-500 to-emerald-700
 
 - heading: "Baby & Family"
   cards:
     - title: "Baby\nShower"
       price: "£20"
-      gradient: from-sky-300 to-blue-500
     - title: "Christening\nTea"
       price: "£19"
-      gradient: from-violet-300 to-indigo-500
     - title: "Family\nPicnic"
       price: "£15"
-      gradient: from-lime-400 to-green-600
     - title: "Playdate\nSnacks"
       price: "£11"
-      gradient: from-amber-300 to-orange-500
     - title: "New Parent\nNight In"
       price: "£24"
-      gradient: from-slate-500 to-gray-700
     - title: "Grandparents\nLunch"
       price: "£22"
-      gradient: from-teal-400 to-cyan-700
