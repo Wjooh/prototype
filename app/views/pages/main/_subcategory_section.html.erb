@@ -11,20 +11,20 @@
 
   <div class="scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4">
     <% if subcategory.category.bundles? %>
-      <% bundle = Bundle.find_by_subcategory_slug(subcategory.slug) %>
-      <% bundle&.cards&.each do |card| %>
+      <% bundles = Bundle.for_subcategory(subcategory.slug) %>
+      <% bundles.each do |bundle| %>
         <div class="w-40 shrink-0 md:w-48">
-          <%= render "pages/product_card", **card.to_h %>
+          <%= render "pages/product_card", **bundle.to_h %>
         </div>
       <% end %>
     <% elsif subcategory.category.products? %>
-      <% product = Product.find_by_subcategory_slug(subcategory.slug) %>
-      <% product&.items&.each do |item| %>
+      <% products = Product.for_subcategory(subcategory.slug) %>
+      <% products.each do |product| %>
         <div class="w-40 shrink-0 md:w-48">
-          <%= render "pages/product_card", **item.to_h %>
+          <%= render "pages/product_card", **product.to_h %>
         </div>
       <% end %>
-      <% if product.nil? %>
+      <% if products.empty? %>
         <% 10.times do %>
           <div class="w-40 shrink-0 md:w-48">
             <%= render "pages/product_card" %>

@@ -1,22 +1,26 @@
 - subcategory: whats-on
-  cards:
+  items:
     - title: "Wimbledon\nGarden Party"
       price: "£18"
+      corporate: true
     - title: "Summer\nBBQ Feast"
       price: "£22"
     - title: "Rosé &\nCanapés"
       price: "£25"
+      corporate: true
     - title: "Garden\nGrazing"
       price: "£16"
     - title: "Afternoon\nTea"
       price: "£20"
+      corporate: true
     - title: "Street Food\nNight"
       price: "£19"
 
 - subcategory: birthdays
-  cards:
+  items:
     - title: "K-Pop Debut Night"
       price: "£5"
+      kids: true
     - title: "Regency Tea Party"
       price: "£6"
     - title: "Parisian Boudoir Night"
@@ -27,36 +31,42 @@
       price: "£6"
     - title: "Golden Milestone"
       price: "£8"
+      corporate: true
     - title: "Garden Birthday Brunch"
       price: "£7"
     - title: "Neon Arcade Party"
       price: "£5"
+      kids: true
 
 - subcategory: get-togethers
-  cards:
+  items:
     - title: "Friends\nDinner"
       price: "£23"
     - title: "Wine &\nCheese"
       price: "£26"
+      corporate: true
     - title: "Tapas\nEvening"
       price: "£22"
     - title: "Pizza\nNight"
       price: "£14"
+      kids: true
     - title: "Sunday\nRoast"
       price: "£27"
     - title: "Potluck\nPlus"
       price: "£18"
 
 - subcategory: baby-family
-  cards:
+  items:
     - title: "Baby\nShower"
       price: "£20"
     - title: "Christening\nTea"
       price: "£19"
     - title: "Family\nPicnic"
       price: "£15"
+      kids: true
     - title: "Playdate\nSnacks"
       price: "£11"
+      kids: true
     - title: "New Parent\nNight In"
       price: "£24"
     - title: "Grandparents\nLunch"

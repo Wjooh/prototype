@@ -1,32 +1,45 @@
 class Product
   include ActiveModel::Model
+  include ActiveModel::Attributes
   include FixtureLoadable
 
-  attr_reader :subcategory, :items
+  attribute :title, :string
+  attribute :price, :string
+  attribute :image_url, :string
+  attribute :kids, :boolean, default: false
+  attribute :corporate, :boolean, default: false
+
+  attr_reader :subcategory
 
   def self.fixture_path
     Rails.root.join("db/fixtures/products.yml")
   end
 
   def self.load_records
-    YAML.safe_load_file(fixture_path, symbolize_names: true).map { |attrs| from_fixture(attrs) }
+    YAML.safe_load_file(fixture_path, symbolize_names: true).flat_map { |attrs| from_fixture(attrs) }
   end
 
   def self.from_fixture(attrs)
-    product = new
-    product.instance_variable_set(:@subcategory, Subcategory.find_by_slug(attrs[:subcategory]))
-    product.instance_variable_set(
-      :@items,
-      (attrs[:items] || []).map { |item_attrs| ProductItem.new(**item_attrs) }
-    )
-    product
+    subcategory = Subcategory.find_by_slug(attrs[:subcategory])
+    (attrs[:items] || []).map do |item_attrs|
+      new(**item_attrs).tap { |product| product.instance_variable_set(:@subcategory, subcategory) }
+    end
   end
 
-  def self.find_by_subcategory_slug(slug)
-    all.find { |product| product.subcategory&.slug == slug }
+  def self.for_subcategory(slug)
+    all.select { |product| product.subcategory&.slug == slug }
+  end
+
+  def self.for_category(category)
+    slugs = category.subcategories.map(&:slug)
+    all.select { |product| slugs.include?(product.subcategory&.slug) }
   end
 
   def subcategory_name
     subcategory&.name
+  end
+
+  def to_h
+    attributes.symbolize_keys
   end
 end

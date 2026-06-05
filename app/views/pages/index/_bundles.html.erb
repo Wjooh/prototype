@@ -5,16 +5,16 @@
       <p class="mt-2 text-sm text-gray-500">Ready-made bundles for every occasion</p>
     </div>
 
-    <% @bundles.each do |bundle| %>
+    <% @bundle_rows.each do |subcategory, bundles| %>
       <div class="mb-10 md:mb-12">
         <div class="mb-4 flex items-center justify-between">
-          <h3 class="text-lg font-semibold text-gray-700 md:text-xl"><%= bundle.subcategory_name %></h3>
+          <h3 class="text-lg font-semibold text-gray-700 md:text-xl"><%= subcategory.name %></h3>
           <span class="text-sm text-gray-400 underline">View All</span>
         </div>
         <div class="scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4">
-          <% bundle.cards.each do |card| %>
+          <% bundles.each do |bundle| %>
             <div class="w-40 shrink-0 md:w-48">
-              <%= render "pages/product_card", **card.to_h %>
+              <%= render "pages/product_card", **bundle.to_h %>
             </div>
           <% end %>
         </div>

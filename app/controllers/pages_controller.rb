@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def index
-    @bundles = Bundle.all
+    @bundle_rows = Bundle.all.group_by(&:subcategory)
+    @product_categories = Category.products
   end
 
   def catalog
@@ -21,9 +22,9 @@ class PagesController < ApplicationController
     @nav_categories = [ @nav_category ]
     @active_subcategory_slug = @subcategory.slug
     @items = if @nav_category.bundles?
-      Bundle.find_by_subcategory_slug(@subcategory.slug)&.cards
+      Bundle.for_subcategory(@subcategory.slug)
     elsif @nav_category.products?
-      Product.find_by_subcategory_slug(@subcategory.slug)&.items
+      Product.for_subcategory(@subcategory.slug)
     end
   end
 end
