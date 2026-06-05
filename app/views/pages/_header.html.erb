@@ -13,7 +13,12 @@
         <button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600" aria-label="Favourites">
           <%= heroicon "heart" %>
         </button>
-        <button type="button" class="relative inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600" aria-label="Cart">
+        <button
+          type="button"
+          <%= %(data-action="cart-modal#open") if local_assigns[:cart_modal] %>
+          class="relative inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600"
+          aria-label="Cart"
+        >
           <%= heroicon "shopping-cart" %>
           <span class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gray-400 text-[10px] font-medium text-white">2</span>
         </button>
@@ -42,11 +47,19 @@
         <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600 md:h-9 md:w-9" aria-label="Favourites">
           <%= heroicon "heart" %>
         </span>
-        <span class="relative inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600 md:text-sm">
-          <%= heroicon "shopping-cart" %>
-          £394.94
-          <span class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gray-400 text-[10px] font-medium text-white">2</span>
-        </span>
+        <% if local_assigns[:cart_modal] %>
+          <button type="button" data-action="cart-modal#open" class="relative inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600 md:text-sm">
+            <%= heroicon "shopping-cart" %>
+            £394.94
+            <span class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gray-400 text-[10px] font-medium text-white">2</span>
+          </button>
+        <% else %>
+          <span class="relative inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600 md:text-sm">
+            <%= heroicon "shopping-cart" %>
+            £394.94
+            <span class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gray-400 text-[10px] font-medium text-white">2</span>
+          </span>
+        <% end %>
         <span class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600 md:px-4 md:text-sm">
           <%= heroicon "user" %>
           Sign In
