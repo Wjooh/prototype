@@ -1,4 +1,4 @@
-- heading: "What's On"
+- subcategory: whats-on
   cards:
     - title: "Wimbledon\nGarden Party"
       price: "£18"
@@ -13,7 +13,7 @@
     - title: "Street Food\nNight"
       price: "£19"
 
-- heading: Birthdays
+- subcategory: birthdays
   cards:
     - title: "Kids\nParty Box"
       price: "£12"
@@ -28,7 +28,7 @@
     - title: "Backyard\nBash"
       price: "£17"
 
-- heading: Get-Togethers
+- subcategory: get-togethers
   cards:
     - title: "Friends\nDinner"
       price: "£23"
@@ -43,7 +43,7 @@
     - title: "Potluck\nPlus"
       price: "£18"
 
-- heading: "Baby & Family"
+- subcategory: baby-family
   cards:
     - title: "Baby\nShower"
       price: "£20"

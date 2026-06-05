@@ -1,0 +1,31 @@
+<main class="min-w-0 flex-1 overflow-y-auto bg-white">
+  <div class="px-4 py-4 md:px-6 md:py-6">
+    <%# Filters %>
+    <div class="scrollbar-hide mb-6 flex gap-2 overflow-x-auto pb-2 md:mb-8 md:flex-wrap md:gap-3">
+      <% @filters.each do |filter| %>
+        <span class="<%= filter[:active] ? "bg-gray-400 text-white" : "bg-gray-200 text-gray-600" %> shrink-0 rounded-full px-4 py-1.5 text-sm">
+          <%= filter[:name] %>
+        </span>
+      <% end %>
+    </div>
+
+    <%# Mobile category pills (sidebar hidden on small screens) %>
+    <div class="scrollbar-hide mb-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
+      <% @subcategories.each do |subcategory| %>
+        <a
+          href="#<%= subcategory[:slug] %>"
+          class="inline-flex shrink-0 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600"
+        >
+          <%= subcategory[:name] %>
+        </a>
+      <% end %>
+    </div>
+
+    <%# Subcategory product rows %>
+    <div class="space-y-8 md:space-y-10">
+      <% @subcategories.each do |subcategory| %>
+        <%= render "pages/main/subcategory_section", subcategory: subcategory %>
+      <% end %>
+    </div>
+  </div>
+</main>

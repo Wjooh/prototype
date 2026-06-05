@@ -1,0 +1,21 @@
+<aside class="hidden w-52 shrink-0 overflow-y-auto border-r border-gray-200 bg-white lg:block xl:w-56">
+  <nav class="px-3 py-4">
+    <% @categories.each do |category| %>
+      <div class="mb-6 last:mb-0">
+        <h2 class="mb-2 px-2 text-sm font-bold text-gray-800"><%= category[:name] %></h2>
+        <ul class="space-y-0.5">
+          <% category[:subcategories].each do |subcategory| %>
+            <li>
+              <a
+                href="#<%= subcategory[:slug] %>"
+                class="block rounded-lg px-2 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
+              >
+                <%= subcategory[:name] %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </nav>
+</aside>

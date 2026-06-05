@@ -1,0 +1,15 @@
+<%# locals: (subcategory:) %>
+<section id="<%= subcategory[:slug] %>" class="scroll-mt-4">
+  <div class="mb-3 flex items-center justify-between">
+    <h3 class="text-lg font-bold text-gray-800 md:text-xl"><%= subcategory[:name] %></h3>
+    <span class="text-sm text-gray-400">All &gt;</span>
+  </div>
+
+  <div class="scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4">
+    <% subcategory[:product_count].times do %>
+      <div class="w-36 shrink-0 sm:w-40">
+        <%= render "pages/product_card" %>
+      </div>
+    <% end %>
+  </div>
+</section>

@@ -1,7 +1,30 @@
-<header class="border-b border-gray-200 bg-white">
+<header class="shrink-0 border-b border-gray-200 bg-white">
   <div class="container mx-auto px-4 py-3 md:px-6 md:py-4">
-    <%# Top row: Trustpilot left, utility pills right %>
-    <div class="flex flex-wrap items-center justify-between gap-3">
+    <%# Mobile top bar: burger left, utility icons right %>
+    <div class="flex items-center justify-between md:hidden">
+      <button type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-600" aria-label="Menu">
+        <%= heroicon "bars-3" %>
+      </button>
+
+      <div class="flex items-center gap-1.5">
+        <button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600" aria-label="Search">
+          <%= heroicon "magnifying-glass" %>
+        </button>
+        <button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600" aria-label="Favourites">
+          <%= heroicon "heart" %>
+        </button>
+        <button type="button" class="relative inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600" aria-label="Cart">
+          <%= heroicon "shopping-cart" %>
+          <span class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-gray-400 text-[10px] font-medium text-white">2</span>
+        </button>
+        <button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600" aria-label="Sign up">
+          <%= heroicon "user" %>
+        </button>
+      </div>
+    </div>
+
+    <%# Desktop top row: Trustpilot left, utility pills right %>
+    <div class="hidden flex-wrap items-center justify-between gap-3 md:flex">
       <span class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-500 md:text-sm">
         <span class="flex gap-0.5" aria-hidden="true">
           <% 5.times do %>
