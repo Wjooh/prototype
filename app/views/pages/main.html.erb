@@ -1,9 +1,1 @@
-<div class="flex min-h-screen flex-col">
-  <%= render "pages/header" %>
-
-  <div class="flex flex-1 overflow-hidden">
-    <%= render "pages/main/sidebar_nav" %>
-    <%= render "pages/main/content" %>
-    <%= render "pages/main/cart" %>
-  </div>
-</div>
+<%= render "pages/catalog_shell", content_partial: "pages/main/content" %>

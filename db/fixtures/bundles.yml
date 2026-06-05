@@ -15,18 +15,22 @@
 
 - subcategory: birthdays
   cards:
-    - title: "Kids\nParty Box"
-      price: "£12"
-    - title: "Teen\nHangout"
-      price: "£15"
-    - title: "Milestone\nCelebration"
-      price: "£28"
-    - title: "Surprise\nBrunch"
-      price: "£21"
-    - title: "Cake &\nBubbles"
-      price: "£24"
-    - title: "Backyard\nBash"
-      price: "£17"
+    - title: "K-Pop Debut Night"
+      price: "£5"
+    - title: "Regency Tea Party"
+      price: "£6"
+    - title: "Parisian Boudoir Night"
+      price: "£7"
+    - title: "Latin Night"
+      price: "£5"
+    - title: "Disco Fever"
+      price: "£6"
+    - title: "Golden Milestone"
+      price: "£8"
+    - title: "Garden Birthday Brunch"
+      price: "£7"
+    - title: "Neon Arcade Party"
+      price: "£5"
 
 - subcategory: get-togethers
   cards:

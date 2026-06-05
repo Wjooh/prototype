@@ -1,14 +1,15 @@
 <aside class="hidden w-52 shrink-0 overflow-y-auto border-r border-gray-200 bg-white lg:block xl:w-56">
   <nav class="px-3 py-4">
-    <% @categories.each do |category| %>
+    <% @nav_categories.each do |category| %>
       <div class="mb-6 last:mb-0">
         <h2 class="mb-2 px-2 text-sm font-bold text-gray-800"><%= category[:name] %></h2>
         <ul class="space-y-0.5">
           <% category[:subcategories].each do |subcategory| %>
+            <% active = subcategory[:slug] == @active_subcategory_slug %>
             <li>
               <a
-                href="#<%= subcategory[:slug] %>"
-                class="block rounded-lg px-2 py-1.5 text-sm text-gray-600 hover:bg-gray-100"
+                href="<%= subcategory_path(category[:slug], subcategory[:slug]) %>"
+                class="block rounded-lg px-2 py-1.5 text-sm <%= active ? "bg-sky-100 font-medium text-sky-700" : "text-gray-600 hover:bg-gray-100" %>"
               >
                 <%= subcategory[:name] %>
               </a>

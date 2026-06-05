@@ -1,0 +1,10 @@
+<%# locals: (content_partial:) %>
+<div class="flex min-h-screen flex-col">
+  <%= render "pages/header" %>
+
+  <div class="flex flex-1 overflow-hidden">
+    <%= render "pages/main/sidebar_nav" %>
+    <%= render content_partial %>
+    <%= render "pages/main/cart" %>
+  </div>
+</div>

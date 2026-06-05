@@ -17,12 +17,30 @@ class PagesController < ApplicationController
       symbolize_names: true
     )
     @filters = data[:filters]
-    @categories = product_categories
-    @subcategories = @categories.flat_map { |category|
+    @nav_categories = product_categories
+    @active_subcategory_slug = nil
+    @subcategories = @nav_categories.flat_map { |category|
       category[:subcategories].map { |subcategory|
-        subcategory.merge(category: category[:name])
+        subcategory.merge(category: category[:name], category_slug: category[:slug])
       }
     }
+  end
+
+  def subcategory
+    @nav_category = fixture_categories.find { |category|
+      category[:slug] == params[:category_slug]
+    }
+    @subcategory = @nav_category&.dig(:subcategories)&.find { |subcategory|
+      subcategory[:slug] == params[:subcategory_slug]
+    }
+
+    if @nav_category.nil? || @subcategory.nil?
+      raise ActionController::RoutingError, "Not Found"
+    end
+
+    @nav_categories = [ @nav_category ]
+    @active_subcategory_slug = @subcategory[:slug]
+    @items = bundle_items_for(@subcategory[:slug]) if @nav_category[:type] == "bundles"
   end
 
   private
@@ -41,5 +59,17 @@ class PagesController < ApplicationController
   def fixture_subcategories_by_slug
     fixture_categories.flat_map { |category| category[:subcategories] }
       .index_by { |subcategory| subcategory[:slug] }
+  end
+
+  def bundle_items_for(subcategory_slug)
+    fixture_bundles.find { |bundle| bundle[:subcategory] == subcategory_slug }
+      &.dig(:cards) || []
+  end
+
+  def fixture_bundles
+    @fixture_bundles ||= YAML.safe_load_file(
+      Rails.root.join("db/fixtures/bundles.yml"),
+      symbolize_names: true
+    )
   end
 end

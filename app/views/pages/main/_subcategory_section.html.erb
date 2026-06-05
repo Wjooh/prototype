@@ -2,7 +2,11 @@
 <section id="<%= subcategory[:slug] %>" class="scroll-mt-4">
   <div class="mb-3 flex items-center justify-between">
     <h3 class="text-lg font-bold text-gray-800 md:text-xl"><%= subcategory[:name] %></h3>
-    <span class="text-sm text-gray-400">All &gt;</span>
+    <% if subcategory[:category_slug].present? %>
+      <a href="<%= subcategory_path(subcategory[:category_slug], subcategory[:slug]) %>" class="text-sm text-gray-400 hover:text-gray-600">All &gt;</a>
+    <% else %>
+      <span class="text-sm text-gray-400">All &gt;</span>
+    <% end %>
   </div>
 
   <div class="scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4">

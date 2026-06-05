@@ -1,0 +1,19 @@
+<main class="min-w-0 flex-1 overflow-y-auto bg-white">
+  <div class="px-4 py-4 md:px-6 md:py-6">
+    <h1 class="mb-6 text-2xl font-bold text-gray-800 md:mb-8 md:text-3xl">
+      <%= @subcategory[:name] %>
+    </h1>
+
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5 lg:grid-cols-4">
+      <% if @items.present? %>
+        <% @items.each do |item| %>
+          <%= render "pages/grid_card", **item %>
+        <% end %>
+      <% else %>
+        <% @subcategory[:product_count].to_i.times do %>
+          <%= render "pages/grid_card" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</main>
