@@ -1,10 +1,27 @@
-<article class="relative rounded-lg border border-gray-200 bg-white">
-  <div class="aspect-square rounded-t-lg bg-gray-200"></div>
-  <div class="p-3">
-    <div class="mb-2 h-3 w-full rounded bg-gray-300"></div>
-    <div class="h-3 w-1/2 rounded bg-gray-400"></div>
-  </div>
-  <div class="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-gray-400 text-white md:h-8 md:w-8">
-    <%= heroicon "plus", variant: :mini, options: { class: "text-white" } %>
-  </div>
+<%# locals: (title: nil, price: nil, image_url: nil) %>
+<article class="relative w-full overflow-hidden rounded-2xl">
+  <a href="#" class="relative block aspect-[3/4]">
+    <% if image_url.present? %>
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('<%= image_url %>')"
+        role="img"
+        aria-label="<%= title %>"
+      ></div>
+    <% else %>
+      <div class="absolute inset-0 bg-gray-200" aria-hidden="true"></div>
+    <% end %>
+
+    <span class="absolute bottom-2.5 left-2.5 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-gray-800">
+      Add to cart
+    </span>
+  </a>
+
+  <a
+    href="#"
+    class="absolute right-2.5 top-2.5 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white"
+    aria-label="Add to favourites"
+  >
+    <%= heroicon "heart", options: { class: "text-gray-800" } %>
+  </a>
 </article>

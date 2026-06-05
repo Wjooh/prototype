@@ -7,11 +7,11 @@
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5 lg:grid-cols-4">
       <% if @items.present? %>
         <% @items.each do |item| %>
-          <%= render "pages/grid_card", **item.to_h %>
+          <%= render "pages/product_card", **item.to_h %>
         <% end %>
       <% else %>
         <% @subcategory.product_count.to_i.times do %>
-          <%= render "pages/grid_card" %>
+          <%= render "pages/product_card" %>
         <% end %>
       <% end %>
     </div>

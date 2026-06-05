@@ -13,7 +13,9 @@
         </div>
         <div class="scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4">
           <% bundle.cards.each do |card| %>
-            <%= render "pages/index/bundle_card", **card.to_h %>
+            <div class="w-40 shrink-0 md:w-48">
+              <%= render "pages/product_card", **card.to_h %>
+            </div>
           <% end %>
         </div>
       </div>
