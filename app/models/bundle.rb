@@ -26,8 +26,17 @@ class Bundle
     end
   end
 
-  def self.for_subcategory(slug)
-    all.select { |bundle| bundle.subcategory&.slug == slug }
+  def self.for_subcategory(slug, filter: nil)
+    items = all.select { |bundle| bundle.subcategory&.slug == slug }
+    apply_filter(items, filter)
+  end
+
+  def self.apply_filter(items, filter)
+    case filter
+    when "kids" then items.select(&:kids)
+    when "corporate" then items.select(&:corporate)
+    else items
+    end
   end
 
   def subcategory_name

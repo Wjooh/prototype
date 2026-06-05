@@ -6,6 +6,7 @@ class PagesController < ApplicationController
 
   def catalog
     @filters = Filter.all
+    @active_filter = params[:filter].presence
     @nav_categories = Category.for_type(params[:type])
     @active_subcategory_slug = nil
     @subcategories = @nav_categories.flat_map(&:subcategories)
