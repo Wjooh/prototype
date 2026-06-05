@@ -1,0 +1,462 @@
+- subcategory: bestsellers
+  items:
+    - title: "Smoked Salmon\nBagels"
+      price: "£14"
+    - title: "Classic\nCharcuterie"
+      price: "£22"
+    - title: "Mini Burger\nSliders"
+      price: "£12"
+      kids: true
+    - title: "Kids Party\nPizza"
+      price: "£10"
+      kids: true
+    - title: "Executive\nLunch Box"
+      price: "£28"
+      corporate: true
+    - title: "Boardroom\nBrunch"
+      price: "£26"
+      corporate: true
+    - title: "Family Feast\nPlatter"
+      price: "£32"
+      kids: true
+      corporate: true
+    - title: "Celebration\nCupcakes"
+      price: "£18"
+      kids: true
+      corporate: true
+    - title: "Truffle\nFries"
+      price: "£9"
+      kids: true
+    - title: "Premium Sushi\nBox"
+      price: "£24"
+      corporate: true
+
+- subcategory: breakfast
+  items:
+    - title: "Full English\nSpread"
+      price: "£16"
+    - title: "Croissant\nAssortment"
+      price: "£11"
+    - title: "Pancake\nStacks"
+      price: "£8"
+      kids: true
+    - title: "Cereal & Milk\nBar"
+      price: "£7"
+      kids: true
+    - title: "Corporate Morning\nTray"
+      price: "£24"
+      corporate: true
+    - title: "Meeting Room\nMuffins"
+      price: "£15"
+      corporate: true
+    - title: "Brunch for\nTwo"
+      price: "£28"
+      kids: true
+      corporate: true
+    - title: "Family Pancake\nFeast"
+      price: "£22"
+      kids: true
+      corporate: true
+    - title: "Avocado Toast\nTrio"
+      price: "£13"
+      kids: true
+    - title: "Greek Yogurt\nParfaits"
+      price: "£9"
+      corporate: true
+
+- subcategory: canapes-bites
+  items:
+    - title: "Prosciutto &\nMelon"
+      price: "£12"
+    - title: "Caprese\nSkewers"
+      price: "£10"
+    - title: "Mini Cheese\nBalls"
+      price: "£8"
+      kids: true
+    - title: "Veggie Pinwheel\nBites"
+      price: "£7"
+      kids: true
+    - title: "Smoked Salmon\nBlinis"
+      price: "£16"
+      corporate: true
+    - title: "Truffle Arancini\nBites"
+      price: "£14"
+      corporate: true
+    - title: "Mixed Canapé\nSelection"
+      price: "£20"
+      kids: true
+      corporate: true
+    - title: "Party Sausage\nRolls"
+      price: "£11"
+      kids: true
+      corporate: true
+    - title: "Stuffed Mushroom\nCups"
+      price: "£9"
+      kids: true
+    - title: "Caviar & Cream\nCheese"
+      price: "£22"
+      corporate: true
+
+- subcategory: appetizers
+  items:
+    - title: "Garlic\nBruschetta"
+      price: "£9"
+    - title: "Spinach &\nArtichoke Dip"
+      price: "£11"
+    - title: "Mini Corn\nDogs"
+      price: "£8"
+      kids: true
+    - title: "Cheesy\nBreadsticks"
+      price: "£7"
+      kids: true
+    - title: "Shrimp\nCocktail"
+      price: "£18"
+      corporate: true
+    - title: "Beef\nCarpaccio"
+      price: "£16"
+      corporate: true
+    - title: "Loaded Nacho\nPlatter"
+      price: "£14"
+      kids: true
+      corporate: true
+    - title: "Stuffed Jalapeño\nPoppers"
+      price: "£10"
+      kids: true
+      corporate: true
+    - title: "Hummus &\nPita"
+      price: "£9"
+      kids: true
+    - title: "Oysters on\nIce"
+      price: "£24"
+      corporate: true
+
+- subcategory: salads
+  items:
+    - title: "Classic Caesar\nSalad"
+      price: "£10"
+    - title: "Garden Green\nSalad"
+      price: "£8"
+    - title: "Fruit Salad\nBowl"
+      price: "£7"
+      kids: true
+    - title: "Pasta Salad\nCups"
+      price: "£6"
+      kids: true
+    - title: "Waldorf\nSalad"
+      price: "£12"
+      corporate: true
+    - title: "Nicoise\nSalad"
+      price: "£13"
+      corporate: true
+    - title: "Cobb Salad\nPlatter"
+      price: "£15"
+      kids: true
+      corporate: true
+    - title: "Quinoa Power\nBowl"
+      price: "£11"
+      kids: true
+      corporate: true
+    - title: "Caprese\nSalad"
+      price: "£9"
+      kids: true
+    - title: "Lobster\nSalad"
+      price: "£22"
+      corporate: true
+
+- subcategory: main-dishes
+  items:
+    - title: "Roast Chicken\nDinner"
+      price: "£18"
+    - title: "Grilled Salmon\nPlate"
+      price: "£20"
+    - title: "Mac &\nCheese"
+      price: "£9"
+      kids: true
+    - title: "Fish Finger\nMeal"
+      price: "£8"
+      kids: true
+    - title: "Beef Wellington\nSlice"
+      price: "£26"
+      corporate: true
+    - title: "Duck Confit\nPlate"
+      price: "£24"
+      corporate: true
+    - title: "Family Lasagne\nTray"
+      price: "£22"
+      kids: true
+      corporate: true
+    - title: "BBQ Rib\nRack"
+      price: "£19"
+      kids: true
+      corporate: true
+    - title: "Chicken\nNuggets"
+      price: "£7"
+      kids: true
+    - title: "Filet Mignon\nDinner"
+      price: "£32"
+      corporate: true
+
+- subcategory: snacks
+  items:
+    - title: "Mixed Nut\nSelection"
+      price: "£8"
+    - title: "Popcorn\nBuckets"
+      price: "£5"
+    - title: "Cheese &\nCrackers"
+      price: "£7"
+      kids: true
+    - title: "Veggie\nSticks"
+      price: "£6"
+      kids: true
+    - title: "Artisan Olive\nPlate"
+      price: "£10"
+      corporate: true
+    - title: "Charcuterie\nSnacks"
+      price: "£14"
+      corporate: true
+    - title: "Party Crisp\nSelection"
+      price: "£9"
+      kids: true
+      corporate: true
+    - title: "Trail Mix\nPacks"
+      price: "£6"
+      kids: true
+      corporate: true
+    - title: "Mini Sandwiches"
+      price: "£8"
+      kids: true
+    - title: "Smoked Almond\nTin"
+      price: "£11"
+      corporate: true
+
+- subcategory: desserts
+  items:
+    - title: "Chocolate\nMousse"
+      price: "£8"
+    - title: "Lemon\nTart"
+      price: "£9"
+    - title: "Ice Cream\nSundaes"
+      price: "£7"
+      kids: true
+    - title: "Jelly &\nCustard"
+      price: "£5"
+      kids: true
+    - title: "Crème\nBrûlée"
+      price: "£10"
+      corporate: true
+    - title: "Tiramisu\nCups"
+      price: "£11"
+      corporate: true
+    - title: "Brownie\nPlatter"
+      price: "£12"
+      kids: true
+      corporate: true
+    - title: "Fruit Tart\nSelection"
+      price: "£13"
+      kids: true
+      corporate: true
+    - title: "Cookie\nJars"
+      price: "£6"
+      kids: true
+    - title: "Panna Cotta\nTrio"
+      price: "£10"
+      corporate: true
+
+- subcategory: kids-menu
+  items:
+    - title: "Mini Pizza\nSlices"
+      price: "£6"
+      kids: true
+    - title: "Chicken\nTenders"
+      price: "£7"
+      kids: true
+    - title: "Veggie\nNuggets"
+      price: "£6"
+      kids: true
+    - title: "Cheesy\nQuesadilla"
+      price: "£7"
+      kids: true
+    - title: "Party Lunch\nBoxes"
+      price: "£12"
+      kids: true
+      corporate: true
+    - title: "School Event\nSnacks"
+      price: "£10"
+      kids: true
+      corporate: true
+    - title: "Rainbow Fruit\nCups"
+      price: "£5"
+    - title: "Mini Hot\nDogs"
+      price: "£6"
+    - title: "Kids Pasta\nPot"
+      price: "£7"
+      kids: true
+      corporate: true
+    - title: "Banana\nPancakes"
+      price: "£6"
+      kids: true
+
+- subcategory: cakes
+  items:
+    - title: "Victoria\nSponge"
+      price: "£18"
+    - title: "Red Velvet\nCake"
+      price: "£20"
+    - title: "Unicorn\nBirthday Cake"
+      price: "£22"
+      kids: true
+    - title: "Dinosaur\nCake"
+      price: "£24"
+      kids: true
+    - title: "Corporate Logo\nCake"
+      price: "£35"
+      corporate: true
+    - title: "Elegant Tiered\nCake"
+      price: "£40"
+      corporate: true
+    - title: "Rainbow Layer\nCake"
+      price: "£26"
+      kids: true
+      corporate: true
+    - title: "Office Celebration\nCake"
+      price: "£30"
+      kids: true
+      corporate: true
+    - title: "Chocolate\nFudge Cake"
+      price: "£19"
+      kids: true
+    - title: "Champagne\nCake"
+      price: "£32"
+      corporate: true
+
+- subcategory: drinks-juices
+  items:
+    - title: "Fresh Orange\nJuice"
+      price: "£4"
+    - title: "Sparkling\nWater"
+      price: "£3"
+    - title: "Apple Juice\nBoxes"
+      price: "£3"
+      kids: true
+    - title: "Smoothie\nPacks"
+      price: "£5"
+      kids: true
+    - title: "Cold Brew\nCoffee"
+      price: "£5"
+      corporate: true
+    - title: "Iced Tea\nPitcher"
+      price: "£6"
+      corporate: true
+    - title: "Fruit Punch\nBowl"
+      price: "£8"
+      kids: true
+      corporate: true
+    - title: "Lemonade\nStation"
+      price: "£7"
+      kids: true
+      corporate: true
+    - title: "Mango\nLassi"
+      price: "£4"
+      kids: true
+    - title: "Kombucha\nSelection"
+      price: "£6"
+      corporate: true
+
+- subcategory: alcohol
+  items:
+    - title: "House Red\nWine"
+      price: "£14"
+    - title: "Craft Beer\nSelection"
+      price: "£12"
+    - title: "Mocktail\nPitcher"
+      price: "£10"
+      kids: true
+    - title: "Shirley\nTemple Bar"
+      price: "£8"
+      kids: true
+    - title: "Prosecco\nBottles"
+      price: "£18"
+      corporate: true
+    - title: "Whisky\nTasting Set"
+      price: "£28"
+      corporate: true
+    - title: "Wine & Juice\nCombo"
+      price: "£20"
+      kids: true
+      corporate: true
+    - title: "Champagne\nTower"
+      price: "£45"
+      kids: true
+      corporate: true
+    - title: "Gin & Tonic\nKit"
+      price: "£16"
+      corporate: true
+    - title: "Rosé\nSpritz"
+      price: "£15"
+      kids: true
+
+- subcategory: tableware
+  items:
+    - title: "White Ceramic\nPlates"
+      price: "£12"
+    - title: "Napkin\nBundles"
+      price: "£6"
+    - title: "Kids Party\nCups"
+      price: "£5"
+      kids: true
+    - title: "Colourful\nStraws"
+      price: "£4"
+      kids: true
+    - title: "Premium Cutlery\nSet"
+      price: "£15"
+      corporate: true
+    - title: "Crystal Wine\nGlasses"
+      price: "£18"
+      corporate: true
+    - title: "Party Table\nKit"
+      price: "£20"
+      kids: true
+      corporate: true
+    - title: "Corporate Buffet\nPack"
+      price: "£25"
+      kids: true
+      corporate: true
+    - title: "Paper Plate\nPack"
+      price: "£5"
+      kids: true
+    - title: "Charger Plate\nSet"
+      price: "£22"
+      corporate: true
+
+- subcategory: candles
+  items:
+    - title: "Taper Candle\nSet"
+      price: "£8"
+    - title: "Tea Light\nPack"
+      price: "£5"
+    - title: "Birthday Candle\nNumbers"
+      price: "£4"
+      kids: true
+    - title: "Sparkler\nCandles"
+      price: "£6"
+      kids: true
+    - title: "Luxury Scented\nCandles"
+      price: "£16"
+      corporate: true
+    - title: "Branded Event\nCandles"
+      price: "£20"
+      corporate: true
+    - title: "Party Candle\nBundle"
+      price: "£12"
+      kids: true
+      corporate: true
+    - title: "Corporate Centrepiece\nCandles"
+      price: "£18"
+      kids: true
+      corporate: true
+    - title: "Rainbow Candle\nSet"
+      price: "£7"
+      kids: true
+    - title: "Pillar Candle\nTrio"
+      price: "£10"
+      corporate: true

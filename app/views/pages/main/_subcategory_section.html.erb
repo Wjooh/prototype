@@ -17,6 +17,20 @@
           <%= render "pages/product_card", **card.to_h %>
         </div>
       <% end %>
+    <% elsif subcategory.category.products? %>
+      <% product = Product.find_by_subcategory_slug(subcategory.slug) %>
+      <% product&.items&.each do |item| %>
+        <div class="w-40 shrink-0 md:w-48">
+          <%= render "pages/product_card", **item.to_h %>
+        </div>
+      <% end %>
+      <% if product.nil? %>
+        <% 10.times do %>
+          <div class="w-40 shrink-0 md:w-48">
+            <%= render "pages/product_card" %>
+          </div>
+        <% end %>
+      <% end %>
     <% else %>
       <% 10.times do %>
         <div class="w-40 shrink-0 md:w-48">

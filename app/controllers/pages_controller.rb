@@ -20,6 +20,10 @@ class PagesController < ApplicationController
 
     @nav_categories = [ @nav_category ]
     @active_subcategory_slug = @subcategory.slug
-    @items = Bundle.find_by_subcategory_slug(@subcategory.slug)&.cards if @nav_category.bundles?
+    @items = if @nav_category.bundles?
+      Bundle.find_by_subcategory_slug(@subcategory.slug)&.cards
+    elsif @nav_category.products?
+      Product.find_by_subcategory_slug(@subcategory.slug)&.items
+    end
   end
 end
