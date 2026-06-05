@@ -3,9 +3,9 @@ class PagesController < ApplicationController
     @bundles = Bundle.all
   end
 
-  def main
+  def catalog
     @filters = Filter.all
-    @nav_categories = Category.products
+    @nav_categories = Category.for_type(params[:type])
     @active_subcategory_slug = nil
     @subcategories = @nav_categories.flat_map(&:subcategories)
   end

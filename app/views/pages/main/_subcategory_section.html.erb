@@ -10,10 +10,19 @@
   </div>
 
   <div class="scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4">
-    <% subcategory.product_count.times do %>
-      <div class="w-40 shrink-0 md:w-48">
-        <%= render "pages/product_card" %>
-      </div>
+    <% if subcategory.category.bundles? %>
+      <% bundle = Bundle.find_by_subcategory_slug(subcategory.slug) %>
+      <% bundle&.cards&.each do |card| %>
+        <div class="w-40 shrink-0 md:w-48">
+          <%= render "pages/product_card", **card.to_h %>
+        </div>
+      <% end %>
+    <% else %>
+      <% 10.times do %>
+        <div class="w-40 shrink-0 md:w-48">
+          <%= render "pages/product_card" %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </section>

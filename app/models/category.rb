@@ -33,6 +33,18 @@ class Category
     all.select(&:products?)
   end
 
+  def self.bundles
+    all.select(&:bundles?)
+  end
+
+  def self.for_type(type)
+    case type
+    when "bundles" then bundles
+    when "products" then products
+    else all
+    end
+  end
+
   def products?
     type == "products"
   end

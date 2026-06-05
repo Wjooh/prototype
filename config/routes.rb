@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   root "pages#index"
-  get "main" => "pages#main", as: :main
+  get "catalog" => "pages#catalog", as: :catalog
   get ":category_slug/:subcategory_slug" => "pages#subcategory", as: :subcategory
 end

@@ -5,43 +5,30 @@ categories:
     subcategories:
       - name: Bestsellers
         slug: bestsellers
-        product_count: 6
       - name: Breakfast
         slug: breakfast
-        product_count: 6
       - name: Canapés & Bites
         slug: canapes-bites
-        product_count: 5
       - name: Appetizers
         slug: appetizers
-        product_count: 5
       - name: Salads
         slug: salads
-        product_count: 5
       - name: Main Dishes
         slug: main-dishes
-        product_count: 6
       - name: Snacks
         slug: snacks
-        product_count: 5
       - name: Desserts
         slug: desserts
-        product_count: 5
       - name: Kids Menu
         slug: kids-menu
-        product_count: 4
       - name: Cakes
         slug: cakes
-        product_count: 5
       - name: Drinks & Juices
         slug: drinks-juices
-        product_count: 5
       - name: Alcohol
         slug: alcohol
-        product_count: 4
       - name: Tableware
         slug: tableware
-        product_count: 4
 
   - name: Decor & Mood
     slug: decor-mood
@@ -49,7 +36,6 @@ categories:
     subcategories:
       - name: Candles
         slug: candles
-        product_count: 4
 
   - name: Full packages
     slug: full-packages

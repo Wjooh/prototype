@@ -10,7 +10,7 @@
           <%= render "pages/product_card", **item.to_h %>
         <% end %>
       <% else %>
-        <% @subcategory.product_count.to_i.times do %>
+        <% 10.times do %>
           <%= render "pages/product_card" %>
         <% end %>
       <% end %>
