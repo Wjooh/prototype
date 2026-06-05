@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   root "pages#index"
   get "catalog" => "pages#catalog", as: :catalog
-  get ":category_slug/:subcategory_slug" => "pages#subcategory", as: :subcategory
+  get "catalog/:category_slug/:subcategory_slug" => "pages#subcategory", as: :subcategory
 end

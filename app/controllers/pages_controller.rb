@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-    @bundle_rows = Bundle.all.group_by(&:subcategory)
+    @bundle_categories = Category.bundles
     @product_categories = Category.products
   end
 

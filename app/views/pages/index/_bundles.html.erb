@@ -1,24 +1,9 @@
-<section class="py-10 md:py-14">
-  <div class="container mx-auto px-4 md:px-6">
-    <div class="mb-8 text-center md:mb-10">
-      <h2 class="text-xl font-bold text-gray-800 md:text-2xl">Or choose a pre-assembled option</h2>
-      <p class="mt-2 text-sm text-gray-500">Ready-made bundles for every occasion</p>
-    </div>
+<% @bundle_categories.each do |category| %>
+  <% next if category.subcategories.empty? %>
 
-    <% @bundle_rows.each do |subcategory, bundles| %>
-      <div class="mb-10 md:mb-12">
-        <div class="mb-4 flex items-center justify-between">
-          <h3 class="text-lg font-semibold text-gray-700 md:text-xl"><%= subcategory.name %></h3>
-          <span class="text-sm text-gray-400 underline">View All</span>
-        </div>
-        <div class="scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4">
-          <% bundles.each do |bundle| %>
-            <div class="w-40 shrink-0 md:w-48">
-              <%= render "pages/product_card", **bundle.to_h %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</section>
+  <section class="py-10 md:py-14">
+    <div class="container mx-auto px-4 md:px-6">
+      <%= render "pages/category_expanded", category: category %>
+    </div>
+  </section>
+<% end %>

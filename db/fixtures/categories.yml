@@ -1,5 +1,5 @@
 categories:
-  - name: Full packages
+  - name: Full packages (inspo)
     slug: full-packages
     type: bundles
     subcategories:
@@ -12,10 +12,14 @@ categories:
       - name: Baby & Family
         slug: baby-family
 
-  - name: Mini carts
-    slug: mini-carts
+  - name: Mix & Match (mini-carts)
+    slug: mix-match
     type: bundles
-    subcategories: []
+    subcategories:
+      - name: The Moment
+        slug: the-moment
+      - name: Tablescape
+        slug: tablescape
 
   - name: Food & Drinks
     slug: food-drinks
