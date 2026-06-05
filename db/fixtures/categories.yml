@@ -1,4 +1,22 @@
 categories:
+  - name: Full packages
+    slug: full-packages
+    type: bundles
+    subcategories:
+      - name: What's On
+        slug: whats-on
+      - name: Birthdays
+        slug: birthdays
+      - name: Get-Togethers
+        slug: get-togethers
+      - name: Baby & Family
+        slug: baby-family
+
+  - name: Mini carts
+    slug: mini-carts
+    type: bundles
+    subcategories: []
+
   - name: Food & Drinks
     slug: food-drinks
     type: products
@@ -36,21 +54,3 @@ categories:
     subcategories:
       - name: Candles
         slug: candles
-
-  - name: Full packages
-    slug: full-packages
-    type: bundles
-    subcategories:
-      - name: What's On
-        slug: whats-on
-      - name: Birthdays
-        slug: birthdays
-      - name: Get-Togethers
-        slug: get-togethers
-      - name: Baby & Family
-        slug: baby-family
-
-  - name: Mini carts
-    slug: mini-carts
-    type: bundles
-    subcategories: []

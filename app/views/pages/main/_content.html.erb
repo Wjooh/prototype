@@ -21,10 +21,19 @@
       <% end %>
     </div>
 
-    <%# Subcategory product rows %>
-    <div class="space-y-8 md:space-y-10">
-      <% @subcategories.each do |subcategory| %>
-        <%= render "pages/main/subcategory_section", subcategory: subcategory %>
+    <%# Category sections with subcategory product rows %>
+    <div class="space-y-10 md:space-y-12">
+      <% @nav_categories.each do |category| %>
+        <% next if category.subcategories.empty? %>
+
+        <div>
+          <h2 class="mb-6 text-xl font-bold text-gray-900 md:mb-8 md:text-2xl"><%= category.name %></h2>
+          <div class="space-y-8 md:space-y-10">
+            <% category.subcategories.each do |subcategory| %>
+              <%= render "pages/main/subcategory_section", subcategory: subcategory %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
