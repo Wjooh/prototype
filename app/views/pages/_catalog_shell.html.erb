@@ -1,11 +1,9 @@
 <%# locals: (content_partial:) %>
-<div class="flex min-h-screen flex-col" data-controller="cart-modal">
-  <%= render "pages/header", cart_modal: true %>
+<div class="flex min-h-screen flex-col">
+  <%= render "pages/header" %>
 
   <div class="flex flex-1 overflow-hidden">
     <%= render "pages/main/sidebar_nav" %>
     <%= render content_partial %>
   </div>
-
-  <%= render "pages/main/cart" %>
 </div>

@@ -23,7 +23,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-white antialiased">
+  <body class="bg-white antialiased" data-controller="cart-modal">
     <%= yield %>
+    <%= render "pages/main/cart" %>
   </body>
 </html>
