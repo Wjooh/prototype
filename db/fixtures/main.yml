@@ -1,6 +1,5 @@
 filters:
   - name: UK Popular
-    active: true
   - name: Mediterranean
   - name: Eastern European
   - name: Georgian

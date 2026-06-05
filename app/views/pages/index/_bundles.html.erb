@@ -8,12 +8,12 @@
     <% @bundles.each do |bundle| %>
       <div class="mb-10 md:mb-12">
         <div class="mb-4 flex items-center justify-between">
-          <h3 class="text-lg font-semibold text-gray-700 md:text-xl"><%= bundle[:subcategory_name] %></h3>
+          <h3 class="text-lg font-semibold text-gray-700 md:text-xl"><%= bundle.subcategory_name %></h3>
           <span class="text-sm text-gray-400 underline">View All</span>
         </div>
         <div class="scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4">
-          <% bundle[:cards].each do |card| %>
-            <%= render "pages/index/bundle_card", **card %>
+          <% bundle.cards.each do |card| %>
+            <%= render "pages/index/bundle_card", **card.to_h %>
           <% end %>
         </div>
       </div>
