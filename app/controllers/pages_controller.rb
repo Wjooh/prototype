@@ -20,7 +20,7 @@ class PagesController < ApplicationController
       raise ActionController::RoutingError, "Not Found"
     end
 
-    @nav_categories = [ @nav_category ]
+    @nav_categories = Category.all
     @active_subcategory_slug = @subcategory.slug
     @items = if @nav_category.bundles?
       Bundle.for_subcategory(@subcategory.slug)
