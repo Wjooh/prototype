@@ -9,3 +9,9 @@
     display: none;
   }
 }
+
+@media (max-width: 767px) {
+  html:not([data-layout-mode="app"]) [data-layout-preview-target="appNav"] {
+    display: none;
+  }
+}

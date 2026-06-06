@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-layout-mode="<%= layout_mode %>">
   <head>
     <title>TADAAA!</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,8 +23,14 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-white antialiased" data-controller="cart-modal">
+  <body
+    class="bg-white antialiased"
+    data-controller="cart-modal layout-preview"
+    data-layout-preview-update-url-value="<%= layout_mode_path %>"
+  >
     <%= yield %>
     <%= render "pages/main/cart" %>
+    <%= render "pages/layout_preview_controls" %>
+    <%= render "pages/app_nav" %>
   </body>
 </html>

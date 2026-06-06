@@ -1,0 +1,39 @@
+<% home_active = request.path == "/" %>
+<% catalog_active = request.path.start_with?("/catalog") %>
+
+<nav
+  data-layout-preview-target="appNav"
+  class="fixed inset-x-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 md:hidden"
+  aria-label="App navigation"
+>
+  <div class="mx-auto flex max-w-md items-center justify-around rounded-full border border-gray-100 bg-white px-2 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
+    <%= link_to root_path, class: "flex flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 #{home_active ? "bg-gray-100 text-red-500" : "text-gray-800"}" do %>
+      <%= heroicon "home", options: { class: "h-5 w-5 #{home_active ? "text-red-500" : ""}" } %>
+      <span class="text-[10px] font-medium">Home</span>
+    <% end %>
+
+    <%= link_to catalog_path, class: "flex flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 #{catalog_active ? "bg-gray-100 text-red-500" : "text-gray-800"}" do %>
+      <%= heroicon "squares-2x2", options: { class: "h-5 w-5 #{catalog_active ? "text-red-500" : ""}" } %>
+      <span class="text-[10px] font-medium">Catalog</span>
+    <% end %>
+
+    <%= link_to root_path, class: "flex flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 text-gray-800" do %>
+      <%= heroicon "gift" %>
+      <span class="text-[10px] font-medium">Packages</span>
+    <% end %>
+
+    <button
+      type="button"
+      data-action="cart-modal#open"
+      class="flex flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 text-gray-800"
+    >
+      <%= heroicon "shopping-cart" %>
+      <span class="text-[10px] font-medium">Cart</span>
+    </button>
+
+    <span class="flex cursor-default flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 text-gray-800">
+      <%= heroicon "user" %>
+      <span class="text-[10px] font-medium">Profile</span>
+    </span>
+  </div>
+</nav>
