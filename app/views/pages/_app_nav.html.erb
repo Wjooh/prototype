@@ -2,8 +2,7 @@
 <% catalog_active = request.path.start_with?("/catalog") %>
 
 <nav
-  data-layout-preview-target="appNav"
-  class="fixed inset-x-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 md:hidden"
+  class="fixed inset-x-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 hidden app:block md:hidden"
   aria-label="App navigation"
 >
   <div class="mx-auto flex max-w-md items-center justify-around rounded-full border border-gray-100 bg-white px-2 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">

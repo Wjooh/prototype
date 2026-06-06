@@ -1,17 +1,17 @@
 @import "tailwindcss";
 @source "../../../config/initializers/heroicons.rb";
 
+/* app: — active when layout mode is "app" (bottom-nav shell) */
+@custom-variant app (&:where([data-layout-mode="app"], [data-layout-mode="app"] *));
+
+/* hot-app: — active when layout mode is "mobile" (mobile web version) */
+@custom-variant hot-app (&:where([data-layout-mode="mobile"], [data-layout-mode="mobile"] *));
+
 @utility scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@media (max-width: 767px) {
-  html:not([data-layout-mode="app"]) [data-layout-preview-target="appNav"] {
     display: none;
   }
 }

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["appNav", "mobileButton", "appButton"]
+  static targets = ["mobileButton", "appButton"]
   static values = { mode: String, updateUrl: String }
 
   connect() {
@@ -35,10 +35,6 @@ export default class extends Controller {
 
   updateUI() {
     const isApp = this.modeValue === "app"
-
-    if (this.hasAppNavTarget) {
-      this.appNavTarget.classList.toggle("hidden", !isApp)
-    }
 
     if (this.hasAppButtonTarget) {
       this.toggleSegment(this.appButtonTarget, isApp)
