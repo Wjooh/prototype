@@ -2,10 +2,10 @@
 <% if compact %>
   <% first_subcategory = category.subcategories_with_items.first || category.subcategories.first %>
 
-  <section class="py-10 md:py-14">
+  <section class="my-6">
     <div class="container mx-auto px-4 md:px-6">
-      <h2 class="mb-4 text-xl font-bold text-gray-800 md:mb-6 md:text-2xl"><%= category.name %></h2>
-      <div class="scrollbar-hide mb-6 flex gap-2 overflow-x-auto pb-2 md:mb-8 md:flex-wrap md:gap-3">
+      <h2 class="mb-2 text-xl font-bold text-gray-800 md:text-2xl"><%= category.name %></h2>
+      <div class="scrollbar-hide mb-2 flex gap-2 overflow-x-auto pb-2 md:flex-wrap md:gap-3">
         <% category.subcategories.each do |subcategory| %>
           <% active = subcategory == first_subcategory %>
           <% if active %>
