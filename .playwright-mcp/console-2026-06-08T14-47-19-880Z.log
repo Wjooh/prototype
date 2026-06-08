@@ -1,0 +1,9 @@
+[   64390ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/catalog?hotwire_spark=true&reload=1780930104057:0
+[   64390ms] [LOG] Error on reload_html Error: 500 when fetching http://localhost:3000/catalog?hotwire_spark=true&reload=1780930104057
+    at reloadHtmlDocument (http://localhost:3000/assets/hotwire_spark-d7e0ee73.js:555:13)
+    at async #reloadHtml (http://localhost:3000/assets/hotwire_spark-d7e0ee73.js:1499:32)
+    at async MorphHtmlReloader.reload (http://localhost:3000/assets/hotwire_spark-d7e0ee73.js:1494:7)
+    at async Subscription.received (http://localhost:3000/assets/hotwire_spark-d7e0ee73.js:1604:9) @ http://localhost:3000/assets/hotwire_spark-d7e0ee73.js:1605
+[  144946ms] [WARNING] The resource http://localhost:3000/assets/tailwind-b09b13bc.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/catalog:0
+[  208166ms] [WARNING] The resource http://localhost:3000/assets/tailwind-da525113.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/catalog:0
+[  208166ms] [WARNING] The resource http://localhost:3000/assets/tailwind-b09b13bc.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/catalog:0

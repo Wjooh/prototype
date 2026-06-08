@@ -49,6 +49,7 @@ class PagesController < ApplicationController
     end
 
     @nav_categories = Category.products.select(&:has_items?)
+    @active_category_slug = @nav_category.slug
     @active_subcategory_slug = @subcategory.slug
     @items = @subcategory.items_for
   end

@@ -1,0 +1,274 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e8]:
+          - button "Menu" [ref=e9]:
+            - img [ref=e10]
+          - generic [ref=e12]:
+            - link "TADAAA!" [ref=e13] [cursor=pointer]:
+              - /url: /
+            - paragraph [ref=e14]: Event Delivery in London
+          - generic [ref=e15]:
+            - button "Search" [ref=e16]:
+              - img [ref=e17]
+            - button "Favourites" [ref=e19]:
+              - img [ref=e20]
+        - paragraph [ref=e23]: Mozzarella Caprese Salad - Large Bowl · £13.60
+      - generic [ref=e24]:
+        - link "Food & Drinks" [ref=e25] [cursor=pointer]:
+          - /url: /catalog/food-drinks
+          - generic [ref=e26]: Food & Drinks
+        - link "Special moment" [ref=e28] [cursor=pointer]:
+          - /url: /catalog/special-moment
+          - generic [ref=e29]: Special moment
+        - link "Decor & Mood" [ref=e31] [cursor=pointer]:
+          - /url: /catalog/decor-mood
+          - generic [ref=e32]: Decor & Mood
+      - generic [ref=e34]:
+        - link "Bestsellers" [ref=e35] [cursor=pointer]:
+          - /url: /catalog/food-drinks/bestsellers
+          - text: Bestsellers
+        - link "Breakfast" [ref=e37] [cursor=pointer]:
+          - /url: /catalog/food-drinks/breakfast
+          - text: Breakfast
+        - link "Canapés & Bites" [ref=e39] [cursor=pointer]:
+          - /url: /catalog/food-drinks/canapes-bites
+          - text: Canapés & Bites
+        - link "Appetizers" [ref=e41] [cursor=pointer]:
+          - /url: /catalog/food-drinks/appetizers
+          - text: Appetizers
+        - link "Salads" [ref=e43] [cursor=pointer]:
+          - /url: /catalog/food-drinks/salads
+          - text: Salads
+        - link "Main Dishes" [ref=e45] [cursor=pointer]:
+          - /url: /catalog/food-drinks/main-dishes
+          - text: Main Dishes
+        - link "Snacks" [ref=e47] [cursor=pointer]:
+          - /url: /catalog/food-drinks/snacks
+          - text: Snacks
+        - link "Desserts" [ref=e49] [cursor=pointer]:
+          - /url: /catalog/food-drinks/desserts
+          - text: Desserts
+        - link "Kids Menu" [ref=e51] [cursor=pointer]:
+          - /url: /catalog/food-drinks/kids-menu
+          - text: Kids Menu
+        - link "Drinks & Juices" [ref=e53] [cursor=pointer]:
+          - /url: /catalog/food-drinks/drinks-juices
+          - text: Drinks & Juices
+        - link "Alcohol" [ref=e55] [cursor=pointer]:
+          - /url: /catalog/food-drinks/alcohol
+          - text: Alcohol
+        - link "Tableware" [ref=e57] [cursor=pointer]:
+          - /url: /catalog/food-drinks/tableware
+          - text: Tableware
+      - dialog [ref=e59]:
+        - generic [ref=e60]:
+          - link [ref=e61] [cursor=pointer]:
+            - /url: /
+            - text: TADAAA!
+          - button [ref=e62]:
+            - img [ref=e63]
+        - generic [ref=e65]:
+          - link [ref=e66] [cursor=pointer]:
+            - /url: /
+            - text: Home
+          - link [ref=e67] [cursor=pointer]:
+            - /url: /#get-20
+            - text: Get £20
+          - link [ref=e68] [cursor=pointer]:
+            - /url: /#reviews
+            - text: Reviews
+          - link [ref=e69] [cursor=pointer]:
+            - /url: /#delivery
+            - text: Delivery
+          - link [ref=e70] [cursor=pointer]:
+            - /url: /#about-us
+            - text: About us
+          - link [ref=e71] [cursor=pointer]:
+            - /url: /#legal
+            - text: Legal
+          - link [ref=e72] [cursor=pointer]:
+            - /url: /#support
+            - text: Support
+          - link [ref=e73] [cursor=pointer]:
+            - /url: "#"
+            - text: Sign in
+    - navigation "Main navigation" [ref=e74]:
+      - generic [ref=e75]:
+        - link "Home" [ref=e76] [cursor=pointer]:
+          - /url: /
+          - img [ref=e77]
+          - generic [ref=e79]: Home
+        - link "Parties" [ref=e80] [cursor=pointer]:
+          - /url: /parties
+          - img [ref=e81]
+          - generic [ref=e83]: Parties
+        - link "Kids" [ref=e84] [cursor=pointer]:
+          - /url: /kids
+          - img [ref=e85]
+          - generic [ref=e87]: Kids
+        - link "Corporate" [ref=e88] [cursor=pointer]:
+          - /url: /corporate
+          - img [ref=e89]
+          - generic [ref=e91]: Corporate
+        - link "Catalog" [ref=e92] [cursor=pointer]:
+          - /url: /catalog
+          - img [ref=e93]
+          - generic [ref=e95]: Catalog
+    - main [ref=e97]:
+      - generic [ref=e99]:
+        - article [ref=e100]:
+          - generic [ref=e101]:
+            - link "Add to cart" [ref=e102] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e104]: Add to cart
+            - generic [ref=e106]: UK Popular
+            - link "Add to favourites" [ref=e107] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e108]
+          - paragraph [ref=e110]: Smoked Salmon Bagels
+        - article [ref=e111]:
+          - generic [ref=e112]:
+            - link "Add to cart" [ref=e113] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e115]: Add to cart
+            - generic [ref=e117]: Mediterranean
+            - link "Add to favourites" [ref=e118] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e119]
+          - paragraph [ref=e121]: Classic Charcuterie
+        - article [ref=e122]:
+          - generic [ref=e123]:
+            - link "Add to cart" [ref=e124] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e126]: Add to cart
+            - generic [ref=e128]: Eastern European
+            - link "Add to favourites" [ref=e129] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e130]
+          - paragraph [ref=e132]: Mini Burger Sliders
+        - article [ref=e133]:
+          - generic [ref=e134]:
+            - link "Add to cart" [ref=e135] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e137]: Add to cart
+            - generic [ref=e138]:
+              - generic [ref=e139]: Georgian
+              - generic [ref=e140]: Kids
+            - link "Add to favourites" [ref=e141] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e142]
+          - paragraph [ref=e144]: Kids Party Pizza
+        - article [ref=e145]:
+          - generic [ref=e146]:
+            - link "Add to cart" [ref=e147] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e149]: Add to cart
+            - generic [ref=e151]: UK Popular
+            - link "Add to favourites" [ref=e152] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e153]
+          - paragraph [ref=e155]: Executive Lunch Box
+        - article [ref=e156]:
+          - generic [ref=e157]:
+            - link "Add to cart" [ref=e158] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e160]: Add to cart
+            - generic [ref=e162]: Mediterranean
+            - link "Add to favourites" [ref=e163] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e164]
+          - paragraph [ref=e166]: Boardroom Brunch
+        - article [ref=e167]:
+          - generic [ref=e168]:
+            - link "Add to cart" [ref=e169] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e171]: Add to cart
+            - generic [ref=e173]: Eastern European
+            - link "Add to favourites" [ref=e174] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e175]
+          - paragraph [ref=e177]: Family Feast Platter
+        - article [ref=e178]:
+          - generic [ref=e179]:
+            - link "Add to cart" [ref=e180] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e182]: Add to cart
+            - generic [ref=e184]: Georgian
+            - link "Add to favourites" [ref=e185] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e186]
+          - paragraph [ref=e188]: Celebration Cupcakes
+        - article [ref=e189]:
+          - generic [ref=e190]:
+            - link "Add to cart" [ref=e191] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e193]: Add to cart
+            - generic [ref=e195]: UK Popular
+            - link "Add to favourites" [ref=e196] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e197]
+          - paragraph [ref=e199]: Truffle Fries
+        - article [ref=e200]:
+          - generic [ref=e201]:
+            - link "Add to cart" [ref=e202] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e204]: Add to cart
+            - generic [ref=e206]: Mediterranean
+            - link "Add to favourites" [ref=e207] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e208]
+          - paragraph [ref=e210]: Premium Sushi Box
+    - generic [ref=e212]:
+      - heading "Frequently Asked Questions" [level=2] [ref=e213]
+      - generic [ref=e214]:
+        - generic [ref=e216]:
+          - generic [ref=e217]: How far in advance should I order?
+          - img [ref=e218]
+        - generic [ref=e221]:
+          - generic [ref=e222]: Can I customize a pre-assembled bundle?
+          - img [ref=e223]
+        - generic [ref=e226]:
+          - generic [ref=e227]: What areas do you deliver to?
+          - img [ref=e228]
+        - generic [ref=e231]:
+          - generic [ref=e232]: How do I track my order?
+          - img [ref=e233]
+        - generic [ref=e236]:
+          - generic [ref=e237]: What is your cancellation policy?
+          - img [ref=e238]
+    - generic [ref=e241]:
+      - heading "Support Team" [level=2] [ref=e242]
+      - generic [ref=e243]:
+        - button "WhatsApp" [ref=e244]:
+          - img [ref=e245]
+          - generic [ref=e247]: WhatsApp
+        - button "Messenger" [ref=e248]:
+          - img [ref=e249]
+          - generic [ref=e251]: Messenger
+        - button "Email" [ref=e252]:
+          - img [ref=e253]
+          - generic [ref=e255]: Email
+    - contentinfo [ref=e256]:
+      - generic [ref=e257]:
+        - generic [ref=e258]:
+          - generic [ref=e259]: TADAAA!
+          - generic [ref=e260]:
+            - img [ref=e262]
+            - img [ref=e265]
+            - img [ref=e268]
+        - paragraph [ref=e287]: © 2026 TADAAA!
+  - dialog [ref=e288]:
+    - generic [ref=e289]:
+      - heading [level=2] [ref=e290]: My order
+      - button [ref=e291]:
+        - img [ref=e292]
+    - generic [ref=e294]:
+      - img [ref=e296]
+      - paragraph [ref=e298]: Your cart is empty
+      - paragraph [ref=e299]: Why not add some items?
+    - button [disabled] [ref=e301]: Add something to cart
+  - button "Cart" [ref=e302] [cursor=pointer]:
+    - img [ref=e303]
+    - generic [ref=e305]: "2"

@@ -1,6 +1,18 @@
 <%# locals: (content_partial:) %>
 <div class="flex min-h-screen flex-col">
-  <%= render "pages/header" %>
+  <% if catalog_page? %>
+    <div class="md:hidden">
+      <%= render "pages/catalog_showcase" %>
+    </div>
+    <div class="hidden md:contents">
+      <%= render "pages/header" %>
+    </div>
+    <div class="md:hidden">
+      <%= render "pages/nav" %>
+    </div>
+  <% else %>
+    <%= render "pages/header" %>
+  <% end %>
 
   <div class="flex flex-1">
     <%= render "pages/main/sidebar_nav" unless @category&.bundles? %>

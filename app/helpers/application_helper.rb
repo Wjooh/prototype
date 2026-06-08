@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def catalog_page?
+    request.path.start_with?("/catalog")
+  end
+
   def bundle_category_path(category)
     public_send(:"#{category.slug}_path")
   end

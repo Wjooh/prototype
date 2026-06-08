@@ -1,0 +1,37 @@
+<%
+  active_category = @category || @nav_category
+  active_category_slug = @active_category_slug || active_category&.slug
+%>
+
+<div class="shrink-0" data-controller="mobile-menu">
+  <%# Product showcase with overlaid header %>
+  <div class="relative bg-gray-300">
+    <div class="h-[calc(75vw+100px)] w-full" aria-hidden="true"></div>
+
+    <div class="absolute inset-x-0 top-0 px-4 py-2 pt-[max(0.5rem,env(safe-area-inset-top))]">
+      <%= render "pages/mobile_header_bar", theme: :dark %>
+    </div>
+
+    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent px-4 pb-4 pt-10">
+      <p class="text-center text-sm font-semibold text-white">
+        Mozzarella Caprese Salad - Large Bowl · £13.60
+      </p>
+    </div>
+  </div>
+
+  <%# Categories carousel %>
+  <div class="relative z-10 -mt-16 scrollbar-hide flex gap-2 overflow-x-auto px-4 pb-3">
+    <% @nav_categories.each do |category| %>
+      <% category_active = category.slug == active_category_slug %>
+      <a
+        href="<%= product_category_path(category) %>"
+        class="flex h-28 w-24 shrink-0 flex-col justify-between rounded-2xl border p-2.5 <%= category_active ? "border-gray-400 bg-gray-50" : "border-gray-200 bg-white" %>"
+      >
+        <span class="text-xs font-semibold leading-tight text-gray-800"><%= category.name %></span>
+        <div class="mx-auto h-8 w-8 rounded-full bg-gray-200" aria-hidden="true"></div>
+      </a>
+    <% end %>
+  </div>
+
+  <%= render "pages/mobile_menu" %>
+</div>

@@ -1,0 +1,38 @@
+<%# locals: (theme: :light) %>
+<%
+  dark = theme == :dark
+  button_class = if dark
+    "inline-flex h-8 w-8 items-center justify-center rounded-full text-white"
+  else
+    "inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-900"
+  end
+  logo_class = if dark
+    "justify-self-center text-lg font-bold tracking-wider text-white"
+  else
+    "justify-self-center text-lg font-bold tracking-wider text-stone-700"
+  end
+%>
+
+<div class="grid grid-cols-[auto_1fr_auto] items-center gap-2">
+  <button
+    type="button"
+    data-action="mobile-menu#open"
+    class="<%= button_class %>"
+    aria-label="Menu"
+  >
+    <%= heroicon "bars-3", options: { class: "h-5 w-5" } %>
+  </button>
+
+  <%= link_to root_path, class: logo_class do %>
+    TADAAA!
+  <% end %>
+
+  <div class="flex items-center gap-1.5">
+    <button type="button" class="<%= button_class %>" aria-label="Search">
+      <%= heroicon "magnifying-glass", options: { class: "h-4 w-4" } %>
+    </button>
+    <button type="button" class="<%= button_class %>" aria-label="Favourites">
+      <%= heroicon "heart", options: { class: "h-4 w-4" } %>
+    </button>
+  </div>
+</div>

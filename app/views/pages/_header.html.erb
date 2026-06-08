@@ -1,28 +1,8 @@
 <header class="shrink-0 bg-white" data-controller="mobile-menu">
   <div class="container mx-auto px-4 py-2 md:px-6 md:py-4">
     <%# Mobile top bar: burger | logo | search & favourites %>
-    <div class="grid grid-cols-[auto_1fr_auto] items-center gap-2 md:hidden">
-      <button
-        type="button"
-        data-action="mobile-menu#open"
-        class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600"
-        aria-label="Menu"
-      >
-        <%= heroicon "bars-3", options: { class: "h-5 w-5" } %>
-      </button>
-
-      <%= link_to root_path, class: "justify-self-center text-lg font-bold tracking-wider text-gray-600" do %>
-        TADAAA!
-      <% end %>
-
-      <div class="flex items-center gap-1.5">
-        <button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600" aria-label="Search">
-          <%= heroicon "magnifying-glass", options: { class: "h-4 w-4" } %>
-        </button>
-        <button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600" aria-label="Favourites">
-          <%= heroicon "heart", options: { class: "h-4 w-4" } %>
-        </button>
-      </div>
+    <div class="md:hidden">
+      <%= render "pages/mobile_header_bar", theme: :light %>
     </div>
 
     <%# Desktop top row: Trustpilot left, utility pills right %>
@@ -58,7 +38,7 @@
 
     <%# Logo — desktop only %>
     <div class="mt-4 hidden text-center md:mt-5 md:block">
-      <%= link_to root_path, class: "text-2xl font-bold tracking-wider text-gray-600 md:text-3xl" do %>
+      <%= link_to root_path, class: "text-2xl font-bold tracking-wider text-stone-700 md:text-3xl" do %>
         TADAAA!
       <% end %>
     </div>
