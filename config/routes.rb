@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "parties" => "pages#catalog", defaults: { category_slug: "parties" }, as: :parties
   get "kids" => "pages#catalog", defaults: { category_slug: "kids" }, as: :kids
   get "corporate" => "pages#catalog", defaults: { category_slug: "corporate" }, as: :corporate
+  get "inspo" => "pages#inspo", as: :inspo
   get "catalog" => "pages#catalog", as: :catalog
   get "catalog/:category_slug/:subcategory_slug" => "pages#subcategory", as: :catalog_subcategory
 end

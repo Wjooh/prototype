@@ -2,6 +2,14 @@ class PagesController < ApplicationController
   def index
   end
 
+  def inspo
+    @inspo = true
+    @category = nil
+    @active_subcategory_slug = nil
+    @nav_categories = Category.bundles.select(&:has_items?)
+    @subcategories = @nav_categories.flat_map(&:subcategories_with_items)
+  end
+
   def catalog
     @category = Category.find_by_slug(params[:category_slug]) if params[:category_slug].present?
     @active_subcategory_slug = nil
