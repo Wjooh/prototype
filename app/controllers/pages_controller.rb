@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
   def index
+    @home = true
+    @bundle_categories = Category.bundles.select(&:has_items?)
+    @product_categories = Category.products
   end
 
   def inspo

@@ -1,6 +1,6 @@
 <%# locals: (category:, compact: false) %>
 <% if compact %>
-  <% first_subcategory = category.subcategories.first %>
+  <% first_subcategory = category.subcategories_with_items.first || category.subcategories.first %>
 
   <section class="py-10 md:py-14">
     <div class="container mx-auto px-4 md:px-6">
@@ -14,7 +14,7 @@
             </span>
           <% else %>
             <a
-              href="<%= catalog_subcategory_path(category.slug, subcategory.slug) %>"
+              href="<%= subcategory_link(category.slug, subcategory.slug, category: category) %>"
               class="shrink-0 rounded-full bg-gray-200 px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-300"
             >
               <%= subcategory.name %>
@@ -23,10 +23,18 @@
         <% end %>
       </div>
       <div class="scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4">
-        <% Product.for_subcategory(first_subcategory.slug).each do |product| %>
-          <div class="w-40 shrink-0 md:w-48">
-            <%= render "pages/product_card", **product.to_h %>
-          </div>
+        <% if category.bundles? %>
+          <% Bundle.for_subcategory(first_subcategory).each do |bundle| %>
+            <div class="w-40 shrink-0 md:w-48">
+              <%= render "pages/product_card", **bundle.to_h %>
+            </div>
+          <% end %>
+        <% else %>
+          <% Product.for_subcategory(first_subcategory.slug).each do |product| %>
+            <div class="w-40 shrink-0 md:w-48">
+              <%= render "pages/product_card", **product.to_h %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

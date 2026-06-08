@@ -1,7 +1,13 @@
 <div class="flex min-h-screen flex-col">
   <%= render "pages/header" %>
 
-  <main class="flex flex-1 items-center justify-center px-4 py-16">
-    <p class="text-center text-lg text-gray-400">Home page coming soon</p>
+  <main class="flex-1 bg-white">
+    <% @bundle_categories.each do |category| %>
+      <% next if category.subcategories.empty? %>
+
+      <%= render "pages/category", category: category, compact: true %>
+    <% end %>
+
+    <%= render "pages/catalog_preview" %>
   </main>
 </div>
