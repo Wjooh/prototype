@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   root "pages#index"
-  post "layout_mode" => "layout_modes#update", as: :layout_mode
   get "parties" => "pages#catalog", defaults: { category_slug: "parties" }, as: :parties
   get "kids" => "pages#catalog", defaults: { category_slug: "kids" }, as: :kids
   get "corporate" => "pages#catalog", defaults: { category_slug: "corporate" }, as: :corporate

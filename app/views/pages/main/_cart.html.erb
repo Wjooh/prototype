@@ -1,15 +1,16 @@
 <div
   data-cart-modal-target="backdrop"
   data-action="click->cart-modal#close"
-  class="fixed inset-0 z-40 hidden bg-black/30"
+  class="fixed inset-0 z-[55] bg-black/30 aria-hidden:hidden"
   aria-hidden="true"
 ></div>
 
 <aside
   data-cart-modal-target="panel"
-  class="fixed inset-y-0 right-0 z-50 flex w-72 max-w-full translate-x-full flex-col border-l border-gray-200 bg-white shadow-xl transition-transform duration-300 xl:w-80"
+  class="fixed inset-x-0 bottom-0 z-[56] flex h-[95vh] max-h-[95vh] flex-col rounded-t-2xl border-t border-gray-200 bg-white shadow-xl transition-transform duration-300 aria-hidden:translate-y-full md:inset-x-auto md:inset-y-0 md:right-0 md:h-auto md:max-h-none md:w-72 md:aria-hidden:translate-x-full md:aria-hidden:translate-y-0 md:rounded-none md:border-l md:border-t-0 xl:w-80"
   role="dialog"
   aria-modal="true"
+  aria-hidden="true"
   aria-labelledby="cart-modal-title"
 >
   <div class="flex items-center justify-between border-b border-gray-200 px-4 py-4">

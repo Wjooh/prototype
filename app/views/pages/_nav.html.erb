@@ -1,0 +1,29 @@
+<%
+  nav_items = [
+    { label: "Home", path: root_path, icon: "home", active: request.path == "/" },
+    { label: "Parties", path: parties_path, icon: "sparkles", active: request.path.start_with?("/parties") },
+    { label: "Kids", path: kids_path, icon: "gift", active: request.path.start_with?("/kids") },
+    { label: "Corporate", path: corporate_path, icon: "building-office-2", active: request.path.start_with?("/corporate") },
+    { label: "Catalog", path: catalog_path, icon: "squares-2x2", active: request.path.start_with?("/catalog") }
+  ]
+%>
+
+<nav class="mt-3 hidden flex-wrap items-center justify-center gap-4 md:mt-4 md:flex md:gap-8" aria-label="Main navigation">
+  <% nav_items.each do |item| %>
+    <%= link_to item[:label], item[:path], class: "text-sm md:text-base #{item[:active] ? "font-bold text-gray-800" : "text-gray-400"}" %>
+  <% end %>
+</nav>
+
+<nav
+  class="fixed inset-x-2 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 md:hidden"
+  aria-label="Main navigation"
+>
+  <div class="mx-auto flex max-w-lg items-center justify-around rounded-full border border-gray-100 bg-white px-1 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
+    <% nav_items.each do |item| %>
+      <%= link_to item[:path], class: "flex flex-col items-center gap-0.5 rounded-2xl px-2 py-1.5 #{item[:active] ? "bg-gray-100 text-red-500" : "text-gray-800"}" do %>
+        <%= heroicon item[:icon], options: { class: "h-5 w-5 #{item[:active] ? "text-red-500" : ""}" } %>
+        <span class="text-[10px] font-medium"><%= item[:label] %></span>
+      <% end %>
+    <% end %>
+  </div>
+</nav>
