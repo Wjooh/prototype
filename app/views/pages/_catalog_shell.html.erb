@@ -2,7 +2,7 @@
 <div class="flex min-h-screen flex-col">
   <%= render "pages/header" %>
 
-  <div class="flex flex-1 overflow-hidden">
+  <div class="flex flex-1">
     <%= render "pages/main/sidebar_nav" unless @category.present? %>
     <%= render content_partial %>
   </div>

@@ -8,21 +8,15 @@
   ]
 %>
 
-<nav class="mt-3 hidden flex-wrap items-center justify-center gap-4 md:mt-4 md:flex md:gap-8" aria-label="Main navigation">
-  <% nav_items.each do |item| %>
-    <%= link_to item[:label], item[:path], class: "text-sm md:text-base #{item[:active] ? "font-bold text-gray-800" : "text-gray-400"}" %>
-  <% end %>
-</nav>
-
 <nav
-  class="fixed inset-x-2 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 md:hidden"
+  class="z-40 flex justify-center max-md:fixed max-md:inset-x-2 max-md:bottom-[max(1rem,env(safe-area-inset-bottom))] max-md:z-50 md:sticky md:top-0 md:px-6 md:pb-3 md:pt-4"
   aria-label="Main navigation"
 >
-  <div class="mx-auto flex max-w-lg items-center justify-around rounded-full border border-gray-100 bg-white px-1 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
+  <div class="mx-auto flex w-full max-w-lg items-center justify-around rounded-full border border-gray-100 bg-white px-1 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.12)] md:max-w-4xl md:justify-normal md:px-1 md:py-2">
     <% nav_items.each do |item| %>
-      <%= link_to item[:path], class: "flex flex-col items-center gap-0.5 rounded-2xl px-2 py-1.5 #{item[:active] ? "bg-gray-100 text-red-500" : "text-gray-800"}" do %>
-        <%= heroicon item[:icon], options: { class: "h-5 w-5 #{item[:active] ? "text-red-500" : ""}" } %>
-        <span class="text-[10px] font-medium"><%= item[:label] %></span>
+      <%= link_to item[:path], class: "flex flex-col items-center justify-center gap-0.5 rounded-2xl px-2 py-1.5 max-md:w-auto md:w-1/5 md:shrink-0 md:flex-row md:gap-2 md:py-2.5 #{item[:active] ? "bg-gray-100 text-red-500" : "text-gray-800"}" do %>
+        <%= heroicon item[:icon], options: { class: "h-5 w-5 shrink-0 #{item[:active] ? "text-red-500" : ""}" } %>
+        <span class="text-[10px] font-medium md:text-sm"><%= item[:label] %></span>
       <% end %>
     <% end %>
   </div>

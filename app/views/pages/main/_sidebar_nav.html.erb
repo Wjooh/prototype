@@ -1,4 +1,4 @@
-<aside class="hidden w-52 shrink-0 overflow-y-auto border-r border-gray-200 bg-white lg:block xl:w-56">
+<aside class="hidden w-52 shrink-0 border-r border-gray-200 bg-white lg:sticky lg:top-16 lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto lg:self-start lg:block xl:w-56">
   <nav class="px-3 py-4">
     <% @nav_categories.each do |category| %>
       <% visible_subcategories = category.subcategories_with_items %>
