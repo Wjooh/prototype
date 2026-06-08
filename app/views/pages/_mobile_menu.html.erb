@@ -1,0 +1,50 @@
+<%
+  menu_items = [
+    { label: "Home", path: root_path },
+    { label: "Get £20", path: "#{root_path}#get-20" },
+    { label: "Reviews", path: "#{root_path}#reviews" },
+    { label: "Delivery", path: "#{root_path}#delivery" },
+    { label: "About us", path: "#{root_path}#about-us" },
+    { label: "Legal", path: "#{root_path}#legal" },
+    { label: "Support", path: "#{root_path}#support" },
+    { label: "Sign in", path: "#" }
+  ]
+%>
+
+<div
+  data-mobile-menu-target="backdrop"
+  data-action="click->mobile-menu#close"
+  class="fixed inset-0 z-[60] bg-black/30 aria-hidden:hidden md:hidden"
+  aria-hidden="true"
+></div>
+
+<nav
+  data-mobile-menu-target="panel"
+  class="fixed inset-y-0 left-0 z-[61] flex w-72 max-w-[85vw] flex-col bg-white shadow-xl transition-transform duration-300 aria-hidden:-translate-x-full md:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-label="Mobile menu"
+>
+  <div class="flex items-center justify-between border-b border-gray-200 px-4 py-3">
+    <%= link_to root_path, class: "text-lg font-bold tracking-wider text-gray-600", data: { action: "mobile-menu#close" } do %>
+      TADAAA!
+    <% end %>
+    <button
+      type="button"
+      data-action="mobile-menu#close"
+      class="inline-flex h-8 w-8 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+      aria-label="Close menu"
+    >
+      <%= heroicon "x-mark", options: { class: "h-5 w-5" } %>
+    </button>
+  </div>
+
+  <div class="flex flex-1 flex-col overflow-y-auto py-2">
+    <% menu_items.each do |item| %>
+      <%= link_to item[:label], item[:path],
+          class: "block px-6 py-3.5 text-base font-medium text-gray-800 hover:bg-gray-50",
+          data: { action: "mobile-menu#close" } %>
+    <% end %>
+  </div>
+</nav>
