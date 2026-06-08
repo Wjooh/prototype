@@ -2,546 +2,565 @@
   items:
     - title: "Smoked Salmon\nBagels"
       price: "£14"
+      uk_popular: true
     - title: "Classic\nCharcuterie"
       price: "£22"
+      mediterranean: true
     - title: "Mini Burger\nSliders"
       price: "£12"
-      kids: true
+      eastern_european: true
     - title: "Kids Party\nPizza"
       price: "£10"
-      kids: true
+      georgian: true
     - title: "Executive\nLunch Box"
       price: "£28"
-      corporate: true
+      uk_popular: true
     - title: "Boardroom\nBrunch"
       price: "£26"
-      corporate: true
+      mediterranean: true
     - title: "Family Feast\nPlatter"
       price: "£32"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Celebration\nCupcakes"
       price: "£18"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Truffle\nFries"
       price: "£9"
-      kids: true
+      uk_popular: true
     - title: "Premium Sushi\nBox"
       price: "£24"
-      corporate: true
+      mediterranean: true
 
 - subcategory: breakfast
   items:
     - title: "Full English\nSpread"
       price: "£16"
+      uk_popular: true
     - title: "Croissant\nAssortment"
       price: "£11"
+      mediterranean: true
     - title: "Pancake\nStacks"
       price: "£8"
-      kids: true
+      eastern_european: true
     - title: "Cereal & Milk\nBar"
       price: "£7"
-      kids: true
+      georgian: true
     - title: "Corporate Morning\nTray"
       price: "£24"
-      corporate: true
+      uk_popular: true
     - title: "Meeting Room\nMuffins"
       price: "£15"
-      corporate: true
+      mediterranean: true
     - title: "Brunch for\nTwo"
       price: "£28"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Family Pancake\nFeast"
       price: "£22"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Avocado Toast\nTrio"
       price: "£13"
-      kids: true
+      uk_popular: true
     - title: "Greek Yogurt\nParfaits"
       price: "£9"
-      corporate: true
+      mediterranean: true
 
 - subcategory: canapes-bites
   items:
     - title: "Prosciutto &\nMelon"
       price: "£12"
+      uk_popular: true
     - title: "Caprese\nSkewers"
       price: "£10"
+      mediterranean: true
     - title: "Mini Cheese\nBalls"
       price: "£8"
-      kids: true
+      eastern_european: true
     - title: "Veggie Pinwheel\nBites"
       price: "£7"
-      kids: true
+      georgian: true
     - title: "Smoked Salmon\nBlinis"
       price: "£16"
-      corporate: true
+      uk_popular: true
     - title: "Truffle Arancini\nBites"
       price: "£14"
-      corporate: true
+      mediterranean: true
     - title: "Mixed Canapé\nSelection"
       price: "£20"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Party Sausage\nRolls"
       price: "£11"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Stuffed Mushroom\nCups"
       price: "£9"
-      kids: true
+      uk_popular: true
     - title: "Caviar & Cream\nCheese"
       price: "£22"
-      corporate: true
+      mediterranean: true
 
 - subcategory: appetizers
   items:
     - title: "Garlic\nBruschetta"
       price: "£9"
+      uk_popular: true
     - title: "Spinach &\nArtichoke Dip"
       price: "£11"
+      mediterranean: true
     - title: "Mini Corn\nDogs"
       price: "£8"
-      kids: true
+      eastern_european: true
     - title: "Cheesy\nBreadsticks"
       price: "£7"
-      kids: true
+      georgian: true
     - title: "Shrimp\nCocktail"
       price: "£18"
-      corporate: true
+      uk_popular: true
     - title: "Beef\nCarpaccio"
       price: "£16"
-      corporate: true
+      mediterranean: true
     - title: "Loaded Nacho\nPlatter"
       price: "£14"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Stuffed Jalapeño\nPoppers"
       price: "£10"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Hummus &\nPita"
       price: "£9"
-      kids: true
+      uk_popular: true
     - title: "Oysters on\nIce"
       price: "£24"
-      corporate: true
+      mediterranean: true
 
 - subcategory: salads
   items:
     - title: "Classic Caesar\nSalad"
       price: "£10"
+      uk_popular: true
     - title: "Garden Green\nSalad"
       price: "£8"
+      mediterranean: true
     - title: "Fruit Salad\nBowl"
       price: "£7"
-      kids: true
+      eastern_european: true
     - title: "Pasta Salad\nCups"
       price: "£6"
-      kids: true
+      georgian: true
     - title: "Waldorf\nSalad"
       price: "£12"
-      corporate: true
+      uk_popular: true
     - title: "Nicoise\nSalad"
       price: "£13"
-      corporate: true
+      mediterranean: true
     - title: "Cobb Salad\nPlatter"
       price: "£15"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Quinoa Power\nBowl"
       price: "£11"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Caprese\nSalad"
       price: "£9"
-      kids: true
+      uk_popular: true
     - title: "Lobster\nSalad"
       price: "£22"
-      corporate: true
+      mediterranean: true
 
 - subcategory: main-dishes
   items:
     - title: "Roast Chicken\nDinner"
       price: "£18"
+      uk_popular: true
     - title: "Grilled Salmon\nPlate"
       price: "£20"
+      mediterranean: true
     - title: "Mac &\nCheese"
       price: "£9"
-      kids: true
+      eastern_european: true
     - title: "Fish Finger\nMeal"
       price: "£8"
-      kids: true
+      georgian: true
     - title: "Beef Wellington\nSlice"
       price: "£26"
-      corporate: true
+      uk_popular: true
     - title: "Duck Confit\nPlate"
       price: "£24"
-      corporate: true
+      mediterranean: true
     - title: "Family Lasagne\nTray"
       price: "£22"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "BBQ Rib\nRack"
       price: "£19"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Chicken\nNuggets"
       price: "£7"
-      kids: true
+      uk_popular: true
     - title: "Filet Mignon\nDinner"
       price: "£32"
-      corporate: true
+      mediterranean: true
 
 - subcategory: snacks
   items:
     - title: "Mixed Nut\nSelection"
       price: "£8"
+      uk_popular: true
     - title: "Popcorn\nBuckets"
       price: "£5"
+      mediterranean: true
     - title: "Cheese &\nCrackers"
       price: "£7"
-      kids: true
+      eastern_european: true
     - title: "Veggie\nSticks"
       price: "£6"
-      kids: true
+      georgian: true
     - title: "Artisan Olive\nPlate"
       price: "£10"
-      corporate: true
+      uk_popular: true
     - title: "Charcuterie\nSnacks"
       price: "£14"
-      corporate: true
+      mediterranean: true
     - title: "Party Crisp\nSelection"
       price: "£9"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Trail Mix\nPacks"
       price: "£6"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Mini Sandwiches"
       price: "£8"
-      kids: true
+      uk_popular: true
     - title: "Smoked Almond\nTin"
       price: "£11"
-      corporate: true
+      mediterranean: true
 
 - subcategory: desserts
   items:
     - title: "Chocolate\nMousse"
       price: "£8"
+      uk_popular: true
     - title: "Lemon\nTart"
       price: "£9"
+      mediterranean: true
     - title: "Ice Cream\nSundaes"
       price: "£7"
-      kids: true
+      eastern_european: true
     - title: "Jelly &\nCustard"
       price: "£5"
-      kids: true
+      georgian: true
     - title: "Crème\nBrûlée"
       price: "£10"
-      corporate: true
+      uk_popular: true
     - title: "Tiramisu\nCups"
       price: "£11"
-      corporate: true
+      mediterranean: true
     - title: "Brownie\nPlatter"
       price: "£12"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Fruit Tart\nSelection"
       price: "£13"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Cookie\nJars"
       price: "£6"
-      kids: true
+      uk_popular: true
     - title: "Panna Cotta\nTrio"
       price: "£10"
-      corporate: true
+      mediterranean: true
 
 - subcategory: kids-menu
   items:
     - title: "Mini Pizza\nSlices"
       price: "£6"
-      kids: true
+      uk_popular: true
     - title: "Chicken\nTenders"
       price: "£7"
-      kids: true
+      mediterranean: true
     - title: "Veggie\nNuggets"
       price: "£6"
-      kids: true
+      eastern_european: true
     - title: "Cheesy\nQuesadilla"
       price: "£7"
-      kids: true
+      georgian: true
     - title: "Party Lunch\nBoxes"
       price: "£12"
-      kids: true
-      corporate: true
+      uk_popular: true
     - title: "School Event\nSnacks"
       price: "£10"
-      kids: true
-      corporate: true
+      mediterranean: true
     - title: "Rainbow Fruit\nCups"
       price: "£5"
+      eastern_european: true
     - title: "Mini Hot\nDogs"
       price: "£6"
+      georgian: true
     - title: "Kids Pasta\nPot"
       price: "£7"
-      kids: true
-      corporate: true
+      uk_popular: true
     - title: "Banana\nPancakes"
       price: "£6"
-      kids: true
+      mediterranean: true
 
 - subcategory: cakes
   items:
     - title: "Victoria\nSponge"
       price: "£18"
+      uk_popular: true
     - title: "Red Velvet\nCake"
       price: "£20"
+      mediterranean: true
     - title: "Unicorn\nBirthday Cake"
       price: "£22"
-      kids: true
+      eastern_european: true
     - title: "Dinosaur\nCake"
       price: "£24"
-      kids: true
+      georgian: true
     - title: "Corporate Logo\nCake"
       price: "£35"
-      corporate: true
+      uk_popular: true
     - title: "Elegant Tiered\nCake"
       price: "£40"
-      corporate: true
+      mediterranean: true
     - title: "Rainbow Layer\nCake"
       price: "£26"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Office Celebration\nCake"
       price: "£30"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Chocolate\nFudge Cake"
       price: "£19"
-      kids: true
+      uk_popular: true
     - title: "Champagne\nCake"
       price: "£32"
-      corporate: true
+      mediterranean: true
 
 - subcategory: drinks-juices
   items:
     - title: "Fresh Orange\nJuice"
       price: "£4"
+      uk_popular: true
     - title: "Sparkling\nWater"
       price: "£3"
+      mediterranean: true
     - title: "Apple Juice\nBoxes"
       price: "£3"
-      kids: true
+      eastern_european: true
     - title: "Smoothie\nPacks"
       price: "£5"
-      kids: true
+      georgian: true
     - title: "Cold Brew\nCoffee"
       price: "£5"
-      corporate: true
+      uk_popular: true
     - title: "Iced Tea\nPitcher"
       price: "£6"
-      corporate: true
+      mediterranean: true
     - title: "Fruit Punch\nBowl"
       price: "£8"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Lemonade\nStation"
       price: "£7"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Mango\nLassi"
       price: "£4"
-      kids: true
+      uk_popular: true
     - title: "Kombucha\nSelection"
       price: "£6"
-      corporate: true
+      mediterranean: true
 
 - subcategory: alcohol
   items:
     - title: "House Red\nWine"
       price: "£14"
+      uk_popular: true
     - title: "Craft Beer\nSelection"
       price: "£12"
+      mediterranean: true
     - title: "Mocktail\nPitcher"
       price: "£10"
-      kids: true
+      eastern_european: true
     - title: "Shirley\nTemple Bar"
       price: "£8"
-      kids: true
+      georgian: true
     - title: "Prosecco\nBottles"
       price: "£18"
-      corporate: true
+      uk_popular: true
     - title: "Whisky\nTasting Set"
       price: "£28"
-      corporate: true
+      mediterranean: true
     - title: "Wine & Juice\nCombo"
       price: "£20"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Champagne\nTower"
       price: "£45"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Gin & Tonic\nKit"
       price: "£16"
-      corporate: true
+      uk_popular: true
     - title: "Rosé\nSpritz"
       price: "£15"
-      kids: true
+      mediterranean: true
 
 - subcategory: tableware
   items:
     - title: "White Ceramic\nPlates"
       price: "£12"
+      uk_popular: true
     - title: "Napkin\nBundles"
       price: "£6"
+      mediterranean: true
     - title: "Kids Party\nCups"
       price: "£5"
-      kids: true
+      eastern_european: true
     - title: "Colourful\nStraws"
       price: "£4"
-      kids: true
+      georgian: true
     - title: "Premium Cutlery\nSet"
       price: "£15"
-      corporate: true
+      uk_popular: true
     - title: "Crystal Wine\nGlasses"
       price: "£18"
-      corporate: true
+      mediterranean: true
     - title: "Party Table\nKit"
       price: "£20"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Corporate Buffet\nPack"
       price: "£25"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Paper Plate\nPack"
       price: "£5"
-      kids: true
+      uk_popular: true
     - title: "Charger Plate\nSet"
       price: "£22"
-      corporate: true
+      mediterranean: true
 
 - subcategory: candles
   items:
     - title: "Taper Candle\nSet"
       price: "£8"
+      uk_popular: true
     - title: "Tea Light\nPack"
       price: "£5"
+      mediterranean: true
     - title: "Birthday Candle\nNumbers"
       price: "£4"
-      kids: true
+      eastern_european: true
     - title: "Sparkler\nCandles"
       price: "£6"
-      kids: true
+      georgian: true
     - title: "Luxury Scented\nCandles"
       price: "£16"
-      corporate: true
+      uk_popular: true
     - title: "Branded Event\nCandles"
       price: "£20"
-      corporate: true
+      mediterranean: true
     - title: "Party Candle\nBundle"
       price: "£12"
-      kids: true
-      corporate: true
+      eastern_european: true
     - title: "Corporate Centrepiece\nCandles"
       price: "£18"
-      kids: true
-      corporate: true
+      georgian: true
     - title: "Rainbow Candle\nSet"
       price: "£7"
-      kids: true
+      uk_popular: true
     - title: "Pillar Candle\nTrio"
       price: "£10"
-      corporate: true
+      mediterranean: true
 
 - subcategory: hanging-decor
   items:
     - title: "Fairy Light\nGarland"
       price: "£12"
+      uk_popular: true
     - title: "Paper Lantern\nSet"
       price: "£9"
+      mediterranean: true
     - title: "Hanging Pom\nPoms"
       price: "£8"
+      eastern_european: true
     - title: "Star Ceiling\nDecor"
       price: "£7"
-      kids: true
+      georgian: true
     - title: "Branded Event\nBunting"
       price: "£18"
-      corporate: true
+      uk_popular: true
     - title: "Macramé Wall\nHangings"
       price: "£14"
+      mediterranean: true
 
 - subcategory: balloons
   items:
     - title: "Helium Balloon\nBouquet"
       price: "£15"
+      uk_popular: true
     - title: "Number Balloon\nSet"
       price: "£10"
+      mediterranean: true
     - title: "Animal Balloon\nPack"
       price: "£8"
-      kids: true
+      eastern_european: true
     - title: "Giant Foil\nBalloon"
       price: "£12"
+      georgian: true
     - title: "Logo Balloon\nBundle"
       price: "£22"
-      corporate: true
+      uk_popular: true
     - title: "Confetti Balloon\nPack"
       price: "£11"
+      mediterranean: true
 
 - subcategory: confetti-cannons
   items:
     - title: "Mini Confetti\nCannon"
       price: "£6"
+      uk_popular: true
     - title: "Party Popper\nBundle"
       price: "£8"
+      mediterranean: true
     - title: "Surprise Cannon\nPack"
       price: "£7"
-      kids: true
+      eastern_european: true
     - title: "Rainbow Confetti\nBlaster"
       price: "£9"
+      georgian: true
     - title: "Launch Confetti\nCannon"
       price: "£16"
-      corporate: true
+      uk_popular: true
     - title: "Gold Confetti\nCannon"
       price: "£10"
+      mediterranean: true
 
 - subcategory: decor-props
   items:
     - title: "Photo Booth\nProps"
       price: "£14"
+      uk_popular: true
     - title: "Number & Letter\nProps"
       price: "£11"
+      mediterranean: true
     - title: "Dress-Up Prop\nSet"
       price: "£9"
-      kids: true
+      eastern_european: true
     - title: "Champagne Tower\nProps"
       price: "£18"
+      georgian: true
     - title: "Branded Event\nProps"
       price: "£24"
-      corporate: true
+      uk_popular: true
     - title: "Disco Ball\nTable Prop"
       price: "£13"
+      mediterranean: true
 
 - subcategory: wearables
   items:
     - title: "Party Hat\nPack"
       price: "£5"
+      uk_popular: true
     - title: "Sash & Crown\nSet"
       price: "£8"
+      mediterranean: true
     - title: "Superhero Cape\nPack"
       price: "£10"
-      kids: true
+      eastern_european: true
     - title: "Sunglasses &\nLei Pack"
       price: "£7"
+      georgian: true
     - title: "Branded Wristband\nBundle"
       price: "£15"
-      corporate: true
+      uk_popular: true
     - title: "Glow Bracelet\nBundle"
       price: "£6"
+      mediterranean: true

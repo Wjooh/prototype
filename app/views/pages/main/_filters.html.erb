@@ -1,0 +1,22 @@
+<div class="scrollbar-hide mb-6 flex gap-2 overflow-x-auto pb-2 md:mb-8 md:flex-wrap md:gap-3">
+  <% @filters.each do |filter| %>
+    <% active = filter.key == @active_filter %>
+    <% if active %>
+      <a
+        href="<%= clear_filter_url %>"
+        class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-gray-400 px-4 py-1.5 text-sm text-white hover:bg-gray-500"
+        aria-label="Remove <%= filter.name %> filter"
+      >
+        <%= filter.name %>
+        <%= heroicon "x-mark", variant: :mini, options: { class: "h-4 w-4" } %>
+      </a>
+    <% else %>
+      <a
+        href="<%= apply_filter_url(filter.key) %>"
+        class="shrink-0 rounded-full bg-gray-200 px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-300"
+      >
+        <%= filter.name %>
+      </a>
+    <% end %>
+  <% end %>
+</div>

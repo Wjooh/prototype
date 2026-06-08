@@ -1,13 +1,6 @@
 <main class="min-w-0 flex-1 overflow-y-auto bg-white">
   <div class="px-4 py-4 md:px-6 md:py-6">
-    <%# Filters %>
-    <div class="scrollbar-hide mb-6 flex gap-2 overflow-x-auto pb-2 md:mb-8 md:flex-wrap md:gap-3">
-      <% @filters.each do |filter| %>
-        <span class="shrink-0 rounded-full bg-gray-200 px-4 py-1.5 text-sm text-gray-600">
-          <%= filter.name %>
-        </span>
-      <% end %>
-    </div>
+    <%= render "pages/main/filters" %>
 
     <%# Mobile category pills (sidebar hidden on small screens) %>
     <div class="scrollbar-hide mb-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
@@ -24,7 +17,7 @@
     <%# Category sections with subcategory product rows %>
     <div class="space-y-10 md:space-y-12">
       <% @nav_categories.each do |category| %>
-        <% next if category.subcategories.empty? %>
+        <% next unless category.has_items?(filter: @active_filter) %>
 
         <%= render "pages/category", category: category %>
       <% end %>

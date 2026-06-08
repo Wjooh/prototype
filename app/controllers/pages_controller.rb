@@ -5,11 +5,11 @@ class PagesController < ApplicationController
   end
 
   def catalog
-    @filters = Filter.for_scope(params[:catalog_scope])
     @active_filter = params[:filter].presence
-    @nav_categories = Category.for_type(params[:catalog_scope])
+    @filters = Filter.for_scope(params[:catalog_scope])
+    @nav_categories = filtered_nav_categories
     @active_subcategory_slug = nil
-    @subcategories = @nav_categories.flat_map(&:subcategories)
+    @subcategories = @nav_categories.flat_map { |category| category.subcategories_with_items(filter: @active_filter) }
   end
 
   def subcategory
@@ -20,9 +20,10 @@ class PagesController < ApplicationController
       raise ActionController::RoutingError, "Not Found"
     end
 
-    @nav_categories = Category.for_type(params[:catalog_scope])
-    @active_subcategory_slug = @subcategory.slug
     @active_filter = params[:filter].presence
+    @filters = Filter.for_scope(params[:catalog_scope])
+    @nav_categories = filtered_nav_categories
+    @active_subcategory_slug = @subcategory.slug
     @items = if @nav_category.bundles?
       Bundle.for_subcategory(@subcategory.slug, filter: @active_filter)
     elsif @nav_category.products?
@@ -31,6 +32,13 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def filtered_nav_categories
+    categories = Category.for_type(params[:catalog_scope])
+    return categories if @active_filter.blank?
+
+    categories.select { |category| category.has_items?(filter: @active_filter) }
+  end
 
   def category_matches_scope?(category, scope)
     case scope

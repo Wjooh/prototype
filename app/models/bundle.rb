@@ -46,6 +46,6 @@ class Bundle
   end
 
   def to_h
-    attributes.symbolize_keys
+    attributes.slice("title", "price", "image_url", "kids", "corporate", "weddings").symbolize_keys
   end
 end

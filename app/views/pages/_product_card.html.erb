@@ -1,7 +1,9 @@
-<%# locals: (title: nil, price: nil, image_url: nil, kids: nil, corporate: nil, weddings: nil) %>
+<%# locals: (title: nil, price: nil, image_url: nil, kids: nil, corporate: nil, weddings: nil, cuisine_tags: []) %>
 <% kids = local_assigns.fetch(:kids, false) %>
 <% corporate = local_assigns.fetch(:corporate, false) %>
 <% weddings = local_assigns.fetch(:weddings, false) %>
+<% cuisine_tags = Array(local_assigns.fetch(:cuisine_tags, [])) %>
+<% tags = cuisine_tags + [("Kids" if kids), ("Corporate" if corporate), ("Weddings" if weddings)].compact %>
 <article class="w-full">
   <div class="relative overflow-hidden rounded-2xl">
     <a href="#" class="relative block aspect-[3/4]">
@@ -21,16 +23,10 @@
       </span>
     </a>
 
-    <% if kids || corporate || weddings %>
+    <% if tags.any? %>
       <div class="absolute left-2.5 top-2.5 z-10 flex flex-col items-start gap-1">
-        <% if kids %>
-          <span class="rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600 shadow-sm">Kids</span>
-        <% end %>
-        <% if corporate %>
-          <span class="rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600 shadow-sm">Corporate</span>
-        <% end %>
-        <% if weddings %>
-          <span class="rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600 shadow-sm">Weddings</span>
+        <% tags.each do |tag| %>
+          <span class="rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600 shadow-sm"><%= tag %></span>
         <% end %>
       </div>
     <% end %>

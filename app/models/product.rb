@@ -6,8 +6,17 @@ class Product
   attribute :title, :string
   attribute :price, :string
   attribute :image_url, :string
-  attribute :kids, :boolean, default: false
-  attribute :corporate, :boolean, default: false
+  attribute :uk_popular, :boolean, default: false
+  attribute :mediterranean, :boolean, default: false
+  attribute :eastern_european, :boolean, default: false
+  attribute :georgian, :boolean, default: false
+
+  CUISINE_TAGS = {
+    uk_popular: "UK Popular",
+    mediterranean: "Mediterranean",
+    eastern_european: "Eastern European",
+    georgian: "Georgian"
+  }.freeze
 
   attr_reader :subcategory
 
@@ -33,8 +42,10 @@ class Product
 
   def self.apply_filter(items, filter)
     case filter
-    when "kids" then items.select(&:kids)
-    when "corporate" then items.select(&:corporate)
+    when "uk-popular" then items.select(&:uk_popular)
+    when "mediterranean" then items.select(&:mediterranean)
+    when "eastern-european" then items.select(&:eastern_european)
+    when "georgian" then items.select(&:georgian)
     else items
     end
   end
@@ -48,7 +59,11 @@ class Product
     subcategory&.name
   end
 
+  def cuisine_tag_labels
+    CUISINE_TAGS.filter_map { |key, label| label if public_send(key) }
+  end
+
   def to_h
-    attributes.symbolize_keys
+    attributes.slice("title", "price", "image_url").symbolize_keys.merge(cuisine_tags: cuisine_tag_labels)
   end
 end

@@ -1,5 +1,7 @@
 <main class="min-w-0 flex-1 overflow-y-auto bg-white">
   <div class="px-4 py-4 md:px-6 md:py-6">
+    <%= render "pages/main/filters" %>
+
     <h1 class="mb-6 text-2xl font-bold text-gray-800 md:mb-8 md:text-3xl">
       <%= @subcategory.name %>
     </h1>
@@ -9,7 +11,7 @@
         <% @items.each do |item| %>
           <%= render "pages/product_card", **item.to_h %>
         <% end %>
-      <% else %>
+      <% elsif @active_filter.blank? %>
         <% 10.times do %>
           <%= render "pages/product_card" %>
         <% end %>

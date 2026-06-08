@@ -56,4 +56,14 @@ class Category
   def find_subcategory(slug)
     subcategories.find { |subcategory| subcategory.slug == slug }
   end
+
+  def subcategories_with_items(filter: nil)
+    return subcategories if filter.blank?
+
+    subcategories.select { |subcategory| subcategory.has_items?(filter: filter) }
+  end
+
+  def has_items?(filter: nil)
+    subcategories_with_items(filter: filter).any?
+  end
 end

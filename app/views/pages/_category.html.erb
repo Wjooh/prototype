@@ -32,19 +32,7 @@
     </div>
   </section>
 <% else %>
-  <%
-    subcategories_to_show = category.subcategories.select do |subcategory|
-      next true if @active_filter.blank?
-
-      if subcategory.category.bundles?
-        Bundle.for_subcategory(subcategory.slug, filter: @active_filter).any?
-      elsif subcategory.category.products?
-        Product.for_subcategory(subcategory.slug, filter: @active_filter).any?
-      else
-        false
-      end
-    end
-  %>
+  <% subcategories_to_show = category.subcategories_with_items(filter: @active_filter) %>
   <% if subcategories_to_show.any? %>
     <div>
       <h2 class="mb-6 text-xl font-bold text-gray-900 md:mb-8 md:text-2xl"><%= category.name %></h2>
