@@ -6,6 +6,7 @@ class Bundle
   attribute :title, :string
   attribute :price, :string
   attribute :image_url, :string
+  attribute :parties, :boolean, default: false
   attribute :kids, :boolean, default: false
   attribute :corporate, :boolean, default: false
   attribute :weddings, :boolean, default: false
@@ -34,6 +35,7 @@ class Bundle
 
   def self.apply_filter(items, filter)
     case filter
+    when "parties" then items.select(&:parties)
     when "kids" then items.select(&:kids)
     when "corporate" then items.select(&:corporate)
     when "weddings" then items.select(&:weddings)
@@ -46,6 +48,6 @@ class Bundle
   end
 
   def to_h
-    attributes.slice("title", "price", "image_url", "kids", "corporate", "weddings").symbolize_keys
+    attributes.slice("title", "price", "image_url", "parties", "kids", "corporate", "weddings").symbolize_keys
   end
 end

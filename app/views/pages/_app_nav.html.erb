@@ -1,4 +1,4 @@
-<% parties_active = request.path == "/" %>
+<% parties_active = request.path.start_with?("/parties") %>
 <% kids_active = request.path.start_with?("/kids") %>
 <% corporate_active = request.path.start_with?("/corporate") %>
 
@@ -7,7 +7,7 @@
   aria-label="App navigation"
 >
   <div class="mx-auto flex max-w-md items-center justify-around rounded-full border border-gray-100 bg-white px-2 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
-    <%= link_to root_path, class: "flex flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 #{parties_active ? "bg-gray-100 text-red-500" : "text-gray-800"}" do %>
+    <%= link_to parties_path, class: "flex flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 #{parties_active ? "bg-gray-100 text-red-500" : "text-gray-800"}" do %>
       <%= heroicon "home", options: { class: "h-5 w-5 #{parties_active ? "text-red-500" : ""}" } %>
       <span class="text-[10px] font-medium">Parties</span>
     <% end %>

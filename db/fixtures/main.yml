@@ -1,4 +1,6 @@
 bundle_filters:
+  - name: Parties
+    key: parties
   - name: Kids
     key: kids
   - name: Corporate

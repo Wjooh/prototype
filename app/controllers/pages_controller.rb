@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
   def index
-    @bundle_categories = Category.bundles
-    @product_categories = Category.products
   end
 
   def catalog

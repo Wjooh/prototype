@@ -1,9 +1,10 @@
-<%# locals: (title: nil, price: nil, image_url: nil, kids: nil, corporate: nil, weddings: nil, cuisine_tags: []) %>
+<%# locals: (title: nil, price: nil, image_url: nil, parties: nil, kids: nil, corporate: nil, weddings: nil, cuisine_tags: []) %>
+<% parties = local_assigns.fetch(:parties, false) %>
 <% kids = local_assigns.fetch(:kids, false) %>
 <% corporate = local_assigns.fetch(:corporate, false) %>
 <% weddings = local_assigns.fetch(:weddings, false) %>
 <% cuisine_tags = Array(local_assigns.fetch(:cuisine_tags, [])) %>
-<% tags = cuisine_tags + [("Kids" if kids), ("Corporate" if corporate), ("Weddings" if weddings)].compact %>
+<% tags = cuisine_tags + [("Parties" if parties), ("Kids" if kids), ("Corporate" if corporate), ("Weddings" if weddings)].compact %>
 <article class="w-full">
   <div class="relative overflow-hidden rounded-2xl">
     <a href="#" class="relative block aspect-[3/4]">

@@ -1,15 +1,17 @@
 <%# locals: (subcategory:) %>
+<% grid_layout = @audience == "kids" %>
 <section id="<%= subcategory.slug %>" class="scroll-mt-4">
   <div class="mb-3 flex items-center justify-between">
     <h3 class="text-lg font-bold text-gray-800 md:text-xl"><%= subcategory.name %></h3>
-    <% if subcategory.category_slug.present? %>
-      <a href="<%= subcategory_link(subcategory.category_slug, subcategory.slug, category: subcategory.category) %>" class="text-sm text-gray-400 hover:text-gray-600">All &gt;</a>
-    <% else %>
-      <span class="text-sm text-gray-400">All &gt;</span>
+    <% unless grid_layout %>
+      <% if subcategory.category_slug.present? %>
+        <a href="<%= subcategory_link(subcategory.category_slug, subcategory.slug, category: subcategory.category) %>" class="text-sm text-gray-400 hover:text-gray-600">All &gt;</a>
+      <% else %>
+        <span class="text-sm text-gray-400">All &gt;</span>
+      <% end %>
     <% end %>
   </div>
 
-  <% grid_layout = @audience.present? %>
   <% carousel_card_class = "w-40 shrink-0 md:w-48" unless grid_layout %>
   <div class="<%= grid_layout ? "grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5 lg:grid-cols-4" : "scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4" %>">
     <% if subcategory.category.bundles? %>
