@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   get "inspo" => "pages#inspo", as: :inspo
   get "catalog" => "pages#catalog", as: :catalog
   get "catalog/:category_slug/:subcategory_slug" => "pages#subcategory", as: :catalog_subcategory
+  get "catalog/:category_slug" => "pages#catalog", as: :catalog_category
 end

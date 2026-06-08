@@ -4,7 +4,9 @@
 
   <section class="my-6">
     <div class="container mx-auto px-4 md:px-6">
-      <h2 class="mb-2 text-xl font-bold text-gray-800 md:text-2xl"><%= category.name %></h2>
+      <h2 class="mb-2 text-xl font-bold text-gray-800 md:text-2xl">
+        <a href="<%= product_category_path(category) %>" class="hover:text-gray-600"><%= category.name %></a>
+      </h2>
       <div class="scrollbar-hide mb-2 flex gap-2 overflow-x-auto pb-2 md:flex-wrap md:gap-3">
         <% category.subcategories.each do |subcategory| %>
           <% active = subcategory == first_subcategory %>
@@ -43,8 +45,10 @@
   <% subcategories_to_show = category.subcategories_with_items %>
   <% if subcategories_to_show.any? %>
     <div>
-      <% unless @category.present? %>
-        <h2 class="mb-6 text-xl font-bold text-gray-900 md:mb-8 md:text-2xl"><%= category.name %></h2>
+      <% unless @category == category %>
+        <h2 class="mb-6 text-xl font-bold text-gray-900 md:mb-8 md:text-2xl">
+          <a href="<%= product_category_path(category) %>" class="hover:text-gray-700"><%= category.name %></a>
+        </h2>
       <% end %>
       <div class="space-y-8 md:space-y-10">
         <% subcategories_to_show.each do |subcategory| %>

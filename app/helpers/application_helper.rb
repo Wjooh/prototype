@@ -7,6 +7,10 @@ module ApplicationHelper
     public_send(:"#{category.slug}_subcategory_path", subcategory_slug)
   end
 
+  def product_category_path(category)
+    catalog_category_path(category.slug)
+  end
+
   def subcategory_link(category_slug, subcategory_slug, category:)
     if category.bundles?
       bundle_subcategory_path(category, subcategory_slug)

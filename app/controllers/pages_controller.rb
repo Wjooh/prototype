@@ -14,15 +14,24 @@ class PagesController < ApplicationController
   end
 
   def catalog
-    @category = Category.find_by_slug(params[:category_slug]) if params[:category_slug].present?
+    if params[:category_slug].present?
+      @category = Category.find_by_slug(params[:category_slug])
+      raise ActionController::RoutingError, "Not Found" if @category.nil?
+    end
     @active_subcategory_slug = nil
 
     if @category
-      raise ActionController::RoutingError, "Not Found" unless @category.bundles? && @category.has_items?
+      raise ActionController::RoutingError, "Not Found" unless @category.has_items?
 
-      @nav_categories = [@category]
-      @subcategories = @category.subcategories_with_items
-      @product_categories = Category.products
+      if @category.bundles?
+        @nav_categories = [@category]
+        @subcategories = @category.subcategories_with_items
+        @product_categories = Category.products
+      else
+        @nav_categories = Category.products.select(&:has_items?)
+        @subcategories = @category.subcategories_with_items
+        @active_category_slug = @category.slug
+      end
     else
       @nav_categories = Category.products.select(&:has_items?)
       @subcategories = @nav_categories.flat_map(&:subcategories_with_items)

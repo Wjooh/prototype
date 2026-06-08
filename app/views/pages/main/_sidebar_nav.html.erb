@@ -4,8 +4,18 @@
       <% visible_subcategories = category.subcategories_with_items %>
       <% next if visible_subcategories.empty? %>
 
+      <% category_active = category.slug == @active_category_slug %>
       <div class="mb-6 last:mb-0">
-        <h2 class="mb-2 px-2 text-sm font-bold text-gray-800"><%= category.name %></h2>
+        <% if category.products? %>
+          <a
+            href="<%= product_category_path(category) %>"
+            class="mb-2 block rounded-lg px-2 py-1.5 text-sm font-bold <%= category_active ? "bg-gray-200 text-gray-800" : "text-gray-800 hover:bg-gray-100" %>"
+          >
+            <%= category.name %>
+          </a>
+        <% else %>
+          <h2 class="mb-2 px-2 text-sm font-bold text-gray-800"><%= category.name %></h2>
+        <% end %>
         <ul class="space-y-0.5">
           <% visible_subcategories.each do |subcategory| %>
             <% active = subcategory.slug == @active_subcategory_slug %>

@@ -3,7 +3,7 @@
   <%= render "pages/header" %>
 
   <div class="flex flex-1">
-    <%= render "pages/main/sidebar_nav" unless @category.present? %>
+    <%= render "pages/main/sidebar_nav" unless @category&.bundles? %>
     <%= render content_partial %>
   </div>
 
