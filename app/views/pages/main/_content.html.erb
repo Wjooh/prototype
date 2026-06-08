@@ -32,6 +32,11 @@
   </div>
 
   <% if @category.present? %>
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="mb-10 text-center md:mb-12">
+        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 md:text-4xl">Or select from catalog</h2>
+      </div>
+    </div>
     <%= render "pages/catalog_preview" %>
   <% end %>
 </main>

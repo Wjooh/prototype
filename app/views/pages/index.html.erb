@@ -2,6 +2,13 @@
   <%= render "pages/header" %>
 
   <main class="flex-1 bg-white">
+    <div class="container mx-auto px-4 py-4 md:px-6 md:py-6">
+      <div class="mb-10 text-center md:mb-12">
+        <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 md:text-5xl">Find ideas for your next event</h1>
+        <p class="mt-3 text-base text-gray-500 md:mt-4 md:text-lg">Food, drinks, decor - everything ready for your next event</p>
+      </div>
+    </div>
+
     <% @bundle_categories.each do |category| %>
       <% next if category.subcategories.empty? %>
 
