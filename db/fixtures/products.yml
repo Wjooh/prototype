@@ -307,7 +307,7 @@
       kids: true
       mediterranean: true
 
-- subcategory: cakes
+- subcategory: party-cakes
   items:
     - title: "Victoria\nSponge"
       price: "£18"

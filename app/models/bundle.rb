@@ -6,10 +6,6 @@ class Bundle
   attribute :title, :string
   attribute :price, :string
   attribute :image_url, :string
-  attribute :parties, :boolean, default: false
-  attribute :kids, :boolean, default: false
-  attribute :corporate, :boolean, default: false
-  attribute :weddings, :boolean, default: false
 
   attr_reader :subcategory
 
@@ -22,24 +18,17 @@ class Bundle
   end
 
   def self.from_fixture(attrs)
-    subcategory = Subcategory.find_by_slug(attrs[:subcategory])
+    category = Category.find_by_slug(attrs[:category])
+    subcategory = category&.find_subcategory(attrs[:subcategory])
     (attrs[:items] || []).map do |item_attrs|
       new(**item_attrs).tap { |bundle| bundle.instance_variable_set(:@subcategory, subcategory) }
     end
   end
 
-  def self.for_subcategory(slug, filter: nil)
-    items = all.select { |bundle| bundle.subcategory&.slug == slug }
-    apply_filter(items, filter)
-  end
-
-  def self.apply_filter(items, filter)
-    case filter
-    when "parties" then items.select(&:parties)
-    when "kids" then items.select(&:kids)
-    when "corporate" then items.select(&:corporate)
-    when "weddings" then items.select(&:weddings)
-    else items
+  def self.for_subcategory(subcategory)
+    all.select do |bundle|
+      bundle.subcategory&.slug == subcategory.slug &&
+        bundle.subcategory&.category_slug == subcategory.category_slug
     end
   end
 
@@ -48,6 +37,6 @@ class Bundle
   end
 
   def to_h
-    attributes.slice("title", "price", "image_url", "parties", "kids", "corporate", "weddings").symbolize_keys
+    attributes.slice("title", "price", "image_url").symbolize_keys
   end
 end

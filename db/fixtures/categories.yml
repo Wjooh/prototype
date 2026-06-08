@@ -1,10 +1,8 @@
 categories:
-  - name: Full packages (inspo)
-    slug: full-packages
+  - name: Parties
+    slug: parties
     type: bundles
     subcategories:
-      - name: What's On
-        slug: whats-on
       - name: Birthdays
         slug: birthdays
       - name: Get-Togethers
@@ -12,14 +10,21 @@ categories:
       - name: Baby & Family
         slug: baby-family
 
-  - name: Mix & Match (mini-carts)
-    slug: mix-match
+  - name: Kids
+    slug: kids
     type: bundles
     subcategories:
-      - name: The Moment
-        slug: the-moment
-      - name: Tablescape
-        slug: tablescape
+      - name: Birthdays
+        slug: birthdays
+
+  - name: Corporate
+    slug: corporate
+    type: bundles
+    subcategories:
+      - name: Opening
+        slug: opening
+      - name: Conference
+        slug: conference
 
   - name: Food & Drinks
     slug: food-drinks
@@ -43,14 +48,19 @@ categories:
         slug: desserts
       - name: Kids Menu
         slug: kids-menu
-      - name: Cakes
-        slug: cakes
       - name: Drinks & Juices
         slug: drinks-juices
       - name: Alcohol
         slug: alcohol
       - name: Tableware
         slug: tableware
+
+  - name: Special moment
+    slug: special-moment
+    type: products
+    subcategories:
+      - name: Party cakes
+        slug: party-cakes
 
   - name: Decor & Mood
     slug: decor-mood

@@ -1,231 +1,163 @@
-- subcategory: whats-on
+- category: parties
+  subcategory: birthdays
   items:
-    - title: "Wimbledon\nGarden Party"
-      price: "£18"
-      corporate: true
-    - title: "Summer\nBBQ Feast"
-      price: "£22"
-      parties: true
-    - title: "Rosé &\nCanapés"
-      price: "£25"
-      corporate: true
-      weddings: true
-    - title: "Garden\nGrazing"
-      price: "£16"
-      parties: true
-    - title: "Afternoon\nTea"
-      price: "£20"
-      corporate: true
-      weddings: true
-    - title: "Street Food\nNight"
-      price: "£19"
-      parties: true
+    - title: "Regency Tea Party"
+      price: "£6"
+    - title: "Parisian Boudoir Night"
+      price: "£7"
+    - title: "Latin Night"
+      price: "£5"
+    - title: "Disco Fever"
+      price: "£6"
+    - title: "Garden Birthday Brunch"
+      price: "£7"
+    - title: "Link\nDram"
+      price: "£5"
 
-- subcategory: birthdays
+- category: kids
+  subcategory: birthdays
   items:
     - title: "K-Pop Debut Night"
       price: "£5"
-      kids: true
     - title: "Neon Arcade Party"
       price: "£5"
-      kids: true
     - title: "Superhero\nSquad"
       price: "£5"
-      kids: true
     - title: "Princess &\nKnights"
       price: "£6"
-      kids: true
     - title: "Pirate\nAdventure"
       price: "£5"
-      kids: true
     - title: "Unicorn\nMagic"
       price: "£6"
-      kids: true
     - title: "Dinosaur\nRoar"
       price: "£5"
-      kids: true
     - title: "Space\nExplorer"
       price: "£6"
-      kids: true
     - title: "Under the\nSea"
       price: "£5"
-      kids: true
     - title: "Safari\nAdventure"
       price: "£6"
-      kids: true
     - title: "Fairy\nGarden"
       price: "£5"
-      kids: true
     - title: "LEGO\nBuilders"
       price: "£6"
-      kids: true
     - title: "Minecraft\nWorld"
       price: "£5"
-      kids: true
     - title: "Frozen\nWonderland"
       price: "£6"
-      kids: true
     - title: "Sports Star\nParty"
       price: "£5"
-      kids: true
     - title: "Art Studio\nBash"
       price: "£6"
-      kids: true
     - title: "Science Lab\nFun"
       price: "£5"
-      kids: true
     - title: "Teddy Bear\nPicnic"
       price: "£6"
-      kids: true
     - title: "Rainbow\nSplash"
       price: "£5"
-      kids: true
     - title: "Jungle\nJam"
       price: "£6"
-      kids: true
-    - title: "Regency Tea Party"
-      price: "£6"
-      parties: true
-      weddings: true
-    - title: "Parisian Boudoir Night"
-      price: "£7"
-      parties: true
-    - title: "Latin Night"
+    - title: "Dino\nRoar"
       price: "£5"
-      parties: true
-    - title: "Disco Fever"
+    - title: "Space\nBlast"
       price: "£6"
-      parties: true
-    - title: "Golden Milestone"
-      price: "£8"
-      corporate: true
-    - title: "Garden Birthday Brunch"
-      price: "£7"
-      parties: true
+    - title: "Candyland"
+      price: "£6"
+    - title: "Under the\nSea"
+      price: "£6"
+    - title: "Neon\nParty"
+      price: "£6"
 
-- subcategory: get-togethers
+- category: parties
+  subcategory: get-togethers
   items:
+    - title: "Summer\nBBQ Feast"
+      price: "£22"
+    - title: "Garden\nGrazing"
+      price: "£16"
+    - title: "Street Food\nNight"
+      price: "£19"
     - title: "Friends\nDinner"
       price: "£23"
-      parties: true
-    - title: "Wine &\nCheese"
-      price: "£26"
-      corporate: true
     - title: "Tapas\nEvening"
       price: "£22"
-      parties: true
     - title: "Pizza\nNight"
       price: "£14"
-      kids: true
     - title: "Sunday\nRoast"
       price: "£27"
-      parties: true
     - title: "Potluck\nPlus"
       price: "£18"
-      parties: true
     - title: "Housewarming\nFeast"
       price: "£21"
-      parties: true
     - title: "Anniversary\nSoirée"
       price: "£24"
-      parties: true
     - title: "Graduation\nCelebration"
       price: "£23"
-      parties: true
     - title: "Engagement\nParty"
       price: "£25"
-      parties: true
     - title: "Retirement\nSend-Off"
       price: "£22"
-      parties: true
     - title: "Reunion\nDinner"
       price: "£24"
-      parties: true
     - title: "Bon Voyage\nParty"
       price: "£20"
-      parties: true
     - title: "Welcome\nHome"
       price: "£21"
-      parties: true
     - title: "Promotion\nToast"
       price: "£23"
-      parties: true
     - title: "Cocktail\nHour"
       price: "£19"
-      parties: true
     - title: "Dinner Party\nDeluxe"
       price: "£26"
-      parties: true
     - title: "Backyard\nBash"
       price: "£20"
-      parties: true
     - title: "Poolside\nParty"
       price: "£21"
-      parties: true
     - title: "Holiday\nCocktails"
       price: "£22"
-      parties: true
     - title: "Farewell\nFeast"
       price: "£20"
-      parties: true
+    - title: "Black &\nWhite"
+      price: "£7"
+    - title: "Blue &\nPink"
+      price: "£6"
+    - title: "Botanical"
+      price: "£7"
+    - title: "Pumpkin\nHarvest"
+      price: "£7"
 
-- subcategory: baby-family
+- category: parties
+  subcategory: baby-family
   items:
     - title: "Baby\nShower"
       price: "£20"
-      parties: true
     - title: "Christening\nTea"
       price: "£19"
-      parties: true
     - title: "Family\nPicnic"
       price: "£15"
-      kids: true
     - title: "Playdate\nSnacks"
       price: "£11"
-      kids: true
     - title: "New Parent\nNight In"
       price: "£24"
-      parties: true
     - title: "Grandparents\nLunch"
       price: "£22"
-      parties: true
 
-- subcategory: the-moment
+- category: corporate
+  subcategory: opening
   items:
-    - title: "Dino\nRoar"
-      price: "£5"
-      kids: true
-    - title: "Space\nBlast"
-      price: "£6"
-      kids: true
-    - title: "Link\nDram"
-      price: "£5"
-      parties: true
-    - title: "Candyland"
-      price: "£6"
-      kids: true
-
-- subcategory: tablescape
-  items:
-    - title: "Black &\nWhite"
-      price: "£7"
-      parties: true
-    - title: "Blue &\nPink"
-      price: "£6"
-      parties: true
-    - title: "Botanical"
-      price: "£7"
-      parties: true
-    - title: "Under the\nSea"
-      price: "£6"
-      kids: true
-    - title: "Pumpkin\nHarvest"
-      price: "£7"
-      parties: true
-    - title: "Neon\nParty"
-      price: "£6"
-      kids: true
+    - title: "Golden Milestone"
+      price: "£8"
+    - title: "Wimbledon\nGarden Party"
+      price: "£18"
     - title: "Emerald &\nGold"
       price: "£8"
-      corporate: true
-      weddings: true
+
+- category: corporate
+  subcategory: conference
+  items:
+    - title: "Rosé &\nCanapés"
+      price: "£25"
+    - title: "Afternoon\nTea"
+      price: "£20"
+    - title: "Wine &\nCheese"
+      price: "£26"

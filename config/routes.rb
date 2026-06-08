@@ -11,9 +11,9 @@ Rails.application.routes.draw do
 
   root "pages#index"
   post "layout_mode" => "layout_modes#update", as: :layout_mode
-  get "parties" => "pages#catalog", defaults: { audience: "parties" }, as: :parties
-  get "kids" => "pages#catalog", defaults: { audience: "kids" }, as: :kids
-  get "corporate" => "pages#catalog", defaults: { audience: "corporate" }, as: :corporate
+  get "parties" => "pages#catalog", defaults: { category_slug: "parties" }, as: :parties
+  get "kids" => "pages#catalog", defaults: { category_slug: "kids" }, as: :kids
+  get "corporate" => "pages#catalog", defaults: { category_slug: "corporate" }, as: :corporate
   get "catalog" => "pages#catalog", as: :catalog
   get "catalog/:category_slug/:subcategory_slug" => "pages#subcategory", as: :catalog_subcategory
 end

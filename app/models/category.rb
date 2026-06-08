@@ -57,21 +57,11 @@ class Category
     subcategories.find { |subcategory| subcategory.slug == slug }
   end
 
-  def subcategories_with_items(filter: nil, audience: nil)
-    if audience.present?
-      if bundles?
-        subcategories.select { |subcategory| subcategory.has_items?(audience: audience) }
-      else
-        subcategories.select { |subcategory| subcategory.has_items? }
-      end
-    elsif filter.present?
-      subcategories.select { |subcategory| subcategory.has_items?(filter: filter) }
-    else
-      subcategories
-    end
+  def subcategories_with_items(filter: nil)
+    subcategories.select { |subcategory| subcategory.has_items?(filter: filter) }
   end
 
-  def has_items?(filter: nil, audience: nil)
-    subcategories_with_items(filter: filter, audience: audience).any?
+  def has_items?(filter: nil)
+    subcategories_with_items(filter: filter).any?
   end
 end

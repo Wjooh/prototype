@@ -1,5 +1,5 @@
 <%# locals: (subcategory:) %>
-<% grid_layout = @audience == "kids" %>
+<% grid_layout = @category&.slug == "kids" %>
 <section id="<%= subcategory.slug %>" class="scroll-mt-4">
   <div class="mb-3 flex items-center justify-between">
     <h3 class="text-lg font-bold text-gray-800 md:text-xl"><%= subcategory.name %></h3>
@@ -15,13 +15,13 @@
   <% carousel_card_class = "w-40 shrink-0 md:w-48" unless grid_layout %>
   <div class="<%= grid_layout ? "grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5 lg:grid-cols-4" : "scrollbar-hide flex gap-3 overflow-x-auto pb-2 md:gap-4" %>">
     <% if subcategory.category.bundles? %>
-      <% Bundle.for_subcategory(subcategory.slug, filter: @audience).each do |bundle| %>
+      <% Bundle.for_subcategory(subcategory).each do |bundle| %>
         <div class="<%= carousel_card_class %>">
           <%= render "pages/product_card", **bundle.to_h %>
         </div>
       <% end %>
     <% elsif subcategory.category.products? %>
-      <% products = Product.for_subcategory(subcategory.slug, audience: @audience) %>
+      <% products = Product.for_subcategory(subcategory.slug) %>
       <% products.each do |product| %>
         <div class="<%= carousel_card_class %>">
           <%= render "pages/product_card", **product.to_h %>

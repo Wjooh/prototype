@@ -1,13 +1,3 @@
-bundle_filters:
-  - name: Parties
-    key: parties
-  - name: Kids
-    key: kids
-  - name: Corporate
-    key: corporate
-  - name: Weddings
-    key: weddings
-
 product_filters:
   - name: UK Popular
     key: uk-popular

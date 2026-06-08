@@ -37,19 +37,9 @@ class Product
     end
   end
 
-  def self.for_subcategory(slug, filter: nil, audience: nil)
+  def self.for_subcategory(slug, filter: nil)
     items = all.select { |product| product.subcategory&.slug == slug }
-    items = apply_filter(items, filter)
-    sort_by_audience(items, audience)
-  end
-
-  def self.sort_by_audience(items, audience)
-    return items if audience.blank?
-
-    attribute = audience.to_sym
-    return items unless %i[kids corporate].include?(attribute)
-
-    items.sort_by { |product| product.public_send(attribute) ? 0 : 1 }
+    apply_filter(items, filter)
   end
 
   def self.apply_filter(items, filter)

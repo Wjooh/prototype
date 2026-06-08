@@ -32,10 +32,12 @@
     </div>
   </section>
 <% else %>
-  <% subcategories_to_show = category.subcategories_with_items(audience: @audience) %>
+  <% subcategories_to_show = category.subcategories_with_items %>
   <% if subcategories_to_show.any? %>
     <div>
-      <h2 class="mb-6 text-xl font-bold text-gray-900 md:mb-8 md:text-2xl"><%= category.name %></h2>
+      <% unless @category.present? %>
+        <h2 class="mb-6 text-xl font-bold text-gray-900 md:mb-8 md:text-2xl"><%= category.name %></h2>
+      <% end %>
       <div class="space-y-8 md:space-y-10">
         <% subcategories_to_show.each do |subcategory| %>
           <%= render "pages/main/subcategory_section", subcategory: subcategory %>
