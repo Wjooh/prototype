@@ -1,0 +1,19 @@
+<main class="min-w-0 flex-1 bg-white">
+  <div class="container mx-auto px-4 py-4 md:px-6 md:py-6">
+    <div class="mb-6 flex items-center gap-3 md:mb-8">
+      <%= link_to bundle_category_path(@category), class: "inline-flex shrink-0 items-center gap-1 text-sm text-gray-500 hover:text-gray-700" do %>
+        <%= heroicon "chevron-left", options: { class: "h-4 w-4" } %>
+        Back
+      <% end %>
+      <h1 class="text-2xl font-bold text-gray-800 md:text-3xl">
+        <%= @subcategory.name %>
+      </h1>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5 lg:grid-cols-4">
+      <% @items.each do |item| %>
+        <%= render "pages/product_card", **item.to_h %>
+      <% end %>
+    </div>
+  </div>
+</main>

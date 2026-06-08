@@ -11,8 +11,11 @@ Rails.application.routes.draw do
 
   root "pages#index"
   get "parties" => "pages#catalog", defaults: { category_slug: "parties" }, as: :parties
+  get "parties/:subcategory_slug" => "pages#bundle_subcategory", defaults: { category_slug: "parties" }, as: :parties_subcategory
   get "kids" => "pages#catalog", defaults: { category_slug: "kids" }, as: :kids
+  get "kids/:subcategory_slug" => "pages#bundle_subcategory", defaults: { category_slug: "kids" }, as: :kids_subcategory
   get "corporate" => "pages#catalog", defaults: { category_slug: "corporate" }, as: :corporate
+  get "corporate/:subcategory_slug" => "pages#bundle_subcategory", defaults: { category_slug: "corporate" }, as: :corporate_subcategory
   get "inspo" => "pages#inspo", as: :inspo
   get "catalog" => "pages#catalog", as: :catalog
   get "catalog/:category_slug/:subcategory_slug" => "pages#subcategory", as: :catalog_subcategory

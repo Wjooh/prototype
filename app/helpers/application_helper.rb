@@ -3,11 +3,13 @@ module ApplicationHelper
     public_send(:"#{category.slug}_path")
   end
 
+  def bundle_subcategory_path(category, subcategory_slug)
+    public_send(:"#{category.slug}_subcategory_path", subcategory_slug)
+  end
+
   def subcategory_link(category_slug, subcategory_slug, category:)
-    if category.bundles? && (@category.present? || @inspo)
-      "##{subcategory_anchor_id(category_slug, subcategory_slug)}"
-    elsif category.bundles? && @home
-      "#{bundle_category_path(category)}##{subcategory_anchor_id(category_slug, subcategory_slug)}"
+    if category.bundles?
+      bundle_subcategory_path(category, subcategory_slug)
     else
       catalog_subcategory_path(category_slug, subcategory_slug)
     end

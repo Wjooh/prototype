@@ -43,4 +43,18 @@ class PagesController < ApplicationController
     @active_subcategory_slug = @subcategory.slug
     @items = @subcategory.items_for
   end
+
+  def bundle_subcategory
+    @category = Category.find_by_slug(params[:category_slug])
+    @subcategory = @category&.find_subcategory(params[:subcategory_slug])
+
+    if @category.nil? || @subcategory.nil? || !@category.bundles? || !@subcategory.has_items?
+      raise ActionController::RoutingError, "Not Found"
+    end
+
+    @nav_categories = [@category]
+    @active_subcategory_slug = @subcategory.slug
+    @items = @subcategory.items_for
+    @product_categories = Category.products
+  end
 end
