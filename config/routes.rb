@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   root "pages#index"
   post "layout_mode" => "layout_modes#update", as: :layout_mode
-  get "packages" => "pages#catalog", defaults: { catalog_scope: "bundles" }, as: :packages
-  get "packages/:category_slug/:subcategory_slug" => "pages#subcategory", defaults: { catalog_scope: "bundles" }, as: :package_subcategory
-  get "catalog" => "pages#catalog", defaults: { catalog_scope: "products" }, as: :catalog
-  get "catalog/:category_slug/:subcategory_slug" => "pages#subcategory", defaults: { catalog_scope: "products" }, as: :subcategory
+  get "catalog" => "pages#catalog", as: :catalog
+  get "catalog/:category_slug/:subcategory_slug" => "pages#subcategory", as: :catalog_subcategory
+  get "kids" => "pages#catalog", defaults: { audience: "kids" }, as: :kids
+  get "corporate" => "pages#catalog", defaults: { audience: "corporate" }, as: :corporate
 end

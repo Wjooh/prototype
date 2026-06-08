@@ -11,6 +11,7 @@
       eastern_european: true
     - title: "Kids Party\nPizza"
       price: "£10"
+      kids: true
       georgian: true
     - title: "Executive\nLunch Box"
       price: "£28"
@@ -47,6 +48,7 @@
       georgian: true
     - title: "Corporate Morning\nTray"
       price: "£24"
+      corporate: true
       uk_popular: true
     - title: "Meeting Room\nMuffins"
       price: "£15"
@@ -266,33 +268,43 @@
   items:
     - title: "Mini Pizza\nSlices"
       price: "£6"
+      kids: true
       uk_popular: true
     - title: "Chicken\nTenders"
       price: "£7"
+      kids: true
       mediterranean: true
     - title: "Veggie\nNuggets"
       price: "£6"
+      kids: true
       eastern_european: true
     - title: "Cheesy\nQuesadilla"
       price: "£7"
+      kids: true
       georgian: true
     - title: "Party Lunch\nBoxes"
       price: "£12"
+      kids: true
       uk_popular: true
     - title: "School Event\nSnacks"
       price: "£10"
+      kids: true
       mediterranean: true
     - title: "Rainbow Fruit\nCups"
       price: "£5"
+      kids: true
       eastern_european: true
     - title: "Mini Hot\nDogs"
       price: "£6"
+      kids: true
       georgian: true
     - title: "Kids Pasta\nPot"
       price: "£7"
+      kids: true
       uk_popular: true
     - title: "Banana\nPancakes"
       price: "£6"
+      kids: true
       mediterranean: true
 
 - subcategory: cakes
@@ -311,6 +323,7 @@
       georgian: true
     - title: "Corporate Logo\nCake"
       price: "£35"
+      corporate: true
       uk_popular: true
     - title: "Elegant Tiered\nCake"
       price: "£40"
@@ -404,6 +417,7 @@
       mediterranean: true
     - title: "Kids Party\nCups"
       price: "£5"
+      kids: true
       eastern_european: true
     - title: "Colourful\nStraws"
       price: "£4"
@@ -419,6 +433,7 @@
       eastern_european: true
     - title: "Corporate Buffet\nPack"
       price: "£25"
+      corporate: true
       georgian: true
     - title: "Paper Plate\nPack"
       price: "£5"
@@ -452,6 +467,7 @@
       eastern_european: true
     - title: "Corporate Centrepiece\nCandles"
       price: "£18"
+      corporate: true
       georgian: true
     - title: "Rainbow Candle\nSet"
       price: "£7"

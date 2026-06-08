@@ -1,26 +1,30 @@
 <main class="min-w-0 flex-1 overflow-y-auto bg-white">
-  <div class="px-4 py-4 md:px-6 md:py-6">
-    <%= render "pages/main/filters" %>
-
-    <%# Mobile category pills (sidebar hidden on small screens) %>
-    <div class="scrollbar-hide mb-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
-      <% @subcategories.each do |subcategory| %>
-        <a
-          href="<%= subcategory_path_with_params(subcategory.category_slug, subcategory.slug) %>"
-          class="inline-flex shrink-0 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600"
-        >
-          <%= subcategory.name %>
-        </a>
-      <% end %>
-    </div>
+  <div class="<%= @audience.present? ? "container mx-auto" : "" %> px-4 py-4 md:px-6 md:py-6">
+    <% unless @audience.present? %>
+      <%# Mobile category pills (sidebar hidden on small screens) %>
+      <div class="scrollbar-hide mb-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
+        <% @subcategories.each do |subcategory| %>
+          <a
+            href="<%= subcategory_link(subcategory.category_slug, subcategory.slug, category: subcategory.category) %>"
+            class="inline-flex shrink-0 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600"
+          >
+            <%= subcategory.name %>
+          </a>
+        <% end %>
+      </div>
+    <% end %>
 
     <%# Category sections with subcategory product rows %>
     <div class="space-y-10 md:space-y-12">
       <% @nav_categories.each do |category| %>
-        <% next unless category.has_items?(filter: @active_filter) %>
+        <% next unless category.has_items?(audience: @audience) %>
 
         <%= render "pages/category", category: category %>
       <% end %>
     </div>
   </div>
+
+  <% if @audience.present? %>
+    <%= render "pages/catalog_preview" %>
+  <% end %>
 </main>

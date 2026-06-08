@@ -1,0 +1,6 @@
+<%# Compact product catalog categories — same as the bottom of the homepage %>
+<% @product_categories.each do |category| %>
+  <% next if category.subcategories.empty? %>
+
+  <%= render "pages/category", category: category, compact: true %>
+<% end %>

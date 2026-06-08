@@ -6,6 +6,8 @@ class Product
   attribute :title, :string
   attribute :price, :string
   attribute :image_url, :string
+  attribute :kids, :boolean, default: false
+  attribute :corporate, :boolean, default: false
   attribute :uk_popular, :boolean, default: false
   attribute :mediterranean, :boolean, default: false
   attribute :eastern_european, :boolean, default: false
@@ -35,9 +37,19 @@ class Product
     end
   end
 
-  def self.for_subcategory(slug, filter: nil)
+  def self.for_subcategory(slug, filter: nil, audience: nil)
     items = all.select { |product| product.subcategory&.slug == slug }
-    apply_filter(items, filter)
+    items = apply_filter(items, filter)
+    sort_by_audience(items, audience)
+  end
+
+  def self.sort_by_audience(items, audience)
+    return items if audience.blank?
+
+    attribute = audience.to_sym
+    return items unless %i[kids corporate].include?(attribute)
+
+    items.sort_by { |product| product.public_send(attribute) ? 0 : 1 }
   end
 
   def self.apply_filter(items, filter)
@@ -64,6 +76,6 @@ class Product
   end
 
   def to_h
-    attributes.slice("title", "price", "image_url").symbolize_keys.merge(cuisine_tags: cuisine_tag_labels)
+    attributes.slice("title", "price", "image_url", "kids", "corporate").symbolize_keys.merge(cuisine_tags: cuisine_tag_labels)
   end
 end

@@ -26,17 +26,17 @@ class Subcategory
     category.slug
   end
 
-  def items_for(filter: nil)
+  def items_for(filter: nil, audience: nil)
     if category.bundles?
-      Bundle.for_subcategory(slug, filter: filter)
+      Bundle.for_subcategory(slug, filter: audience || filter)
     elsif category.products?
-      Product.for_subcategory(slug, filter: filter)
+      Product.for_subcategory(slug, filter: filter, audience: audience)
     else
       []
     end
   end
 
-  def has_items?(filter: nil)
-    items_for(filter: filter).any?
+  def has_items?(filter: nil, audience: nil)
+    items_for(filter: filter, audience: audience).any?
   end
 end

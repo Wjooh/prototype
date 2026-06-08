@@ -1,5 +1,1 @@
-<% @product_categories.each do |category| %>
-  <% next if category.subcategories.empty? %>
-
-  <%= render "pages/category", category: category, compact: true %>
-<% end %>
+<%= render "pages/catalog_preview" %>

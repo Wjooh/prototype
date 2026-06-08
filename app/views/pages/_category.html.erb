@@ -14,7 +14,7 @@
             </span>
           <% else %>
             <a
-              href="<%= subcategory_path_with_params(category.slug, subcategory.slug) %>"
+              href="<%= catalog_subcategory_path(category.slug, subcategory.slug) %>"
               class="shrink-0 rounded-full bg-gray-200 px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-300"
             >
               <%= subcategory.name %>
@@ -32,7 +32,7 @@
     </div>
   </section>
 <% else %>
-  <% subcategories_to_show = category.subcategories_with_items(filter: @active_filter) %>
+  <% subcategories_to_show = category.subcategories_with_items(audience: @audience) %>
   <% if subcategories_to_show.any? %>
     <div>
       <h2 class="mb-6 text-xl font-bold text-gray-900 md:mb-8 md:text-2xl"><%= category.name %></h2>

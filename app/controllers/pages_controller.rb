@@ -5,46 +5,34 @@ class PagesController < ApplicationController
   end
 
   def catalog
-    @active_filter = params[:filter].presence
-    @filters = Filter.for_scope(params[:catalog_scope])
-    @nav_categories = filtered_nav_categories
+    @audience = params[:audience]
+    @nav_categories = nav_categories
     @active_subcategory_slug = nil
-    @subcategories = @nav_categories.flat_map { |category| category.subcategories_with_items(filter: @active_filter) }
+    @subcategories = @nav_categories.flat_map { |category| category.subcategories_with_items(audience: @audience) }
+    @product_categories = Category.products if @audience.present?
   end
 
   def subcategory
+    @audience = nil
     @nav_category = Category.find_by_slug(params[:category_slug])
     @subcategory = @nav_category&.find_subcategory(params[:subcategory_slug])
 
-    if @nav_category.nil? || @subcategory.nil? || !category_matches_scope?(@nav_category, params[:catalog_scope])
+    if @nav_category.nil? || @subcategory.nil? || !@nav_category.products? || !@subcategory.has_items?
       raise ActionController::RoutingError, "Not Found"
     end
 
-    @active_filter = params[:filter].presence
-    @filters = Filter.for_scope(params[:catalog_scope])
-    @nav_categories = filtered_nav_categories
+    @nav_categories = nav_categories
     @active_subcategory_slug = @subcategory.slug
-    @items = if @nav_category.bundles?
-      Bundle.for_subcategory(@subcategory.slug, filter: @active_filter)
-    elsif @nav_category.products?
-      Product.for_subcategory(@subcategory.slug, filter: @active_filter)
-    end
+    @items = @subcategory.items_for
   end
 
   private
 
-  def filtered_nav_categories
-    categories = Category.for_type(params[:catalog_scope])
-    return categories if @active_filter.blank?
-
-    categories.select { |category| category.has_items?(filter: @active_filter) }
-  end
-
-  def category_matches_scope?(category, scope)
-    case scope
-    when "bundles" then category.bundles?
-    when "products" then category.products?
-    else false
+  def nav_categories
+    if @audience.present?
+      Category.bundles.select { |category| category.has_items?(audience: @audience) }
+    else
+      Category.products.select(&:has_items?)
     end
   end
 end
