@@ -460,3 +460,88 @@
     - title: "Pillar Candle\nTrio"
       price: "£10"
       corporate: true
+
+- subcategory: hanging-decor
+  items:
+    - title: "Fairy Light\nGarland"
+      price: "£12"
+    - title: "Paper Lantern\nSet"
+      price: "£9"
+    - title: "Hanging Pom\nPoms"
+      price: "£8"
+    - title: "Star Ceiling\nDecor"
+      price: "£7"
+      kids: true
+    - title: "Branded Event\nBunting"
+      price: "£18"
+      corporate: true
+    - title: "Macramé Wall\nHangings"
+      price: "£14"
+
+- subcategory: balloons
+  items:
+    - title: "Helium Balloon\nBouquet"
+      price: "£15"
+    - title: "Number Balloon\nSet"
+      price: "£10"
+    - title: "Animal Balloon\nPack"
+      price: "£8"
+      kids: true
+    - title: "Giant Foil\nBalloon"
+      price: "£12"
+    - title: "Logo Balloon\nBundle"
+      price: "£22"
+      corporate: true
+    - title: "Confetti Balloon\nPack"
+      price: "£11"
+
+- subcategory: confetti-cannons
+  items:
+    - title: "Mini Confetti\nCannon"
+      price: "£6"
+    - title: "Party Popper\nBundle"
+      price: "£8"
+    - title: "Surprise Cannon\nPack"
+      price: "£7"
+      kids: true
+    - title: "Rainbow Confetti\nBlaster"
+      price: "£9"
+    - title: "Launch Confetti\nCannon"
+      price: "£16"
+      corporate: true
+    - title: "Gold Confetti\nCannon"
+      price: "£10"
+
+- subcategory: decor-props
+  items:
+    - title: "Photo Booth\nProps"
+      price: "£14"
+    - title: "Number & Letter\nProps"
+      price: "£11"
+    - title: "Dress-Up Prop\nSet"
+      price: "£9"
+      kids: true
+    - title: "Champagne Tower\nProps"
+      price: "£18"
+    - title: "Branded Event\nProps"
+      price: "£24"
+      corporate: true
+    - title: "Disco Ball\nTable Prop"
+      price: "£13"
+
+- subcategory: wearables
+  items:
+    - title: "Party Hat\nPack"
+      price: "£5"
+    - title: "Sash & Crown\nSet"
+      price: "£8"
+    - title: "Superhero Cape\nPack"
+      price: "£10"
+      kids: true
+    - title: "Sunglasses &\nLei Pack"
+      price: "£7"
+    - title: "Branded Wristband\nBundle"
+      price: "£15"
+      corporate: true
+    - title: "Glow Bracelet\nBundle"
+      price: "£6"

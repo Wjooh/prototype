@@ -58,3 +58,13 @@ categories:
     subcategories:
       - name: Candles
         slug: candles
+      - name: Hanging Décor
+        slug: hanging-decor
+      - name: Balloons
+        slug: balloons
+      - name: Confetti Cannons
+        slug: confetti-cannons
+      - name: Decor Props
+        slug: decor-props
+      - name: Wearables
+        slug: wearables
