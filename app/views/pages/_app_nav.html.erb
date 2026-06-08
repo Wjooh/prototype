@@ -1,4 +1,5 @@
 <% home_active = request.path == "/" %>
+<% packages_active = request.path.start_with?("/packages") %>
 <% catalog_active = request.path.start_with?("/catalog") %>
 
 <nav
@@ -11,14 +12,14 @@
       <span class="text-[10px] font-medium">Home</span>
     <% end %>
 
-    <%= link_to catalog_path, class: "flex flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 #{catalog_active ? "bg-gray-100 text-red-500" : "text-gray-800"}" do %>
-      <%= heroicon "squares-2x2", options: { class: "h-5 w-5 #{catalog_active ? "text-red-500" : ""}" } %>
-      <span class="text-[10px] font-medium">Catalog</span>
+    <%= link_to packages_path_with_params, class: "flex flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 #{packages_active ? "bg-gray-100 text-red-500" : "text-gray-800"}" do %>
+      <%= heroicon "gift", options: { class: "h-5 w-5 #{packages_active ? "text-red-500" : ""}" } %>
+      <span class="text-[10px] font-medium">Packages</span>
     <% end %>
 
-    <%= link_to root_path, class: "flex flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 text-gray-800" do %>
-      <%= heroicon "gift" %>
-      <span class="text-[10px] font-medium">Packages</span>
+    <%= link_to catalog_path_with_params, class: "flex flex-col items-center gap-0.5 rounded-2xl px-3 py-1.5 #{catalog_active ? "bg-gray-100 text-red-500" : "text-gray-800"}" do %>
+      <%= heroicon "squares-2x2", options: { class: "h-5 w-5 #{catalog_active ? "text-red-500" : ""}" } %>
+      <span class="text-[10px] font-medium">Catalog</span>
     <% end %>
 
     <button

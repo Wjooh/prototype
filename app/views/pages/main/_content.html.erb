@@ -13,7 +13,7 @@
     <div class="scrollbar-hide mb-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
       <% @subcategories.each do |subcategory| %>
         <a
-          href="<%= subcategory_path(subcategory.category_slug, subcategory.slug) %>"
+          href="<%= subcategory_path_with_params(subcategory.category_slug, subcategory.slug) %>"
           class="inline-flex shrink-0 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600"
         >
           <%= subcategory.name %>

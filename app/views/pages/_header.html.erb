@@ -67,15 +67,13 @@
     </div>
 
     <%# Navigation %>
-    <% active_filter = params[:filter] %>
+    <% home_active = request.path == "/" %>
+    <% packages_active = request.path.start_with?("/packages") %>
+    <% catalog_active = request.path.start_with?("/catalog") %>
     <nav class="mt-3 flex flex-wrap items-center justify-center gap-4 md:mt-4 md:gap-8">
-      <%= link_to "Parties", root_path, class: "text-sm md:text-base #{active_filter.blank? ? "font-bold text-gray-800" : "text-gray-400"}" %>
-      <%= link_to "Kids", catalog_path(filter: "kids"), class: "text-sm md:text-base #{active_filter == "kids" ? "font-bold text-gray-800" : "text-gray-400"}" %>
-      <%= link_to "Corporate", catalog_path(filter: "corporate"), class: "text-sm md:text-base #{active_filter == "corporate" ? "font-bold text-gray-800" : "text-gray-400"}" %>
-      <span class="inline-flex cursor-default items-center gap-2 text-sm text-gray-400 md:text-base">
-        Weddings
-        <span class="rounded-full border border-gray-200 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-gray-500 md:text-xs">Coming soon</span>
-      </span>
+      <%= link_to "Home", root_path, class: "text-sm md:text-base #{home_active ? "font-bold text-gray-800" : "text-gray-400"}" %>
+      <%= link_to "Packages", packages_path_with_params, class: "text-sm md:text-base #{packages_active ? "font-bold text-gray-800" : "text-gray-400"}" %>
+      <%= link_to "Catalog", catalog_path_with_params, class: "text-sm md:text-base #{catalog_active ? "font-bold text-gray-800" : "text-gray-400"}" %>
     </nav>
   </div>
 </header>

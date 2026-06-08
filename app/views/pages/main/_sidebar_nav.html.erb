@@ -8,7 +8,7 @@
             <% active = subcategory.slug == @active_subcategory_slug %>
             <li>
               <a
-                href="<%= subcategory_path(category.slug, subcategory.slug) %>"
+                href="<%= subcategory_path_with_params(category.slug, subcategory.slug) %>"
                 class="block rounded-lg px-2 py-1.5 text-sm <%= active ? "bg-gray-200 font-medium text-gray-800" : "text-gray-600 hover:bg-gray-100" %>"
               >
                 <%= subcategory.name %>

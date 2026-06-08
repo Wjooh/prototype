@@ -14,7 +14,7 @@
             </span>
           <% else %>
             <a
-              href="<%= subcategory_path(category.slug, subcategory.slug) %>"
+              href="<%= subcategory_path_with_params(category.slug, subcategory.slug) %>"
               class="shrink-0 rounded-full bg-gray-200 px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-300"
             >
               <%= subcategory.name %>
