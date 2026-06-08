@@ -8,6 +8,7 @@ class Bundle
   attribute :image_url, :string
   attribute :kids, :boolean, default: false
   attribute :corporate, :boolean, default: false
+  attribute :weddings, :boolean, default: false
 
   attr_reader :subcategory
 
@@ -35,6 +36,7 @@ class Bundle
     case filter
     when "kids" then items.select(&:kids)
     when "corporate" then items.select(&:corporate)
+    when "weddings" then items.select(&:weddings)
     else items
     end
   end

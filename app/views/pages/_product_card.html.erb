@@ -1,6 +1,7 @@
-<%# locals: (title: nil, price: nil, image_url: nil, kids: nil, corporate: nil) %>
+<%# locals: (title: nil, price: nil, image_url: nil, kids: nil, corporate: nil, weddings: nil) %>
 <% kids = local_assigns.fetch(:kids, false) %>
 <% corporate = local_assigns.fetch(:corporate, false) %>
+<% weddings = local_assigns.fetch(:weddings, false) %>
 <article class="w-full">
   <div class="relative overflow-hidden rounded-2xl">
     <a href="#" class="relative block aspect-[3/4]">
@@ -20,13 +21,16 @@
       </span>
     </a>
 
-    <% if kids || corporate %>
+    <% if kids || corporate || weddings %>
       <div class="absolute left-2.5 top-2.5 z-10 flex flex-col items-start gap-1">
         <% if kids %>
           <span class="rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600 shadow-sm">Kids</span>
         <% end %>
         <% if corporate %>
           <span class="rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600 shadow-sm">Corporate</span>
+        <% end %>
+        <% if weddings %>
+          <span class="rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600 shadow-sm">Weddings</span>
         <% end %>
       </div>
     <% end %>

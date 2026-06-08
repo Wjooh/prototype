@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def catalog
-    @filters = Filter.all
+    @filters = Filter.for_scope(params[:catalog_scope])
     @active_filter = params[:filter].presence
     @nav_categories = Category.for_type(params[:catalog_scope])
     @active_subcategory_slug = nil

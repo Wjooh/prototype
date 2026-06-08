@@ -1,5 +1,17 @@
-filters:
+bundle_filters:
+  - name: Kids
+    key: kids
+  - name: Corporate
+    key: corporate
+  - name: Weddings
+    key: weddings
+
+product_filters:
   - name: UK Popular
+    key: uk-popular
   - name: Mediterranean
+    key: mediterranean
   - name: Eastern European
+    key: eastern-european
   - name: Georgian
+    key: georgian

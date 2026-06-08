@@ -8,11 +8,13 @@
     - title: "Rosé &\nCanapés"
       price: "£25"
       corporate: true
+      weddings: true
     - title: "Garden\nGrazing"
       price: "£16"
     - title: "Afternoon\nTea"
       price: "£20"
       corporate: true
+      weddings: true
     - title: "Street Food\nNight"
       price: "£19"
 
@@ -23,6 +25,7 @@
       kids: true
     - title: "Regency Tea Party"
       price: "£6"
+      weddings: true
     - title: "Parisian Boudoir Night"
       price: "£7"
     - title: "Latin Night"
@@ -105,3 +108,4 @@
     - title: "Emerald &\nGold"
       price: "£8"
       corporate: true
+      weddings: true
