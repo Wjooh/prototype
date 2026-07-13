@@ -31,10 +31,34 @@ class AssistantController < ApplicationController
       unless VALID_PARTY_TYPES.include?(@party_type)
         redirect_to assistant_path and return
       end
-
-      @step = 2
-    else
-      @step = 1
     end
+
+    case @step
+    when 1
+      @step = 1
+    when 2
+      @step = 2
+      assign_guest_params
+    else
+      if @party_type == "kids"
+        @step = 3
+        assign_guest_params
+        @bundles = Bundle.matching_kids(age: @kids_age, gender: @kids_gender)
+      else
+        @step = 2
+        assign_guest_params
+      end
+    end
+  end
+
+  private
+
+  def assign_guest_params
+    @kids_count = params[:kids_count].presence&.to_i
+    @adults_count = params[:adults_count].presence&.to_i
+    @guests_count = params[:guests_count].presence&.to_i
+    @kids_age = params[:kids_age].presence&.to_i || 6
+    @kids_gender = params[:kids_gender].presence&.to_i || 1
+    @include_kids = params[:include_kids].present?
   end
 end

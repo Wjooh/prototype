@@ -4,7 +4,10 @@
   <main class="flex flex-1 flex-col bg-white">
     <div class="container mx-auto flex flex-1 flex-col px-4 py-8 md:px-6 md:py-12">
       <div class="mx-auto w-full max-w-4xl flex-1">
-        <% if @step == 2 %>
+        <% case @step %>
+        <% when 3 %>
+          <%= render "assistant/step_bundles" %>
+        <% when 2 %>
           <%= render "assistant/step_guests" %>
         <% else %>
           <%= render "assistant/step_party_type" %>

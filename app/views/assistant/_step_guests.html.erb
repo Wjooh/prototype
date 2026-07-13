@@ -28,32 +28,33 @@
 
 <%= form_with url: assistant_path, method: :get, local: true, class: "mx-auto mt-10 w-full max-w-lg space-y-4 md:mt-14" do %>
   <%= hidden_field_tag :party_type, @party_type %>
+  <%= hidden_field_tag :step, 3 %>
 
   <% case @party_type %>
   <% when "kids" %>
-    <%= render "assistant/guest_counter", name: "kids_count", label: "Kids", value: 8, min: 1 %>
-    <%= render "assistant/guest_counter", name: "adults_count", label: "Adults", value: 2, min: 0 %>
-    <%= render "assistant/age_slider" %>
-    <%= render "assistant/gender_slider" %>
+    <%= render "assistant/guest_counter", name: "kids_count", label: "Kids", value: @kids_count || 8, min: 1 %>
+    <%= render "assistant/guest_counter", name: "adults_count", label: "Adults", value: @adults_count || 2, min: 0 %>
+    <%= render "assistant/age_slider", value: @kids_age || 6 %>
+    <%= render "assistant/gender_slider", value: @kids_gender || 1 %>
 
   <% when "adults" %>
     <div class="space-y-4">
-      <%= render "assistant/guest_counter", name: "adults_count", label: "Adults", value: 10, min: 1 %>
+      <%= render "assistant/guest_counter", name: "adults_count", label: "Adults", value: @adults_count || 10, min: 1 %>
 
       <div class="rounded-2xl border border-gray-200 bg-white px-5 py-4" data-controller="reveal">
         <div class="flex items-center justify-between gap-4">
           <label class="flex min-w-0 flex-1 cursor-pointer items-center gap-3">
-            <%= check_box_tag "include_kids", "1", false,
+            <%= check_box_tag "include_kids", "1", @include_kids,
               class: "h-5 w-5 shrink-0 rounded border-gray-300 text-gray-800 focus:ring-gray-400",
               data: { action: "reveal#toggle" } %>
             <span class="text-base font-medium text-gray-900 md:text-lg">There will be kids</span>
           </label>
 
-          <div class="hidden shrink-0" data-reveal-target="panel">
+          <div class="<%= @include_kids ? nil : "hidden" %> shrink-0" data-reveal-target="panel">
             <%= render "assistant/guest_counter",
               name: "kids_count",
               label: "Kids",
-              value: 2,
+              value: @kids_count || 2,
               min: 1,
               bordered: false,
               show_label: false %>
@@ -63,13 +64,13 @@
     </div>
 
   <% when "corporate" %>
-    <%= render "assistant/guest_counter", name: "guests_count", label: "Guests", value: 20, min: 1 %>
+    <%= render "assistant/guest_counter", name: "guests_count", label: "Guests", value: @guests_count || 20, min: 1 %>
   <% end %>
 
   <div class="flex flex-col gap-3 pt-4 sm:flex-row sm:items-center sm:justify-between">
     <%= link_to "Back", assistant_path, class: "text-center text-sm font-medium text-gray-500 hover:text-gray-800 sm:text-left" %>
     <button
-      type="button"
+      type="submit"
       class="rounded-full bg-gray-800 px-8 py-3 text-sm font-semibold text-white transition hover:bg-gray-700"
     >
       Continue

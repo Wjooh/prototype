@@ -19,80 +19,148 @@
   items:
     - title: "Superhero Training Academy Party"
       price: "£5"
+      gender: boys
+      ages: [preschool, kids, tweens]
     - title: "Secret Agent Birthday Mission"
       price: "£5"
+      gender: boys
+      ages: [kids, tweens]
     - title: "Junior Firefighters Party"
       price: "£5"
+      gender: boys
+      ages: [toddler, preschool, kids]
     - title: "Volcano Explorer Party"
       price: "£5"
+      gender: neutral
+      ages: [preschool, kids]
     - title: "Deep Sea Pirate Party"
       price: "£5"
+      gender: boys
+      ages: [preschool, kids]
     - title: "Beach Splash Party"
       price: "£5"
+      gender: neutral
+      ages: [toddler, preschool, kids]
     - title: "Royal Knight Birthday"
       price: "£5"
+      gender: boys
+      ages: [preschool, kids]
     - title: "Big Top Circus Party"
       price: "£5"
+      gender: neutral
+      ages: [toddler, preschool, kids]
     - title: "Safari Adventure Birthday Party"
       price: "£5"
+      gender: neutral
+      ages: [toddler, preschool, kids]
     - title: "Start Your Engines!"
       price: "£5"
+      gender: boys
+      ages: [toddler, preschool, kids]
     - title: "Jungle Explorer Expedition"
       price: "£5"
+      gender: neutral
+      ages: [preschool, kids]
     - title: "Dino Dig Excavation Party"
       price: "£5"
+      gender: boys
+      ages: [toddler, preschool, kids]
     - title: "Dino Roar"
       price: "£5"
+      gender: boys
+      ages: [baby, toddler, preschool]
     - title: "Space Odyssey"
       price: "£5"
+      gender: neutral
+      ages: [preschool, kids, tweens]
 
 - category: kids
   subcategory: fantasy-magic
   items:
     - title: "Butterfly Garden Birthday"
       price: "£5"
+      gender: girls
+      ages: [toddler, preschool]
     - title: "Royal Princess Ball"
       price: "£5"
+      gender: girls
+      ages: [preschool, kids]
     - title: "Once Upon a Time Birthday"
       price: "£5"
+      gender: girls
+      ages: [preschool, kids]
     - title: "Woodland Magic Birthday"
       price: "£5"
+      gender: girls
+      ages: [toddler, preschool, kids]
     - title: "Woodland Animals Birthday"
       price: "£5"
+      gender: neutral
+      ages: [baby, toddler, preschool]
     - title: "Wizard School"
       price: "£5"
+      gender: neutral
+      ages: [kids, tweens]
     - title: "Unicorn & Rainbow Magic"
       price: "£5"
+      gender: girls
+      ages: [preschool, kids]
     - title: "Mermaid Under the Sea Party"
       price: "£5"
+      gender: girls
+      ages: [preschool, kids]
 
 - category: kids
   subcategory: creative
   items:
     - title: "Under Construction Birthday Party"
       price: "£5"
+      gender: boys
+      ages: [toddler, preschool, kids]
     - title: "Rockstar Birthday"
       price: "£5"
+      gender: neutral
+      ages: [kids, tweens, teens]
     - title: "Fashion Show Party"
       price: "£5"
+      gender: girls
+      ages: [kids, tweens, teens]
     - title: "Gaming Birthday Party"
       price: "£5"
+      gender: neutral
+      ages: [kids, tweens, teens]
     - title: "Pyjama Tent Party"
       price: "£5"
+      gender: neutral
+      ages: [preschool, kids, tweens]
     - title: "Yeehaw Rodeo Birthday Party"
       price: "£5"
+      gender: neutral
+      ages: [preschool, kids]
     - title: "Glow in the Dark (Neon UV) Party"
       price: "£5"
+      gender: neutral
+      ages: [tweens, teens]
     - title: "Future Engineers Robot Lab Party"
       price: "£5"
+      gender: boys
+      ages: [kids, tweens]
     - title: "Hollywood Premiere Party"
       price: "£5"
+      gender: neutral
+      ages: [kids, tweens, teens]
     - title: "Teddy Bear Hospital"
       price: "£5"
+      gender: neutral
+      ages: [baby, toddler, preschool]
     - title: "Little Bakery Cupcake Studio"
       price: "£5"
+      gender: girls
+      ages: [preschool, kids]
     - title: "Mad Scientist Lab Party"
       price: "£5"
+      gender: neutral
+      ages: [kids, tweens]
 
 - category: parties
   subcategory: get-togethers
