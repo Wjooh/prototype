@@ -4,40 +4,44 @@ Multi-step wizard that asks about the user’s party, then recommends ready-made
 
 ## Product intent
 
-1. Collect party context (type, guests, kids age/gender mix where relevant).
+1. Collect party context (type, occasion for adults, guests, kids age/gender mix where relevant).
 2. Recommend matching **ready bundles** from fixtures.
 3. Optionally **build a custom party** when no bundle fits (not implemented yet).
 
-Today only the **kids** path reaches bundle recommendations. Adults and corporate collect guest counts but do not yet advance to results.
+Today only the **kids** path reaches bundle recommendations. Adults collect occasion + guest counts but do not yet advance to results. Corporate collects guest counts only.
 
 ## Flow
 
 State lives entirely in **URL query params** (GET links + GET form). No session or DB writes.
 
-```
-Step 1  party type
-   │
-   ▼
-Step 2  guests (fields depend on party_type)
-   │
-   ▼
-Step 3  matching bundles  ← kids only so far
+```mermaid
+flowchart TD
+  S1[Step 1: party type] --> Kids[kids]
+  S1 --> Adults[adults]
+  S1 --> Corp[corporate]
+
+  Kids --> K2[Step 2: guests]
+  Corp --> C2[Step 2: guests]
+  Adults --> A2[Step 2: occasion]
+
+  K2 --> K3[Step 3: matching bundles]
+  A2 --> A3[Step 3: guests]
 ```
 
 | Step | View partial | What happens |
 |------|--------------|--------------|
 | 1 | `app/views/assistant/_step_party_type.html.erb` | Choose `adults`, `kids`, or `corporate` |
-| 2 | `app/views/assistant/_step_guests.html.erb` | Guest counts (+ age/gender for kids) |
-| 3 | `app/views/assistant/_step_bundles.html.erb` | Grid of matching kids bundles |
+| 2 | `_step_occasion` (adults) or `_step_guests` (kids/corporate) | Occasion selector, or guest counts |
+| 3 | `_step_guests` (adults) or `_step_bundles` (kids) | Guests for adults; matching kids bundles |
 
-`show.html.erb` switches on `@step` and shows a Back link from steps 2–3 that preserves query params.
+`show.html.erb` switches on `@step` (and `party_type`) and shows a Back link from steps 2–3 that preserves query params.
 
 ### Party types (`AssistantController::PARTY_TYPES`)
 
-| `party_type` | Step 2 fields | Step 3 |
-|--------------|---------------|--------|
+| `party_type` | Step 2 | Step 3 |
+|--------------|--------|--------|
 | `kids` | `kids_count`, `adults_count`, `kids_age`, `kids_gender` | `Bundle.matching_kids(age:, gender:)` |
-| `adults` | `adults_count`, optional `include_kids` + `kids_count` | Falls back to step 2 |
+| `adults` | `occasion` (default `just-because`) | `adults_count`, optional `include_kids` + `kids_count` |
 | `corporate` | `guests_count` | Falls back to step 2 |
 
 Invalid or missing `party_type` on step ≥ 2 redirects to step 1.
@@ -48,10 +52,15 @@ Invalid or missing `party_type` on step ≥ 2 redirects to step 1.
 |-------|---------|----------|
 | `step` | Wizard step (1–3) | `1` |
 | `party_type` | `adults` \| `kids` \| `corporate` | required from step 2 |
+| `occasion` | Adults path: occasion slug | `just-because` |
 | `kids_count` / `adults_count` / `guests_count` | Headcounts | UI defaults if blank |
 | `kids_age` | Age 0–18 | `6` |
 | `kids_gender` | `0` mostly boys, `1` mixed, `2` mostly girls | `1` |
 | `include_kids` | Adults path: show kids counter when `"1"` | off |
+
+## Occasions (adults)
+
+`Occasion` loads from `db/fixtures/occasions.yml` (fixture model, not ActiveRecord). Options were extracted from adult `parties` bundles in `bundles.yml` (birthdays, get-togethers, baby-family), plus **Just Because** as the default catch-all.
 
 ## Bundle matching (kids)
 
@@ -70,6 +79,7 @@ Invalid or missing `party_type` on step ≥ 2 redirects to step 1.
 | `_age_slider` | Age range + band chips (`slider`) |
 | `_gender_slider` | Boys / mixed / girls (`slider` + labels) |
 | Adults “There will be kids” | `reveal` Stimulus toggle |
+| `_step_occasion` | Radio grid of occasions |
 
 Slider styles use the `assistant-slider` CSS class.
 
@@ -78,7 +88,9 @@ Slider styles use the `assistant-slider` CSS class.
 - `app/controllers/assistant_controller.rb` — steps, validation, kids matching
 - `app/views/assistant/*` — wizard UI
 - `app/models/bundle.rb` — fixtures + matching
+- `app/models/occasion.rb` — adult occasion options
 - `db/fixtures/bundles.yml` — bundle catalog
+- `db/fixtures/occasions.yml` — adult occasion options
 - `app/javascript/controllers/number_stepper_controller.js`
 - `app/javascript/controllers/slider_controller.js`
 - `app/javascript/controllers/reveal_controller.js`

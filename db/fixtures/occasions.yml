@@ -1,0 +1,34 @@
+# Adult party occasions, extracted from parties bundles in bundles.yml
+# (birthdays, get-togethers, baby-family). "Just Because" is the catch-all default.
+occasions:
+  - name: Just Because
+    slug: just-because
+    default: true
+  - name: Birthday
+    slug: birthday
+  - name: Housewarming
+    slug: housewarming
+  - name: Anniversary
+    slug: anniversary
+  - name: Graduation
+    slug: graduation
+  - name: Engagement
+    slug: engagement
+  - name: Retirement
+    slug: retirement
+  - name: Reunion
+    slug: reunion
+  - name: Bon Voyage
+    slug: bon-voyage
+  - name: Welcome Home
+    slug: welcome-home
+  - name: Promotion
+    slug: promotion
+  - name: Holiday
+    slug: holiday
+  - name: Farewell
+    slug: farewell
+  - name: Baby Shower
+    slug: baby-shower
+  - name: Christening
+    slug: christening

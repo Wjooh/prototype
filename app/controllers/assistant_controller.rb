@@ -38,12 +38,33 @@ class AssistantController < ApplicationController
       @step = 1
     when 2
       @step = 2
-      assign_guest_params
-    else
-      if @party_type == "kids"
+      if adults?
+        assign_occasion_params
+      else
+        assign_guest_params
+      end
+    when 3
+      if kids?
         @step = 3
         assign_guest_params
         @bundles = Bundle.matching_kids(age: @kids_age, gender: @kids_gender)
+      elsif adults?
+        @step = 3
+        assign_occasion_params
+        assign_guest_params
+      else
+        @step = 2
+        assign_guest_params
+      end
+    else
+      if kids?
+        @step = 3
+        assign_guest_params
+        @bundles = Bundle.matching_kids(age: @kids_age, gender: @kids_gender)
+      elsif adults?
+        @step = 3
+        assign_occasion_params
+        assign_guest_params
       else
         @step = 2
         assign_guest_params
@@ -52,6 +73,19 @@ class AssistantController < ApplicationController
   end
 
   private
+
+  def adults?
+    @party_type == "adults"
+  end
+
+  def kids?
+    @party_type == "kids"
+  end
+
+  def assign_occasion_params
+    @occasions = Occasion.all
+    @occasion = Occasion.find_by_slug(params[:occasion]) || Occasion.default
+  end
 
   def assign_guest_params
     @kids_count = params[:kids_count].presence&.to_i

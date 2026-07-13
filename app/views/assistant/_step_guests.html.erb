@@ -1,4 +1,6 @@
 <%
+  step_number = @party_type == "adults" ? 3 : 2
+  next_step = @party_type == "adults" ? 4 : 3
   copy = case @party_type
   when "kids"
     {
@@ -18,7 +20,7 @@
   end
 %>
 
-<p class="text-center text-sm font-medium text-gray-400">Step 2</p>
+<p class="text-center text-sm font-medium text-gray-400">Step <%= step_number %></p>
 <h1 class="mt-3 text-center text-2xl font-extrabold tracking-tight text-gray-900 md:text-4xl">
   <%= copy[:title] %>
 </h1>
@@ -28,7 +30,10 @@
 
 <%= form_with url: assistant_path, method: :get, local: true, class: "mx-auto mt-10 w-full max-w-lg space-y-4 md:mt-14" do %>
   <%= hidden_field_tag :party_type, @party_type %>
-  <%= hidden_field_tag :step, 3 %>
+  <%= hidden_field_tag :step, next_step %>
+  <% if @party_type == "adults" && @occasion %>
+    <%= hidden_field_tag :occasion, @occasion.slug %>
+  <% end %>
 
   <% case @party_type %>
   <% when "kids" %>
