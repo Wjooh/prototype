@@ -26,16 +26,3 @@
     No matching parties yet — try a different age or gender mix.
   </p>
 <% end %>
-
-<div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-  <%= link_to "Back",
-    assistant_path(
-      step: 2,
-      party_type: @party_type,
-      kids_count: @kids_count,
-      adults_count: @adults_count,
-      kids_age: @kids_age,
-      kids_gender: @kids_gender
-    ),
-    class: "text-center text-sm font-medium text-gray-500 hover:text-gray-800 sm:text-left" %>
-</div>

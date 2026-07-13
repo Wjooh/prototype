@@ -4,6 +4,31 @@
   <main class="flex flex-1 flex-col bg-white">
     <div class="container mx-auto flex flex-1 flex-col px-4 py-8 md:px-6 md:py-12">
       <div class="mx-auto w-full max-w-4xl flex-1">
+        <% if @step >= 2 %>
+          <%
+            back_path = if @step == 3
+              assistant_path(
+                step: 2,
+                party_type: @party_type,
+                kids_count: @kids_count,
+                adults_count: @adults_count,
+                guests_count: @guests_count,
+                kids_age: @kids_age,
+                kids_gender: @kids_gender,
+                include_kids: @include_kids ? "1" : nil
+              )
+            else
+              assistant_path
+            end
+          %>
+          <div class="mb-6 md:mb-8">
+            <%= link_to back_path, class: "inline-flex items-center gap-2 text-base font-medium text-gray-500 hover:text-gray-700 md:text-lg" do %>
+              <%= heroicon "arrow-left", options: { class: "h-5 w-5 md:h-6 md:w-6" } %>
+              Back
+            <% end %>
+          </div>
+        <% end %>
+
         <% case @step %>
         <% when 3 %>
           <%= render "assistant/step_bundles" %>
