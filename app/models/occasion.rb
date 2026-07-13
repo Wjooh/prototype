@@ -4,7 +4,10 @@ class Occasion
   include FixtureLoadable
   include Slugged
 
+  KINDS = %w[private corporate].freeze
+
   attribute :name, :string
+  attribute :kind, :string, default: "private"
   attribute :default, :boolean, default: false
 
   def self.fixture_path
@@ -16,8 +19,12 @@ class Occasion
     data[:occasions].map { |attrs| new(**attrs) }
   end
 
-  def self.default
-    all.find(&:default?) || all.first
+  def self.for_kind(kind)
+    all.select { |occasion| occasion.kind == kind.to_s }
+  end
+
+  def self.default(kind: "private")
+    for_kind(kind).find(&:default?) || for_kind(kind).first
   end
 
   def default?

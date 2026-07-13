@@ -1,6 +1,7 @@
 <%
-  step_number = @party_type == "adults" ? 3 : 2
-  next_step = @party_type == "adults" ? 4 : 3
+  guests_after_occasion = @party_type == "adults" || @party_type == "corporate"
+  step_number = guests_after_occasion ? 3 : 2
+  next_step = guests_after_occasion ? 4 : 3
   copy = case @party_type
   when "kids"
     {
@@ -31,7 +32,7 @@
 <%= form_with url: assistant_path, method: :get, local: true, class: "mx-auto mt-10 w-full max-w-lg space-y-4 md:mt-14" do %>
   <%= hidden_field_tag :party_type, @party_type %>
   <%= hidden_field_tag :step, next_step %>
-  <% if @party_type == "adults" && @occasion %>
+  <% if guests_after_occasion && @occasion %>
     <%= hidden_field_tag :occasion, @occasion.slug %>
   <% end %>
 

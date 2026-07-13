@@ -38,7 +38,7 @@ class AssistantController < ApplicationController
       @step = 1
     when 2
       @step = 2
-      if adults?
+      if adults? || corporate?
         assign_occasion_params
       else
         assign_guest_params
@@ -48,7 +48,7 @@ class AssistantController < ApplicationController
         @step = 3
         assign_guest_params
         @bundles = Bundle.matching_kids(age: @kids_age, gender: @kids_gender)
-      elsif adults?
+      elsif adults? || corporate?
         @step = 3
         assign_occasion_params
         assign_guest_params
@@ -61,7 +61,7 @@ class AssistantController < ApplicationController
         @step = 3
         assign_guest_params
         @bundles = Bundle.matching_kids(age: @kids_age, gender: @kids_gender)
-      elsif adults?
+      elsif adults? || corporate?
         @step = 3
         assign_occasion_params
         assign_guest_params
@@ -82,9 +82,17 @@ class AssistantController < ApplicationController
     @party_type == "kids"
   end
 
+  def corporate?
+    @party_type == "corporate"
+  end
+
+  def occasion_kind
+    corporate? ? "corporate" : "private"
+  end
+
   def assign_occasion_params
-    @occasions = Occasion.all
-    @occasion = Occasion.find_by_slug(params[:occasion]) || Occasion.default
+    @occasions = Occasion.for_kind(occasion_kind)
+    @occasion = @occasions.find { |o| o.slug == params[:occasion] } || Occasion.default(kind: occasion_kind)
   end
 
   def assign_guest_params
