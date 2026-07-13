@@ -1,0 +1,57 @@
+<%# locals: (name: "kids_age", value: 6) %>
+<%
+  name = local_assigns.fetch(:name, "kids_age")
+  value = local_assigns.fetch(:value, 6)
+  bands = [
+    { label: "Baby", min: 0, max: 2 },
+    { label: "Toddler", min: 2, max: 4 },
+    { label: "Preschool", min: 4, max: 6 },
+    { label: "Kids", min: 6, max: 10 },
+    { label: "Tweens", min: 10, max: 13 },
+    { label: "Teens", min: 13, max: 18, inclusive_max: true }
+  ]
+%>
+<div
+  class="rounded-2xl border border-gray-200 bg-white px-5 py-5"
+  data-controller="slider"
+>
+  <div class="flex items-center justify-between gap-4">
+    <label class="text-base font-medium text-gray-900 md:text-lg" for="<%= name %>">Kids' age</label>
+    <span class="text-xl font-bold tabular-nums text-gray-900">
+      <span data-slider-target="display"><%= value %></span>
+    </span>
+  </div>
+
+  <div class="mt-6 px-1">
+    <input
+      type="range"
+      name="<%= name %>"
+      id="<%= name %>"
+      min="0"
+      max="18"
+      step="1"
+      value="<%= value %>"
+      class="assistant-slider"
+      data-slider-target="input"
+      data-action="input->slider#update"
+      aria-valuemin="0"
+      aria-valuemax="18"
+      aria-valuenow="<%= value %>"
+    >
+  </div>
+
+  <div class="mt-4 grid grid-cols-6 gap-1.5">
+    <% bands.each do |band| %>
+      <div
+        class="rounded-lg px-1 py-2 text-center text-[10px] font-semibold leading-tight sm:text-xs <%= value >= band[:min] && (band[:inclusive_max] ? value <= band[:max] : value < band[:max]) ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-500" %>"
+        data-slider-target="band"
+        data-slider-min="<%= band[:min] %>"
+        data-slider-max="<%= band[:max] %>"
+        <% if band[:inclusive_max] %>data-slider-inclusive-max="true"<% end %>
+      >
+        <span class="block"><%= band[:label] %></span>
+        <span class="mt-0.5 block font-medium opacity-70"><%= band[:min] %>–<%= band[:max] %></span>
+      </div>
+    <% end %>
+  </div>
+</div>

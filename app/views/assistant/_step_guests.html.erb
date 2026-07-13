@@ -2,8 +2,8 @@
   copy = case @party_type
   when "kids"
     {
-      title: "How many guests are you expecting?",
-      subtitle: "Tell us how many kids and adults will be there"
+      title: "Who's coming?",
+      subtitle: "Tell us about the kids and adults at the party"
     }
   when "adults"
     {
@@ -33,6 +33,8 @@
   <% when "kids" %>
     <%= render "assistant/guest_counter", name: "kids_count", label: "Kids", value: 8, min: 1 %>
     <%= render "assistant/guest_counter", name: "adults_count", label: "Adults", value: 2, min: 0 %>
+    <%= render "assistant/age_slider" %>
+    <%= render "assistant/gender_slider" %>
 
   <% when "adults" %>
     <div class="space-y-4">

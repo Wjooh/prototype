@@ -1,0 +1,53 @@
+<%# locals: (name: "kids_gender", value: 1) %>
+<%
+  name = local_assigns.fetch(:name, "kids_gender")
+  value = local_assigns.fetch(:value, 1)
+  options = [
+    { label: "Mostly boys", value: 0 },
+    { label: "Roughly even", value: 1 },
+    { label: "Mostly girls", value: 2 }
+  ]
+  labels_json = options.map { |o| o[:label] }.to_json
+%>
+<div
+  class="rounded-2xl border border-gray-200 bg-white px-5 py-5"
+  data-controller="slider"
+>
+  <div class="flex items-center justify-between gap-4">
+    <label class="text-base font-medium text-gray-900 md:text-lg" for="<%= name %>">Gender mix</label>
+    <span class="text-sm font-semibold text-gray-900 md:text-base" data-slider-target="display">
+      <%= options[value][:label] %>
+    </span>
+  </div>
+
+  <div class="mt-6 px-1">
+    <input
+      type="range"
+      name="<%= name %>"
+      id="<%= name %>"
+      min="0"
+      max="2"
+      step="1"
+      value="<%= value %>"
+      class="assistant-slider"
+      data-slider-target="input"
+      data-slider-labels='<%= labels_json %>'
+      data-action="input->slider#update"
+      aria-valuemin="0"
+      aria-valuemax="2"
+      aria-valuenow="<%= value %>"
+    >
+  </div>
+
+  <div class="mt-4 grid grid-cols-3 gap-1.5">
+    <% options.each do |option| %>
+      <div
+        class="rounded-lg px-2 py-2 text-center text-xs font-semibold leading-tight <%= value == option[:value] ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-500" %>"
+        data-slider-target="band"
+        data-slider-value="<%= option[:value] %>"
+      >
+        <%= option[:label] %>
+      </div>
+    <% end %>
+  </div>
+</div>
