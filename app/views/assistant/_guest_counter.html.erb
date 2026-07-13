@@ -1,0 +1,45 @@
+<%# locals: (name:, label:, value: 0, min: 0, bordered: true, show_label: true) %>
+<% bordered = local_assigns.fetch(:bordered, true) %>
+<% show_label = local_assigns.fetch(:show_label, true) %>
+<div
+  class="flex items-center <%= show_label ? "justify-between gap-4" : "justify-end" %> <%= bordered ? "rounded-2xl border border-gray-200 bg-white px-5 py-4" : "" %>"
+  data-controller="number-stepper"
+  data-number-stepper-min-value="<%= min %>"
+>
+  <% if show_label %>
+    <label class="text-base font-medium text-gray-900 md:text-lg" for="<%= name %>"><%= label %></label>
+  <% end %>
+
+  <div class="flex items-center gap-3">
+    <button
+      type="button"
+      class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-xl text-gray-700 transition hover:border-gray-400 hover:bg-gray-50"
+      data-action="number-stepper#decrement"
+      aria-label="Decrease <%= label %>"
+    >
+      −
+    </button>
+
+    <input
+      type="hidden"
+      name="<%= name %>"
+      id="<%= name %>"
+      value="<%= value %>"
+      data-number-stepper-target="input"
+    >
+    <span
+      class="min-w-10 text-center text-xl font-bold tabular-nums text-gray-900"
+      data-number-stepper-target="display"
+      aria-live="polite"
+    ><%= value %></span>
+
+    <button
+      type="button"
+      class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-xl text-gray-700 transition hover:border-gray-400 hover:bg-gray-50"
+      data-action="number-stepper#increment"
+      aria-label="Increase <%= label %>"
+    >
+      +
+    </button>
+  </div>
+</div>
