@@ -1,0 +1,67 @@
+<%# locals: (name: "kids_age", value: 6) %>
+<%
+  name = local_assigns.fetch(:name, "kids_age")
+  value = local_assigns.fetch(:value, 6)
+  bands = [
+    { label: "Baby", min: 0, max: 2 },
+    { label: "Toddler", min: 2, max: 4 },
+    { label: "Preschool", min: 4, max: 6 },
+    { label: "Kids", min: 6, max: 10 },
+    { label: "Tweens", min: 10, max: 13 },
+    { label: "Teens", min: 13, max: 18, inclusive_max: true }
+  ]
+  bands_json = bands.to_json
+  active_band = bands.find do |band|
+    band[:inclusive_max] ? value >= band[:min] && value <= band[:max] : value >= band[:min] && value < band[:max]
+  end
+%>
+<div
+  class="rounded-2xl border border-gray-200 bg-white px-5 py-4"
+  data-controller="slider"
+>
+  <div class="flex items-center justify-between gap-4">
+    <label class="text-base font-medium text-gray-900 md:text-lg" for="<%= name %>">Age</label>
+    <span class="text-xl font-bold tabular-nums text-gray-900" data-slider-target="display"><%= value %></span>
+  </div>
+
+  <div class="mt-3 flex items-center gap-3">
+    <button
+      type="button"
+      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 text-lg text-gray-700 transition hover:border-gray-400 hover:bg-gray-50"
+      data-action="slider#decrement"
+      aria-label="Decrease age"
+    >
+      −
+    </button>
+
+    <input
+      type="range"
+      name="<%= name %>"
+      id="<%= name %>"
+      min="0"
+      max="18"
+      step="1"
+      value="<%= value %>"
+      class="assistant-slider min-w-0 flex-1"
+      data-slider-target="input"
+      data-slider-bands='<%= bands_json %>'
+      data-action="input->slider#update"
+      aria-valuemin="0"
+      aria-valuemax="18"
+      aria-valuenow="<%= value %>"
+    >
+
+    <button
+      type="button"
+      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 text-lg text-gray-700 transition hover:border-gray-400 hover:bg-gray-50"
+      data-action="slider#increment"
+      aria-label="Increase age"
+    >
+      +
+    </button>
+  </div>
+
+  <p class="mt-2 text-center text-sm font-medium text-gray-500" data-slider-target="caption">
+    <%= active_band&.fetch(:label) %>
+  </p>
+</div>

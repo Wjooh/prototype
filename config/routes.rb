@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   root "pages#index"
+  get "assistant" => "assistant#show", as: :assistant
   get "parties" => "pages#catalog", defaults: { category_slug: "parties" }, as: :parties
+
   get "parties/:subcategory_slug" => "pages#bundle_subcategory", defaults: { category_slug: "parties" }, as: :parties_subcategory
   get "kids" => "pages#catalog", defaults: { category_slug: "kids" }, as: :kids
   get "kids/:subcategory_slug" => "pages#bundle_subcategory", defaults: { category_slug: "kids" }, as: :kids_subcategory

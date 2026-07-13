@@ -1,0 +1,88 @@
+# Party occasions / formats for the assistant wizard.
+# kind: private  — adults path (occasions)
+# kind: corporate — corporate path (event formats)
+occasions:
+  # --- Private (adults) ---
+  # Extracted from parties bundles in bundles.yml, plus Just Because as catch-all.
+  - name: Just Because
+    slug: just-because
+    kind: private
+    default: true
+  - name: Birthday
+    slug: birthday
+    kind: private
+  - name: Housewarming
+    slug: housewarming
+    kind: private
+  - name: Anniversary
+    slug: anniversary
+    kind: private
+  - name: Graduation
+    slug: graduation
+    kind: private
+  - name: Engagement
+    slug: engagement
+    kind: private
+  - name: Retirement
+    slug: retirement
+    kind: private
+  - name: Reunion
+    slug: reunion
+    kind: private
+  - name: Bon Voyage
+    slug: bon-voyage
+    kind: private
+  - name: Welcome Home
+    slug: welcome-home
+    kind: private
+  - name: Promotion
+    slug: promotion
+    kind: private
+  - name: Holiday
+    slug: holiday
+    kind: private
+  - name: Farewell
+    slug: farewell
+    kind: private
+  - name: Baby Shower
+    slug: baby-shower
+    kind: private
+  - name: Christening
+    slug: christening
+    kind: private
+
+  # --- Corporate (formats) ---
+  - name: Networking
+    slug: networking
+    kind: corporate
+    default: true
+  - name: Coffee Break
+    slug: coffee-break
+    kind: corporate
+  - name: Team Building
+    slug: team-building
+    kind: corporate
+  - name: Conference
+    slug: conference
+    kind: corporate
+  - name: Client Reception
+    slug: client-reception
+    kind: corporate
+  - name: After Work
+    slug: after-work
+    kind: corporate
+  - name: Product Launch
+    slug: product-launch
+    kind: corporate
+  - name: All Hands
+    slug: all-hands
+    kind: corporate
+  - name: Training
+    slug: training
+    kind: corporate
+  - name: Offsite
+    slug: offsite
+    kind: corporate
+  - name: Holiday Party
+    slug: holiday-party
+    kind: corporate

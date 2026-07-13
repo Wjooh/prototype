@@ -14,8 +14,12 @@ categories:
     slug: kids
     type: bundles
     subcategories:
-      - name: Birthdays
-        slug: birthdays
+      - name: Adventure
+        slug: adventure
+      - name: Fantasy & Magic
+        slug: fantasy-magic
+      - name: Creative
+        slug: creative
 
   - name: Corporate
     slug: corporate
