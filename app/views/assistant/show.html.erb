@@ -16,12 +16,8 @@
               assistant_path(
                 step: 2,
                 party_type: @party_type,
-                kids_count: @kids_count,
-                adults_count: @adults_count,
-                guests_count: @guests_count,
                 kids_age: @kids_age,
-                kids_gender: @kids_gender,
-                include_kids: @include_kids ? "1" : nil
+                kids_gender: @kids_gender
               )
             else
               assistant_path
@@ -37,16 +33,12 @@
 
         <% case @step %>
         <% when 3 %>
-          <% if @party_type == "adults" || @party_type == "corporate" %>
-            <%= render "assistant/step_guests" %>
-          <% else %>
-            <%= render "assistant/step_bundles" %>
-          <% end %>
+          <%= render "assistant/step_bundles" %>
         <% when 2 %>
           <% if @party_type == "adults" || @party_type == "corporate" %>
             <%= render "assistant/step_occasion" %>
           <% else %>
-            <%= render "assistant/step_guests" %>
+            <%= render "assistant/step_preferences" %>
           <% end %>
         <% else %>
           <%= render "assistant/step_party_type" %>

@@ -57,6 +57,17 @@ class Bundle
     AGE_BANDS.find { |band| band[:range].cover?(age) }&.fetch(:key)
   end
 
+  ADULTS_SUBCATEGORY_BY_OCCASION = {
+    "birthday" => "birthdays",
+    "baby-shower" => "baby-family",
+    "christening" => "baby-family"
+  }.freeze
+
+  CORPORATE_SUBCATEGORY_BY_OCCASION = {
+    "conference" => "conference",
+    "product-launch" => "opening"
+  }.freeze
+
   def self.matching_kids(age:, gender:)
     age_band = age_band_for(age)
     genders = GENDER_MATCHES.fetch(gender.to_i, %w[neutral])
@@ -67,6 +78,48 @@ class Bundle
         bundle.ages.include?(age_band)
     end
   end
+
+  def self.matching_adults(occasion:)
+    parties = all.select { |bundle| bundle.subcategory&.category_slug == "parties" }
+    slug = occasion_slug(occasion)
+    return parties if slug == "just-because"
+
+    matched =
+      if (subcategory_slug = ADULTS_SUBCATEGORY_BY_OCCASION[slug])
+        parties.select { |bundle| bundle.subcategory&.slug == subcategory_slug }
+      else
+        keywords = occasion_keywords(occasion)
+        parties.select { |bundle| keywords.any? { |keyword| normalize_title(bundle.title).include?(keyword) } }
+      end
+
+    matched.presence || parties
+  end
+
+  def self.matching_corporate(occasion:)
+    corporate = all.select { |bundle| bundle.subcategory&.category_slug == "corporate" }
+    slug = occasion_slug(occasion)
+    subcategory_slug = CORPORATE_SUBCATEGORY_BY_OCCASION[slug]
+    return corporate unless subcategory_slug
+
+    matched = corporate.select { |bundle| bundle.subcategory&.slug == subcategory_slug }
+    matched.presence || corporate
+  end
+
+  def self.occasion_slug(occasion)
+    occasion.respond_to?(:slug) ? occasion.slug.to_s : occasion.to_s
+  end
+  private_class_method :occasion_slug
+
+  def self.occasion_keywords(occasion)
+    name = occasion.respond_to?(:name) ? occasion.name.to_s : occasion.to_s.tr("-", " ")
+    [normalize_title(name)].reject(&:blank?)
+  end
+  private_class_method :occasion_keywords
+
+  def self.normalize_title(title)
+    title.to_s.downcase.gsub(/[\n\r]+/, " ").squeeze(" ").strip
+  end
+  private_class_method :normalize_title
 
   def subcategory_name
     subcategory&.name

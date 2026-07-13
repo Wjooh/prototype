@@ -23,5 +23,6 @@ export default class extends Controller {
     const next = Math.min(this.maxValue, Math.max(this.minValue, value))
     this.inputTarget.value = next
     if (this.hasDisplayTarget) this.displayTarget.textContent = next
+    this.inputTarget.dispatchEvent(new Event("change", { bubbles: true }))
   }
 }

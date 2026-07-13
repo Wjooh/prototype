@@ -38,37 +38,12 @@ class AssistantController < ApplicationController
       @step = 1
     when 2
       @step = 2
-      if adults? || corporate?
-        assign_occasion_params
-      else
-        assign_guest_params
-      end
-    when 3
-      if kids?
-        @step = 3
-        assign_guest_params
-        @bundles = Bundle.matching_kids(age: @kids_age, gender: @kids_gender)
-      elsif adults? || corporate?
-        @step = 3
-        assign_occasion_params
-        assign_guest_params
-      else
-        @step = 2
-        assign_guest_params
-      end
+      assign_preference_params
     else
-      if kids?
-        @step = 3
-        assign_guest_params
-        @bundles = Bundle.matching_kids(age: @kids_age, gender: @kids_gender)
-      elsif adults? || corporate?
-        @step = 3
-        assign_occasion_params
-        assign_guest_params
-      else
-        @step = 2
-        assign_guest_params
-      end
+      @step = 3
+      assign_preference_params
+      assign_guest_params
+      @bundles = matching_bundles
     end
   end
 
@@ -90,6 +65,15 @@ class AssistantController < ApplicationController
     corporate? ? "corporate" : "private"
   end
 
+  def assign_preference_params
+    if kids?
+      @kids_age = params[:kids_age].presence&.to_i || 6
+      @kids_gender = params[:kids_gender].presence&.to_i || 1
+    elsif adults? || corporate?
+      assign_occasion_params
+    end
+  end
+
   def assign_occasion_params
     @occasions = Occasion.for_kind(occasion_kind)
     @occasion = @occasions.find { |o| o.slug == params[:occasion] } || Occasion.default(kind: occasion_kind)
@@ -99,8 +83,18 @@ class AssistantController < ApplicationController
     @kids_count = params[:kids_count].presence&.to_i
     @adults_count = params[:adults_count].presence&.to_i
     @guests_count = params[:guests_count].presence&.to_i
-    @kids_age = params[:kids_age].presence&.to_i || 6
-    @kids_gender = params[:kids_gender].presence&.to_i || 1
     @include_kids = params[:include_kids].present?
+  end
+
+  def matching_bundles
+    if kids?
+      Bundle.matching_kids(age: @kids_age, gender: @kids_gender)
+    elsif adults?
+      Bundle.matching_adults(occasion: @occasion)
+    elsif corporate?
+      Bundle.matching_corporate(occasion: @occasion)
+    else
+      []
+    end
   end
 end
