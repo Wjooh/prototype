@@ -10,19 +10,30 @@
     { label: "Tweens", min: 10, max: 13 },
     { label: "Teens", min: 13, max: 18, inclusive_max: true }
   ]
+  bands_json = bands.to_json
+  active_band = bands.find do |band|
+    band[:inclusive_max] ? value >= band[:min] && value <= band[:max] : value >= band[:min] && value < band[:max]
+  end
 %>
 <div
-  class="rounded-2xl border border-gray-200 bg-white px-5 py-5"
+  class="rounded-2xl border border-gray-200 bg-white px-5 py-4"
   data-controller="slider"
 >
   <div class="flex items-center justify-between gap-4">
-    <label class="text-base font-medium text-gray-900 md:text-lg" for="<%= name %>">Kids' age</label>
-    <span class="text-xl font-bold tabular-nums text-gray-900">
-      <span data-slider-target="display"><%= value %></span>
-    </span>
+    <label class="text-base font-medium text-gray-900 md:text-lg" for="<%= name %>">Age</label>
+    <span class="text-xl font-bold tabular-nums text-gray-900" data-slider-target="display"><%= value %></span>
   </div>
 
-  <div class="mt-6 px-1">
+  <div class="mt-3 flex items-center gap-3">
+    <button
+      type="button"
+      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 text-lg text-gray-700 transition hover:border-gray-400 hover:bg-gray-50"
+      data-action="slider#decrement"
+      aria-label="Decrease age"
+    >
+      −
+    </button>
+
     <input
       type="range"
       name="<%= name %>"
@@ -31,27 +42,26 @@
       max="18"
       step="1"
       value="<%= value %>"
-      class="assistant-slider"
+      class="assistant-slider min-w-0 flex-1"
       data-slider-target="input"
+      data-slider-bands='<%= bands_json %>'
       data-action="input->slider#update"
       aria-valuemin="0"
       aria-valuemax="18"
       aria-valuenow="<%= value %>"
     >
+
+    <button
+      type="button"
+      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 text-lg text-gray-700 transition hover:border-gray-400 hover:bg-gray-50"
+      data-action="slider#increment"
+      aria-label="Increase age"
+    >
+      +
+    </button>
   </div>
 
-  <div class="mt-4 grid grid-cols-6 gap-1.5">
-    <% bands.each do |band| %>
-      <div
-        class="rounded-lg px-1 py-2 text-center text-[10px] font-semibold leading-tight sm:text-xs <%= value >= band[:min] && (band[:inclusive_max] ? value <= band[:max] : value < band[:max]) ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-500" %>"
-        data-slider-target="band"
-        data-slider-min="<%= band[:min] %>"
-        data-slider-max="<%= band[:max] %>"
-        <% if band[:inclusive_max] %>data-slider-inclusive-max="true"<% end %>
-      >
-        <span class="block"><%= band[:label] %></span>
-        <span class="mt-0.5 block font-medium opacity-70"><%= band[:min] %>–<%= band[:max] %></span>
-      </div>
-    <% end %>
-  </div>
+  <p class="mt-2 text-center text-sm font-medium text-gray-500" data-slider-target="caption">
+    <%= active_band&.fetch(:label) %>
+  </p>
 </div>

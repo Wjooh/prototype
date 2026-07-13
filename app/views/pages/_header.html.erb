@@ -7,14 +7,20 @@
 
     <%# Desktop top row: Trustpilot left, utility pills right %>
     <div class="hidden flex-wrap items-center justify-between gap-3 md:flex">
-      <span class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-500 md:text-sm">
-        <span class="flex gap-0.5" aria-hidden="true">
-          <% 5.times do %>
-            <%= heroicon "star", variant: :solid, options: { class: "text-gray-300" } %>
-          <% end %>
+      <div class="flex flex-wrap items-center gap-2 md:gap-2.5">
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-500 md:text-sm">
+          <span class="flex gap-0.5" aria-hidden="true">
+            <% 5.times do %>
+              <%= heroicon "star", variant: :solid, options: { class: "text-gray-300" } %>
+            <% end %>
+          </span>
+          Trustpilot
         </span>
-        Trustpilot
-      </span>
+        <%= link_to assistant_path, class: "inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-600 transition hover:border-gray-300 hover:bg-gray-50 md:px-4 md:text-sm" do %>
+          <%= heroicon "sparkles", options: { class: "h-4 w-4" } %>
+          Party Assistant
+        <% end %>
+      </div>
 
       <div class="flex flex-wrap items-center justify-end gap-2 md:gap-2.5">
         <span class="inline-flex min-w-[10rem] items-center gap-2 rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-400 md:min-w-[14rem] md:px-4 md:text-sm">

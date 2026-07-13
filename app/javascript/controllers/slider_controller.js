@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input", "display", "band"]
+  static targets = ["input", "display", "caption"]
 
   connect() {
     this.update()
@@ -14,24 +14,29 @@ export default class extends Controller {
       this.displayTarget.textContent = this.displayLabel(value)
     }
 
-    this.bandTargets.forEach((band) => {
-      const exact = band.dataset.sliderValue
-      let active = false
+    if (this.hasCaptionTarget) {
+      this.captionTarget.textContent = this.captionFor(value)
+    }
 
-      if (exact !== undefined) {
-        active = Number(exact) === value
-      } else {
-        const min = Number(band.dataset.sliderMin)
-        const max = Number(band.dataset.sliderMax)
-        const inclusiveMax = band.dataset.sliderInclusiveMax === "true"
-        active = inclusiveMax ? value >= min && value <= max : value >= min && value < max
-      }
+    this.inputTarget.setAttribute("aria-valuenow", String(value))
+  }
 
-      band.classList.toggle("bg-gray-800", active)
-      band.classList.toggle("text-white", active)
-      band.classList.toggle("bg-gray-100", !active)
-      band.classList.toggle("text-gray-500", !active)
-    })
+  increment() {
+    this.nudge(1)
+  }
+
+  decrement() {
+    this.nudge(-1)
+  }
+
+  nudge(delta) {
+    const min = Number(this.inputTarget.min)
+    const max = Number(this.inputTarget.max)
+    const next = Math.min(max, Math.max(min, Number(this.inputTarget.value) + delta))
+    this.inputTarget.value = next
+    this.update()
+    this.inputTarget.dispatchEvent(new Event("input", { bubbles: true }))
+    this.inputTarget.dispatchEvent(new Event("change", { bubbles: true }))
   }
 
   displayLabel(value) {
@@ -43,6 +48,24 @@ export default class extends Controller {
       return parsed[value] ?? String(value)
     } catch {
       return String(value)
+    }
+  }
+
+  captionFor(value) {
+    const bands = this.inputTarget.dataset.sliderBands
+    if (!bands) return ""
+
+    try {
+      const parsed = JSON.parse(bands)
+      const match = parsed.find((band) => {
+        const inclusiveMax = band.inclusive_max === true
+        return inclusiveMax
+          ? value >= band.min && value <= band.max
+          : value >= band.min && value < band.max
+      })
+      return match?.label ?? ""
+    } catch {
+      return ""
     }
   }
 }

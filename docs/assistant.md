@@ -107,8 +107,8 @@ Step 3 copy uses kids age band + gender label, or the selected occasion/format n
 |----------------------|------|
 | `_guest_controls` | Step 3 headcount form (auto-submits on change) |
 | `_guest_counter` | ± steppers (`number-stepper` Stimulus) |
-| `_age_slider` | Age range + band chips (`slider`) |
-| `_gender_slider` | Boys / mixed / girls (`slider` + labels) |
+| `_age_slider` | Age range with −/+ and band name below (`slider`) |
+| `_gender_slider` | Boys / mixed / girls slider; selected label below |
 | Adults “There will be kids” | `reveal` Stimulus toggle |
 | `_step_occasion` | Radio grid of occasions (adults) or formats (corporate) |
 | `_step_preferences` | Kids age + gender (step 2) |
