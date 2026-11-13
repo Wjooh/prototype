@@ -23,7 +23,7 @@ module Day
       keyword_init: true
     )
 
-    Connector = Struct.new(:x1, :y1, :x2, :y2, :delivery, :from_id, :to_id, :kind, :y2_from, keyword_init: true)
+    Connector = Struct.new(:x1, :y1, :x2, :y2, :delivery, :from_id, :to_id, :kind, :y2_from, :order_ids, keyword_init: true)
 
     attr_reader :lanes, :connectors, :so_connectors, :total_height, :timeline_width
 
@@ -421,7 +421,8 @@ module Day
             delivery: delivery,
             from_id: block_dom_id(ba),
             to_id: block_dom_id(bb),
-            kind: :ride
+            kind: :ride,
+            order_ids: delivery.related_order_ids
           )
         end
       end
@@ -458,7 +459,8 @@ module Day
             from_id: block_dom_id(a),
             to_id: block_dom_id(b),
             kind: so_connector_kind(a, b, item_ids),
-            y2_from: y2_from
+            y2_from: y2_from,
+            order_ids: [so.order_id].compact
           )
         end
       end
