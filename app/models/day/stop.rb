@@ -12,12 +12,24 @@ module Day
     attribute :dropoff_start, :string
     attribute :dropoff_end, :string
 
-    attr_accessor :delivery, :supplier, :order, :order_item_ids, :items
+    attr_accessor :delivery, :supplier, :order
+    attr_accessor :load_item_ids, :unload_item_ids, :load_items, :unload_items
 
     def initialize(*)
       super
-      @order_item_ids = []
-      @items = []
+      @load_item_ids = []
+      @unload_item_ids = []
+      @load_items = []
+      @unload_items = []
+    end
+
+    # Union for selection/UI until views split load vs unload.
+    def items
+      (load_items + unload_items).uniq
+    end
+
+    def order_item_ids
+      (load_item_ids + unload_item_ids).uniq
     end
 
     def hub?
@@ -78,7 +90,7 @@ module Day
     end
 
     def supplier_orders
-      items.filter_map(&:supplier_order).uniq
+      load_items.filter_map(&:supplier_order).uniq
     end
 
     private

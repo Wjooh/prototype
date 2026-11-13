@@ -74,14 +74,34 @@ module Day
     end
 
     def build_stop(delivery, attrs)
-      item_ids = Array(attrs[:order_item_ids]).map(&:to_s)
-      Stop.new(**attrs.except(:order_item_ids)).tap do |stop|
+      load_ids = Array(attrs[:load]).map(&:to_s)
+      unload_ids = Array(attrs[:unload]).map(&:to_s)
+      Stop.new(**attrs.except(:load, :unload, :order_item_ids)).tap do |stop|
         stop.delivery = delivery
         stop.supplier = @suppliers_by_id[stop.supplier_id]
         stop.order = @orders_by_id[stop.order_id]
-        stop.order_item_ids = item_ids
-        stop.items = item_ids.filter_map { |id| @order_items_by_id[id] }
+        stop.load_item_ids = load_ids
+        stop.unload_item_ids = unload_ids
+        stop.load_items = load_ids.filter_map { |id| @order_items_by_id[id] }
+        stop.unload_items = unload_ids.filter_map { |id| @order_items_by_id[id] }
       end
+    end
+
+    # Runnable check: each ride's cargo is loaded before unloaded and ends empty.
+    def self.cargo_check!(graph = Day.graph)
+      graph.deliveries.each do |delivery|
+        cargo = []
+        delivery.stops.each do |stop|
+          cargo.concat(stop.load_item_ids)
+          stop.unload_item_ids.each do |id|
+            idx = cargo.index(id)
+            raise "#{delivery.id}: unload #{id} not in car at stop #{stop.position}" unless idx
+            cargo.delete_at(idx)
+          end
+        end
+        raise "#{delivery.id}: ends with cargo #{cargo.join(', ')}" unless cargo.empty?
+      end
+      true
     end
   end
 end

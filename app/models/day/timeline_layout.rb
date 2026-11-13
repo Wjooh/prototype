@@ -1,9 +1,10 @@
 module Day
-  # Packs prep + stop islands into supplier swimlanes only (Geamos, Jelena, TADAAA/hub).
-  # Customer stops stay on the previous supplier/hub stop's lane (no customer lanes).
+  # Packs prep + stop islands into location swimlanes (Geamos, Hackathon, TADAAA/hub, Jelena).
+  # Other customer stops stay on the previous supplier/hub stop's lane.
   class TimelineLayout
     HUB_KEY = "hub"
-    LANE_ORDER = ["supplier:geamos", HUB_KEY, "supplier:jelena"].freeze
+    HACKATHON_KEY = "customer:hackathon"
+    LANE_ORDER = ["supplier:geamos", HACKATHON_KEY, HUB_KEY, "supplier:jelena"].freeze
     ISLAND_PAD = 12
     CARD_H = 64
     ISLAND_H = CARD_H + ISLAND_PAD * 2
@@ -104,7 +105,9 @@ module Day
     end
 
     def self.layout_lane_key(stop)
-      if stop.hub? || (stop.supplier? && stop.supplier_id == "tadaaa")
+      if stop.customer? && stop.order_id == "hackathon"
+        HACKATHON_KEY
+      elsif stop.hub? || (stop.supplier? && stop.supplier_id == "tadaaa")
         HUB_KEY
       elsif stop.supplier?
         "supplier:#{stop.supplier_id}"
@@ -178,8 +181,8 @@ module Day
             start_m: start_m,
             end_m: end_m,
             object: stop,
-            # Customer dropoffs share the previous supplier/hub stop's track (straight arrow).
-            anchor: stop.customer? ? prev_stop : nil
+            # Same-lane customer dropoffs share the previous stop's track (straight arrow).
+            anchor: (stop.customer? && key == prev_lane) ? prev_stop : nil
           )
           blocks << stop_block
           @blocks_by_stop[stop] = stop_block
@@ -211,7 +214,9 @@ module Day
     end
 
     def lane_key_for_stop(stop, prev_lane = nil)
-      if stop.customer?
+      if stop.customer? && stop.order_id == "hackathon"
+        HACKATHON_KEY
+      elsif stop.customer?
         prev_lane || HUB_KEY
       elsif stop.hub? || (stop.supplier? && hub_supplier?(stop.supplier_id))
         HUB_KEY
@@ -243,6 +248,8 @@ module Day
       case key
       when HUB_KEY
         "TADAAA!"
+      when HACKATHON_KEY
+        @graph.orders.find { |o| o.id == "hackathon" }&.customer_name || "Hackathon"
       when /\Asupplier:(.+)\z/
         @graph.suppliers.find { |s| s.id == $1 }&.name || $1
       else
@@ -254,6 +261,8 @@ module Day
       case key
       when HUB_KEY
         @graph.suppliers.find { |s| s.id == "tadaaa" }&.color
+      when HACKATHON_KEY
+        "#0d9488"
       when /\Asupplier:(.+)\z/
         @graph.suppliers.find { |s| s.id == $1 }&.color
       end
@@ -263,6 +272,8 @@ module Day
       case key
       when HUB_KEY
         "T"
+      when HACKATHON_KEY
+        "H"
       when /\Asupplier:(.+)\z/
         lane_label(key).to_s.first
       end

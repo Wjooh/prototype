@@ -39,7 +39,7 @@ A booked multileg ride with a courier partner (`Day::Delivery`). Kinds: swiftee,
 
 ### Stop
 
-One leg of a delivery (`Day::Stop`): supplier, hub (`tadaaa`), or customer. Either a pickup or a dropoff, each with its own time window. Typical windows in fixtures: **30 min pickup**, **1 hr dropoff**, with **30–60 min drive** between consecutive stops (minimal/no overlap).
+One leg of a delivery (`Day::Stop`): supplier, hub (`tadaaa`), or customer. Either a pickup or a dropoff, each with its own time window. Typical windows in fixtures: **30 min pickup**, **1 hr dropoff**, with **30–60 min drive** between consecutive stops (minimal/no overlap). Each stop lists `load` / `unload` order-item ids (what goes into / out of the car). Cargo must balance across a delivery (e.g. morning Jelena cakes unload at hub, then reload on evening fan-out with Geamos food).
 
 ### Hub (tadaaa)
 
@@ -51,4 +51,4 @@ Our consolidation place — same physical location as supplier TADAAA!. On the t
 
 ### Timeline view
 
-`/monitor/timeline` — horizontal day timeline at 200px/hour (06:00–20:00). One swimlane per **supplier location** only (Geamos, Jelena, TADAAA/hub), built by `Day::TimelineLayout`. No customer lanes — customer stops stay on the previous supplier/hub stop’s lane and track (straight arrow; e.g. Geamos → TADAAA → customer: cross-lane then same-lane). Prep and stop islands are tall (`size-16` + padding); overlapping intervals stack onto tracks within a lane, non-overlapping waves reuse from the top. Cross-lane legs bias tracks toward the neighbor (Geamos→hub on top of the hub lane, Jelena→hub at the bottom) so inbound arrows don’t cross. Cross-lane connectors use cubic curves. `cook=0` dims prep islands; `delivery=0` dims stops and connectors (SSR; grayscale + semitransparent). Left labels stay undimmed. Same scenario graphs at the bottom.
+`/monitor/timeline` — horizontal day timeline at 200px/hour (06:00–20:00). Swimlanes: Geamos, Hackathon (customer venue), TADAAA/hub, Jelena — built by `Day::TimelineLayout`. Other customer stops stay on the previous supplier/hub stop’s lane and track (straight arrow; e.g. Geamos → TADAAA → Alice: cross-lane then same-lane). Hackathon dropoffs get their own lane between Geamos and hub. Prep and stop islands are tall (`size-16` + padding); overlapping intervals stack onto tracks within a lane, non-overlapping waves reuse from the top. Cross-lane legs bias tracks toward the neighbor (Geamos→hub on top of the hub lane, Jelena→hub at the bottom) so inbound arrows don’t cross. Cross-lane connectors use cubic curves. `cook=0` dims prep islands; `delivery=0` dims stops and connectors (SSR; grayscale + semitransparent). Left labels stay undimmed. Same scenario graphs at the bottom.
