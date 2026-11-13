@@ -23,7 +23,7 @@ Customer-facing order (`Day::Order`). Internally just “order”. Has a 2-hour 
 
 ### Supplier order
 
-Cook/prep unit from one supplier for one umbrella order (`Day::SupplierOrder`). Holds the line items and a prep window (`prep_start`–`prep_end`). On the timeline, prep renders as an island (product cards only, no label) on the same band as the collecting restaurant pickup, abutting that pickup’s window. One umbrella order can have multiple supplier orders (different suppliers, or the same supplier across morning/lunch/dinner waves).
+Cook/prep unit from one supplier for one umbrella order (`Day::SupplierOrder`). Holds the line items and a prep window (`prep_start`–`prep_end`). On the timeline, prep is an island (product cards only, no label) on that supplier’s lane; a pickup spans every track of the supplier orders it carries (one car, N preps → N-row-tall pickup). Tesco prep stages on the TADAAA/hub lane. One umbrella order can have multiple supplier orders (different suppliers, or the same supplier across morning/lunch/dinner waves).
 
 ### Order item
 
@@ -43,7 +43,7 @@ One leg of a delivery (`Day::Stop`): supplier, hub (`tadaaa`), or customer. Eith
 
 ### Hub (tadaaa)
 
-Our consolidation place. As a stop `place: hub`, used for morning inbound consolidation and evening fan-out. When we load own stock (and goods already staged there) outbound, model the stop as `place: supplier` / `supplier_id: tadaaa` so prep attaches like any other supplier pickup.
+Our consolidation place — same physical location as supplier TADAAA!. On the timeline they share one lane (inbound/fan-out `place: hub`, outbound own-stock `place: supplier` / `supplier_id: tadaaa`, plus Tesco staging/prep). Used for morning inbound consolidation, evening fan-out, cooking/assembly of own stock, and supermarket items ordered in.
 
 ### Deliveries view
 
@@ -51,4 +51,4 @@ Our consolidation place. As a stop `place: hub`, used for morning inbound consol
 
 ### Timeline view
 
-`/monitor/timeline` — horizontal day timeline at 200px/hour (06:00–20:00). One lane of **delivery** rows; each delivery is a single horizontal track (stop windows never overlap). Stops are tall islands (`size-16` content + padding); supplier pickups show linked prep islands immediately before the pickup window (multi-order prep stacks grow that row’s height). Consecutive stops linked with a straight horizontal line. `cook=0` dims prep islands only; `delivery=0` dims stop islands and connectors (SSR; grayscale + semitransparent). Left slot labels stay undimmed. Same scenario graphs at the bottom.
+`/monitor/timeline` — horizontal day timeline at 200px/hour (06:00–20:00). One swimlane per **supplier location** only (Geamos, Jelena, TADAAA/hub), built by `Day::TimelineLayout`. No customer lanes — customer stops stay on the previous supplier/hub stop’s lane and track (straight arrow; e.g. Geamos → TADAAA → customer: cross-lane then same-lane). Prep and stop islands are tall (`size-16` + padding); overlapping intervals stack onto tracks within a lane, non-overlapping waves reuse from the top. Cross-lane legs bias tracks toward the neighbor (Geamos→hub on top of the hub lane, Jelena→hub at the bottom) so inbound arrows don’t cross. Cross-lane connectors use cubic curves. `cook=0` dims prep islands; `delivery=0` dims stops and connectors (SSR; grayscale + semitransparent). Left labels stay undimmed. Same scenario graphs at the bottom.

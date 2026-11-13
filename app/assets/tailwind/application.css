@@ -85,3 +85,15 @@
     stroke-dashoffset: -18;
   }
 }
+
+.timeline-connector {
+  stroke-linecap: round;
+  stroke-dasharray: 1.5 5;
+  animation: timeline-ants 2s linear infinite;
+}
+
+@keyframes timeline-ants {
+  to {
+    stroke-dashoffset: -13;
+  }
+}

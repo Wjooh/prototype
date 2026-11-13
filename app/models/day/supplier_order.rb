@@ -20,6 +20,17 @@ module Day
       [supplier&.name, order&.customer_name].compact.join(" · ")
     end
 
+    def prep_badge_label
+      name = order&.customer_name || "order"
+      siblings = (order&.supplier_orders || [self])
+        .select { |so| so.supplier_id == supplier_id }
+        .sort_by { |so| so.window_start_minutes || 0 }
+      return "prep for #{name}" if siblings.size <= 1
+
+      part = siblings.index { |so| so.equal?(self) || so.id == id }&.+(1) || 1
+      "prep for #{name} part #{part}/#{siblings.size}"
+    end
+
     def window_start_minutes
       parse_hm(prep_start)
     end

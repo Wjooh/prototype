@@ -1,12 +1,7 @@
 <%
-  start_minutes = @start_hour * 60
   hours = (@start_hour...@end_hour).to_a
-  # Island shell: p-3 (12px) + h-16 card row
-  island_pad = 12
-  card_h = 64
-  island_h = card_h + island_pad * 2
-  stack_gap = 8
-  row_pad = 8
+  dim_delivery = @show_delivery ? "" : "grayscale opacity-40"
+  dim_prep = @show_cook ? "" : "grayscale opacity-40"
 %>
 
 <div class="flex min-h-0 flex-1 flex-col">
@@ -39,7 +34,7 @@
       <%# Hour ruler %>
       <div class="sticky top-0 z-20 flex border-b border-gray-200 bg-white">
         <div class="sticky left-0 z-30 w-52 shrink-0 border-r border-gray-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
-          Slot
+          Location
         </div>
         <div class="relative h-10" style="width: <%= @timeline_width %>px">
           <% hours.each_with_index do |hour, i| %>
@@ -64,70 +59,56 @@
           <% end %>
         </div>
 
-        <div>
-          <div class="sticky left-0 z-10 w-52 border-b border-gray-200 bg-gray-50 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-gray-400">
-            Deliveries
-          </div>
+        <div class="relative" style="height: <%= @layout.total_height %>px">
+          <svg
+            class="pointer-events-none absolute left-52 top-0 z-[1] overflow-visible <%= dim_delivery %>"
+            style="width: <%= @timeline_width %>px; height: <%= @layout.total_height %>px"
+            aria-hidden="true"
+          >
+            <% @layout.connectors.each do |c| %>
+              <%
+                x1 = c.x1
+                y1 = c.y1
+                x2 = c.x2
+                y2 = c.y2
+                if x2 < x1
+                  mid = (x1 + x2) / 2.0
+                  x1 = mid
+                  x2 = mid
+                end
+              %>
+              <path
+                class="timeline-connector"
+                d="M <%= x1 %> <%= y1 %> C <%= x1 + (x2 - x1) / 2.0 %> <%= y1 %>, <%= x1 + (x2 - x1) / 2.0 %> <%= y2 %>, <%= x2 %> <%= y2 %>"
+                fill="none"
+                stroke="#9ca3af"
+                stroke-width="1.5"
+              />
+            <% end %>
+          </svg>
 
-          <% @deliveries.each do |delivery| %>
-            <%
-              segments = delivery.stops.map do |stop|
-                prep_orders = stop.supplier? ? stop.supplier_orders : []
-                left = ((stop.window_start_minutes - start_minutes).to_f / 60) * @px_per_hour
-                width = ((stop.window_end_minutes - stop.window_start_minutes).to_f / 60) * @px_per_hour
-                width = [width, 80].max
-                {
-                  stop: stop,
-                  prep_orders: prep_orders,
-                  left: left,
-                  width: width,
-                  right: left + width
-                }
-              end
-              # One horizontal track; multi-prep stacks grow the single row height.
-              max_prep = segments.map { |s| s[:prep_orders].size }.max || 0
-              content_h = max_prep > 1 ?
-                max_prep * island_h + (max_prep - 1) * stack_gap :
-                island_h
-              row_h = content_h + row_pad * 2
-              link_y = row_pad + island_h / 2.0
-              dim_delivery = @show_delivery ? "" : "grayscale opacity-40"
-              dim_prep = @show_cook ? "" : "grayscale opacity-40"
-            %>
-            <div class="relative flex border-b border-gray-100" style="height: <%= row_h %>px">
-              <div class="sticky left-0 z-10 flex w-52 shrink-0 flex-col justify-center gap-0.5 border-r border-gray-200 bg-white px-4">
-                <p class="truncate text-xs font-medium text-gray-700"><%= delivery.kind_label %></p>
-                <p class="truncate text-[11px] text-gray-400" title="<%= delivery.route_label %>"><%= delivery.route_label %></p>
+          <% @layout.lanes.each do |lane| %>
+            <div class="absolute left-0 flex border-b border-gray-100" style="top: <%= lane.top %>px; height: <%= lane.height %>px; width: calc(13rem + <%= @timeline_width %>px)">
+              <div class="sticky left-0 z-10 flex w-52 shrink-0 items-center gap-2 border-r border-gray-200 bg-white px-4">
+                <% if lane.badge %>
+                  <span
+                    class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white"
+                    style="background-color: <%= lane.color || "#4b5563" %>"
+                  ><%= lane.badge %></span>
+                <% end %>
+                <p class="truncate text-xs font-medium text-gray-700"><%= lane.label %></p>
               </div>
-              <div class="relative" style="width: <%= @timeline_width %>px">
-                <svg class="pointer-events-none absolute inset-0 h-full w-full overflow-visible <%= dim_delivery %>" aria-hidden="true">
-                  <% segments.each_cons(2) do |a, b| %>
-                    <line
-                      x1="<%= a[:right] %>"
-                      y1="<%= link_y %>"
-                      x2="<%= b[:left] %>"
-                      y2="<%= link_y %>"
-                      stroke="#9ca3af"
-                      stroke-width="1.5"
-                    />
-                  <% end %>
-                </svg>
-
-                <% segments.each do |seg| %>
-                  <% stop = seg[:stop] %>
-
-                  <% seg[:prep_orders].each_with_index do |supplier_order, pi| %>
-                    <%
-                      prep_left = ((supplier_order.window_start_minutes - start_minutes).to_f / 60) * @px_per_hour
-                      prep_width = ((supplier_order.window_end_minutes - supplier_order.window_start_minutes).to_f / 60) * @px_per_hour
-                      prep_width = [prep_width, 80].max
-                      prep_top = row_pad + pi * (island_h + stack_gap)
-                    %>
+              <div class="relative" style="width: <%= @timeline_width %>px; height: <%= lane.height %>px">
+                <% lane.blocks.each do |block| %>
+                  <% if block.kind == :prep %>
+                    <% supplier_order = block.object %>
                     <div
-                      class="absolute rounded-xl border border-gray-200 bg-white p-3 shadow-sm <%= dim_prep %>"
-                      style="left: <%= prep_left %>px; width: <%= prep_width %>px; top: <%= prep_top %>px; height: <%= island_h %>px"
+                      id="prep-<%= supplier_order.id %>"
+                      class="absolute z-[2] rounded-xl border border-gray-200 bg-white p-3 shadow-sm <%= dim_prep %>"
+                      style="left: <%= block.left %>px; width: <%= block.width %>px; top: <%= block.top - lane.top %>px; height: <%= block.height %>px"
                       title="<%= supplier_order.label %> · prep <%= supplier_order.window_label %>"
                     >
+                      <span class="absolute right-0 top-0 z-[1] rounded-bl-md rounded-tr-xl bg-gray-200 px-1.5 py-0.5 text-[11px] font-semibold leading-none text-gray-900"><%= supplier_order.prep_badge_label %></span>
                       <div class="flex h-16 flex-wrap content-start gap-2 overflow-hidden">
                         <% supplier_order.items.each do |item| %>
                           <div
@@ -143,30 +124,33 @@
                         <% end %>
                       </div>
                     </div>
-                  <% end %>
-
-                  <div
-                    class="absolute flex items-center gap-2 overflow-hidden rounded-xl border border-gray-200 bg-white p-3 shadow-sm <%= dim_delivery %>"
-                    style="left: <%= seg[:left] %>px; width: <%= seg[:width] %>px; top: <%= row_pad %>px; height: <%= island_h %>px"
-                    title="<%= stop.label %> · <%= stop.kind_label %> <%= stop.time_label %>"
-                  >
-                    <% if stop.supplier? && stop.supplier %>
-                      <span
-                        class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-                        style="background-color: <%= stop.supplier.color %>"
-                      ><%= stop.supplier.name.first %></span>
-                    <% elsif stop.hub? %>
-                      <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-rose-600 text-xs font-bold text-white">T</span>
-                    <% else %>
-                      <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-600 text-xs font-bold text-white">
-                        <%= stop.order&.avatar_initials&.first || "C" %>
-                      </span>
-                    <% end %>
-                    <div class="min-w-0">
-                      <p class="truncate text-sm font-medium text-gray-900"><%= stop.label %></p>
-                      <p class="truncate text-[11px] text-gray-400"><%= stop.kind_label %></p>
+                  <% else %>
+                    <% stop = block.object %>
+                    <div
+                      id="stop-<%= stop.delivery.id %>-<%= stop.position %>"
+                      class="absolute z-[2] flex items-center gap-2 overflow-hidden rounded-xl border border-gray-200 bg-white p-3 shadow-sm <%= dim_delivery %>"
+                      style="left: <%= block.left %>px; width: <%= block.width %>px; top: <%= block.top - lane.top %>px; height: <%= block.height %>px"
+                      title="<%= stop.label %> · <%= stop.kind_label %> <%= stop.time_label %>"
+                    >
+                      <span class="absolute right-0 top-0 z-[1] rounded-bl-md rounded-tr-xl bg-gray-200 px-1.5 py-0.5 text-[11px] font-semibold leading-none text-gray-900"><%= stop.pickup? ? "pickup" : "dropoff" %></span>
+                      <% if stop.supplier? && stop.supplier %>
+                        <span
+                          class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
+                          style="background-color: <%= stop.supplier.color %>"
+                        ><%= stop.supplier.name.first %></span>
+                      <% elsif stop.hub? %>
+                        <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-rose-600 text-xs font-bold text-white">T</span>
+                      <% else %>
+                        <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-600 text-xs font-bold text-white">
+                          <%= stop.order&.avatar_initials&.first || "C" %>
+                        </span>
+                      <% end %>
+                      <div class="min-w-0">
+                        <p class="truncate text-sm font-medium text-gray-900"><%= stop.label %></p>
+                        <p class="truncate text-[11px] text-gray-400"><%= stop.kind_label %></p>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>
