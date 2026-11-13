@@ -23,7 +23,7 @@ Customer-facing order (`Day::Order`). Internally just “order”. Has a 2-hour 
 
 ### Supplier order
 
-Cook/prep unit from one supplier for one umbrella order (`Day::SupplierOrder`). Holds the line items and a prep window (`prep_start`–`prep_end`). On the timeline, prep is an island (product cards only, no label) on that supplier’s lane; a pickup spans every track of the supplier orders it carries (one car, N preps → N-row-tall pickup). Tesco prep stages on the TADAAA/hub lane. One umbrella order can have multiple supplier orders (different suppliers, or the same supplier across morning/lunch/dinner waves).
+Cook/prep unit from one supplier for one umbrella order (`Day::SupplierOrder`). Holds the line items and a prep window (`prep_start`–`prep_end`). On the timeline, prep is an island (product cards only, no label) on that supplier’s lane; a pickup spans every track of the supplier orders it carries (one car, N preps → N-row-tall pickup). One umbrella order can have multiple supplier orders (different suppliers, or the same supplier across morning/lunch/dinner waves).
 
 ### Order item
 
@@ -43,7 +43,7 @@ One leg of a delivery (`Day::Stop`): supplier, hub (`tadaaa`), or customer. Eith
 
 ### Hub (tadaaa)
 
-Our consolidation place — same physical location as supplier TADAAA!. On the timeline they share one lane (inbound/fan-out `place: hub`, outbound own-stock `place: supplier` / `supplier_id: tadaaa`, plus Tesco staging/prep). Used for morning inbound consolidation, evening fan-out, cooking/assembly of own stock, and supermarket items ordered in.
+Our consolidation place — same physical location as supplier TADAAA!. On the timeline they share one lane (inbound/fan-out `place: hub`, outbound own-stock `place: supplier` / `supplier_id: tadaaa`). Used for morning inbound consolidation, evening fan-out, and cooking/assembly of own stock.
 
 ### Deliveries view
 
@@ -51,4 +51,4 @@ Our consolidation place — same physical location as supplier TADAAA!. On the t
 
 ### Timeline view
 
-`/monitor/timeline` — horizontal day timeline at 200px/hour (06:00–20:00). Swimlanes: Geamos, TADAAA/hub, Jelena — built by `Day::TimelineLayout`. Customer stops stay on the previous supplier/hub stop’s lane and track (straight arrow; e.g. Geamos → TADAAA → Alice: cross-lane then same-lane). Prep and stop islands are tall (`size-16` + padding); overlapping intervals stack onto tracks within a lane, non-overlapping waves reuse from the top. Cross-lane legs bias tracks toward the neighbor (Geamos→hub on top of the hub lane, Jelena→hub at the bottom) so inbound arrows don’t cross. Cross-lane connectors use cubic curves. `?focus=prep|delivery|<order_id>` keeps that type / umbrella order normal and dims the rest (SSR; grayscale + semitransparent); no focus = all normal. Left labels stay undimmed. Same scenario graphs at the bottom.
+`/monitor/timeline` — horizontal day timeline at 200px/hour (06:00–20:00). Swimlanes: Geamos, TADAAA/hub, Jelena — built by `Day::TimelineLayout`. Customer stops stay on the previous supplier/hub stop’s lane and track (straight arrow; e.g. Geamos → TADAAA → Alice: cross-lane then same-lane). Prep and stop islands are tall (`size-16` + padding); overlapping intervals stack onto tracks within a lane, non-overlapping waves reuse from the top. Cross-lane legs bias tracks toward the neighbor (Geamos→hub on top of the hub lane, Jelena→hub at the bottom) so inbound arrows don’t cross. Cross-lane connectors use cubic curves. Hub stay (continuity) connectors are hidden by default; `?continuity=1` shows them. `?focus=prep|delivery|<supplier_id>|<order_id>` keeps that type / supplier / umbrella order normal and dims the rest (SSR; grayscale + semitransparent); supplier focus = that supplier’s prep plus pickup/dropoff at that supplier; no focus = all normal. Left labels stay undimmed. Same scenario graphs at the bottom.

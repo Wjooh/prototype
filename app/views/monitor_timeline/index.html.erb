@@ -1,20 +1,24 @@
 <%
   hours = (@start_hour...@end_hour).to_a
   type_focus = %w[prep delivery].include?(@focus)
+  supplier_focus = @focus_suppliers.any? { |s| s.id == @focus }
   dim_on = "grayscale opacity-20"
   dim_prep = ->(so) {
     return "" if @focus.nil?
     return @focus == "prep" ? "" : dim_on if type_focus
+    return so.supplier_id == @focus ? "" : dim_on if supplier_focus
     so.order_id == @focus ? "" : dim_on
   }
   dim_delivery = ->(stop) {
     return "" if @focus.nil?
     return @focus == "delivery" ? "" : dim_on if type_focus
+    return (stop.supplier? && stop.supplier_id == @focus) ? "" : dim_on if supplier_focus
     stop.delivery.related_order_ids.include?(@focus) ? "" : dim_on
   }
   dim_connector = ->(c) {
     return "" if @focus.nil?
     return @focus == "delivery" ? "" : dim_on if type_focus
+    return (c.supplier_ids || []).include?(@focus) ? "" : dim_on if supplier_focus
     (c.order_ids || []).include?(@focus) ? "" : dim_on
   }
 %>
@@ -27,9 +31,16 @@
     </div>
     <div class="flex items-center gap-3 text-sm">
       <%
-        focus_path = ->(kind) {
-          monitor_timeline_path(@focus == kind ? {} : { focus: kind })
+        timeline_qs = ->(focus: @focus, continuity: @show_continuity) {
+          qs = {}
+          qs[:focus] = focus if focus
+          qs[:continuity] = "1" if continuity
+          qs
         }
+        focus_path = ->(kind) {
+          monitor_timeline_path(timeline_qs.call(focus: (@focus == kind ? nil : kind)))
+        }
+        continuity_path = monitor_timeline_path(timeline_qs.call(continuity: !@show_continuity))
       %>
       <%= link_to focus_path.call("prep"),
             class: "inline-flex items-center gap-2 rounded-md px-2.5 py-1.5 #{@focus == "prep" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-400"}" do %>
@@ -42,12 +53,27 @@
         Delivery
       <% end %>
       <span class="mx-1 h-5 w-px bg-gray-200" aria-hidden="true"></span>
+      <% @focus_suppliers.each do |supplier| %>
+        <%= link_to focus_path.call(supplier.id),
+              title: supplier.name,
+              class: "inline-flex size-8 items-center justify-center rounded-full text-[10px] font-bold text-white #{@focus == supplier.id ? "ring-2 ring-offset-2 ring-gray-900" : "opacity-40"}",
+              style: "background-color: #{supplier.color}" do %>
+          <%= supplier.name.first %>
+        <% end %>
+      <% end %>
+      <span class="mx-1 h-5 w-px bg-gray-200" aria-hidden="true"></span>
       <% @graph.orders.each do |order| %>
         <%= link_to focus_path.call(order.id),
               title: order.customer_name,
               class: "inline-flex size-8 items-center justify-center rounded-full text-[10px] font-bold #{@focus == order.id ? "bg-gray-900 text-white ring-2 ring-gray-900 ring-offset-2" : "bg-gray-200 text-gray-500"}" do %>
           <%= order.avatar_initials %>
         <% end %>
+      <% end %>
+      <span class="mx-1 h-5 w-px bg-gray-200" aria-hidden="true"></span>
+      <%= link_to continuity_path,
+            class: "inline-flex items-center gap-2 rounded-md px-2.5 py-1.5 #{@show_continuity ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-400"}" do %>
+        <span class="inline-block size-3 rounded-sm border <%= @show_continuity ? "border-white bg-white" : "border-gray-300 bg-transparent" %>" aria-hidden="true"></span>
+        Continuity
       <% end %>
       <button
         type="button"
@@ -109,6 +135,7 @@
                   x2 = mid
                 end
                 stay = c.kind == :stay
+                next if stay && !@show_continuity
               %>
               <path
                 class="<%= stay ? "timeline-connector-stay" : "timeline-connector" %> <%= dim_connector.call(c) %>"

@@ -22,7 +22,7 @@ module Day
       keyword_init: true
     )
 
-    Connector = Struct.new(:x1, :y1, :x2, :y2, :delivery, :from_id, :to_id, :kind, :y2_from, :order_ids, keyword_init: true)
+    Connector = Struct.new(:x1, :y1, :x2, :y2, :delivery, :from_id, :to_id, :kind, :y2_from, :order_ids, :supplier_ids, keyword_init: true)
 
     attr_reader :lanes, :connectors, :so_connectors, :total_height, :timeline_width
 
@@ -234,7 +234,7 @@ module Day
     end
 
     def lane_key_for_supplier_order(so)
-      if hub_supplier?(so.supplier_id) || so.supplier_id == "tesco"
+      if hub_supplier?(so.supplier_id)
         HUB_KEY
       else
         "supplier:#{so.supplier_id}"
@@ -411,7 +411,8 @@ module Day
             from_id: block_dom_id(ba),
             to_id: block_dom_id(bb),
             kind: :ride,
-            order_ids: delivery.related_order_ids
+            order_ids: delivery.related_order_ids,
+            supplier_ids: delivery.stops.filter_map { |s| s.supplier_id if s.supplier? }.uniq
           )
         end
       end
@@ -449,7 +450,8 @@ module Day
             to_id: block_dom_id(b),
             kind: so_connector_kind(a, b, item_ids),
             y2_from: y2_from,
-            order_ids: [so.order_id].compact
+            order_ids: [so.order_id].compact,
+            supplier_ids: [so.supplier_id].compact
           )
         end
       end

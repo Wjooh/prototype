@@ -8,9 +8,6 @@ suppliers:
   - id: tadaaa
     name: TADAAA!
     color: "#e11d48"
-  - id: tesco
-    name: Tesco
-    color: "#00539f"
 
 products:
   # Geamos — hackathon morning
@@ -105,47 +102,46 @@ products:
     name: Wooden Forks
     emoji: "🍴"
     supplier_id: tadaaa
-  # Tesco
   - id: uht_milk
     name: UHT Whole Milk
     emoji: "🥛"
-    supplier_id: tesco
+    supplier_id: tadaaa
   - id: prosecco
     name: Freixenet Prosecco DOC
     emoji: "🍾"
-    supplier_id: tesco
+    supplier_id: tadaaa
   - id: orange_juice
     name: Orange Juice
     emoji: "🧃"
-    supplier_id: tesco
+    supplier_id: tadaaa
   - id: corona
     name: Corona
     emoji: "🍺"
-    supplier_id: tesco
+    supplier_id: tadaaa
   - id: san_pellegrino
     name: San Pellegrino Orange
     emoji: "🥤"
-    supplier_id: tesco
+    supplier_id: tadaaa
   - id: coke_zero
     name: Coca-Cola Zero
     emoji: "🥤"
-    supplier_id: tesco
+    supplier_id: tadaaa
   - id: water_still
     name: Highland Spring Still
     emoji: "💧"
-    supplier_id: tesco
+    supplier_id: tadaaa
   - id: water_sparkling
     name: Highland Spring Sparkling
     emoji: "💧"
-    supplier_id: tesco
+    supplier_id: tadaaa
   - id: white_wine
     name: La Vieille Ferme White
     emoji: "🍷"
-    supplier_id: tesco
+    supplier_id: tadaaa
   - id: red_wine
     name: La Vieille Ferme Red
     emoji: "🍷"
-    supplier_id: tesco
+    supplier_id: tadaaa
   # Scenario 2 / 3
   - id: savoury_box
     name: Savoury Food Box
@@ -213,11 +209,6 @@ supplier_orders:
   - id: so_hack_tadaaa
     order_id: hackathon
     supplier_id: tadaaa
-    prep_start: "06:00"
-    prep_end: "08:00"
-  - id: so_hack_tesco
-    order_id: hackathon
-    supplier_id: tesco
     prep_start: "06:00"
     prep_end: "08:00"
   - id: so_merge_geamos
@@ -354,45 +345,44 @@ order_items:
     supplier_order_id: so_hack_tadaaa
     product_id: wooden_forks
     quantity: 200
-  # Hackathon Tesco
   - id: hi_milk
-    supplier_order_id: so_hack_tesco
+    supplier_order_id: so_hack_tadaaa
     product_id: uht_milk
     quantity: 2
   - id: hi_prosecco
-    supplier_order_id: so_hack_tesco
+    supplier_order_id: so_hack_tadaaa
     product_id: prosecco
     quantity: 4
   - id: hi_oj
-    supplier_order_id: so_hack_tesco
+    supplier_order_id: so_hack_tadaaa
     product_id: orange_juice
     quantity: 6
   - id: hi_corona
-    supplier_order_id: so_hack_tesco
+    supplier_order_id: so_hack_tadaaa
     product_id: corona
     quantity: 54
   - id: hi_pellegrino
-    supplier_order_id: so_hack_tesco
+    supplier_order_id: so_hack_tadaaa
     product_id: san_pellegrino
     quantity: 24
   - id: hi_coke
-    supplier_order_id: so_hack_tesco
+    supplier_order_id: so_hack_tadaaa
     product_id: coke_zero
     quantity: 48
   - id: hi_water_still
-    supplier_order_id: so_hack_tesco
+    supplier_order_id: so_hack_tadaaa
     product_id: water_still
     quantity: 30
   - id: hi_water_spark
-    supplier_order_id: so_hack_tesco
+    supplier_order_id: so_hack_tadaaa
     product_id: water_sparkling
     quantity: 15
   - id: hi_white_wine
-    supplier_order_id: so_hack_tesco
+    supplier_order_id: so_hack_tadaaa
     product_id: white_wine
     quantity: 6
   - id: hi_red_wine
-    supplier_order_id: so_hack_tesco
+    supplier_order_id: so_hack_tadaaa
     product_id: red_wine
     quantity: 1
   # Scenario 2
@@ -433,7 +423,7 @@ order_items:
 deliveries:
   # Windows: 30m pickup, 30–60m drive, 1h dropoff
   # Each stop: load = into car, unload = out of car. Cargo must balance per ride.
-  # Own-stock + Tesco staging leave from TADAAA as a supplier pickup (not hub place).
+  # Own-stock leaves from TADAAA as a supplier pickup (not hub place).
   - id: d_hack_hub_morning
     kind: swiftee
     cost_pence: 1800
