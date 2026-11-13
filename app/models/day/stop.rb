@@ -77,6 +77,10 @@ module Day
       pickup? ? "Pickup" : "Dropoff"
     end
 
+    def supplier_orders
+      items.filter_map(&:supplier_order).uniq
+    end
+
     private
 
     def parse_hm(value)

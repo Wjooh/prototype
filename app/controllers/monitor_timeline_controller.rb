@@ -8,7 +8,6 @@ class MonitorTimelineController < ApplicationController
   def index
     @date = Day::DATE
     @graph = Day.graph
-    @supplier_orders = @graph.supplier_orders
     @deliveries = @graph.deliveries
     @px_per_hour = PX_PER_HOUR
     @start_hour = START_HOUR

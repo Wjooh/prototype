@@ -23,7 +23,7 @@ Customer-facing order (`Day::Order`). Internally just “order”. Has a 2-hour 
 
 ### Supplier order
 
-Cook/prep unit from one supplier for one umbrella order (`Day::SupplierOrder`). Holds the line items and a prep window (`prep_start`–`prep_end`) that sits on the timeline Cook lane, before pickup. One umbrella order can have multiple supplier orders (different suppliers, or the same supplier across morning/lunch/dinner waves).
+Cook/prep unit from one supplier for one umbrella order (`Day::SupplierOrder`). Holds the line items and a prep window (`prep_start`–`prep_end`). On the timeline, prep renders as an island (product cards only, no label) on the same band as the collecting restaurant pickup, abutting that pickup’s window. One umbrella order can have multiple supplier orders (different suppliers, or the same supplier across morning/lunch/dinner waves).
 
 ### Order item
 
@@ -43,7 +43,7 @@ One leg of a delivery (`Day::Stop`): supplier, hub (`tadaaa`), or customer. Eith
 
 ### Hub (tadaaa)
 
-Our consolidation place. Appears as a stop place, not a supplier. Used for morning inbound consolidation and evening fan-out, and for mixing hub stock into customer deliveries.
+Our consolidation place. As a stop `place: hub`, used for morning inbound consolidation and evening fan-out. When we load own stock (and goods already staged there) outbound, model the stop as `place: supplier` / `supplier_id: tadaaa` so prep attaches like any other supplier pickup.
 
 ### Deliveries view
 
@@ -51,4 +51,4 @@ Our consolidation place. Appears as a stop place, not a supplier. Used for morni
 
 ### Timeline view
 
-`/monitor/timeline` — horizontal day timeline at 200px/hour (06:00–20:00). Two lanes: **Cook** (supplier-order prep bars with expanded item cards) and **Delivery** (one bar per stop, width = that stop’s window, consecutive stops linked with curves). Lane visibility toggled via query params `cook=0` / `delivery=0` (SSR; hidden lanes render grayscale + semitransparent). Same scenario graphs at the bottom.
+`/monitor/timeline` — horizontal day timeline at 200px/hour (06:00–20:00). One lane of **delivery** rows; each delivery is a single horizontal track (stop windows never overlap). Stops are tall islands (`size-16` content + padding); supplier pickups show linked prep islands immediately before the pickup window (multi-order prep stacks grow that row’s height). Consecutive stops linked with a straight horizontal line. `cook=0` dims prep islands only; `delivery=0` dims stop islands and connectors (SSR; grayscale + semitransparent). Left slot labels stay undimmed. Same scenario graphs at the bottom.

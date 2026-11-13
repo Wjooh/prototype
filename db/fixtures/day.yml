@@ -432,12 +432,14 @@ order_items:
 
 deliveries:
   # Windows: 30m pickup, 30–60m drive, 1h dropoff
+  # Own-stock + Tesco staging leave from TADAAA as a supplier pickup (not hub place).
   - id: d_hack_hub_morning
     kind: swiftee
     cost_pence: 1800
     stops:
       - position: 1
-        place: hub
+        place: supplier
+        supplier_id: tadaaa
         pickup_start: "08:00"
         pickup_end: "08:30"
         order_item_ids:
