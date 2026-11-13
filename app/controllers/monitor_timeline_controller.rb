@@ -12,8 +12,7 @@ class MonitorTimelineController < ApplicationController
     @start_hour = START_HOUR
     @end_hour = END_HOUR
     @timeline_width = (@end_hour - @start_hour) * @px_per_hour
-    @show_cook = params[:cook] != "0"
-    @show_delivery = params[:delivery] != "0"
+    @focus = %w[prep delivery].include?(params[:focus]) ? params[:focus] : nil
     @layout = Day::TimelineLayout.new(
       @graph,
       px_per_hour: @px_per_hour,

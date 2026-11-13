@@ -1,10 +1,11 @@
 <%
   hours = (@start_hour...@end_hour).to_a
-  dim_delivery = @show_delivery ? "" : "grayscale opacity-40"
-  dim_prep = @show_cook ? "" : "grayscale opacity-40"
+  dim = ->(kind) { @focus.nil? || @focus == kind ? "" : "grayscale opacity-40" }
+  dim_prep = dim.call("prep")
+  dim_delivery = dim.call("delivery")
 %>
 
-<div class="flex min-h-0 flex-1 flex-col">
+<div class="flex min-h-0 flex-1 flex-col" data-controller="timeline-drag">
   <header class="flex shrink-0 items-center justify-between gap-4 border-b border-gray-200 bg-white px-6 py-3">
     <div>
       <h1 class="text-base font-semibold text-gray-900">Timeline</h1>
@@ -12,20 +13,25 @@
     </div>
     <div class="flex items-center gap-3 text-sm">
       <%
-        filter_params = ->(cook:, delivery:) {
-          { cook: cook ? nil : "0", delivery: delivery ? nil : "0" }.compact
+        focus_path = ->(kind) {
+          monitor_timeline_path(@focus == kind ? {} : { focus: kind })
         }
       %>
-      <%= link_to monitor_timeline_path(filter_params.call(cook: !@show_cook, delivery: @show_delivery)),
-            class: "inline-flex items-center gap-2 rounded-md px-2.5 py-1.5 #{@show_cook ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-400"}" do %>
-        <span class="inline-block size-3 rounded-sm border <%= @show_cook ? "border-white bg-white" : "border-gray-300 bg-transparent" %>" aria-hidden="true"></span>
+      <%= link_to focus_path.call("prep"),
+            class: "inline-flex items-center gap-2 rounded-md px-2.5 py-1.5 #{@focus == "prep" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-400"}" do %>
+        <span class="inline-block size-3 rounded-sm border <%= @focus == "prep" ? "border-white bg-white" : "border-gray-300 bg-transparent" %>" aria-hidden="true"></span>
         Prep
       <% end %>
-      <%= link_to monitor_timeline_path(filter_params.call(cook: @show_cook, delivery: !@show_delivery)),
-            class: "inline-flex items-center gap-2 rounded-md px-2.5 py-1.5 #{@show_delivery ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-400"}" do %>
-        <span class="inline-block size-3 rounded-sm border <%= @show_delivery ? "border-white bg-white" : "border-gray-300 bg-transparent" %>" aria-hidden="true"></span>
+      <%= link_to focus_path.call("delivery"),
+            class: "inline-flex items-center gap-2 rounded-md px-2.5 py-1.5 #{@focus == "delivery" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-400"}" do %>
+        <span class="inline-block size-3 rounded-sm border <%= @focus == "delivery" ? "border-white bg-white" : "border-gray-300 bg-transparent" %>" aria-hidden="true"></span>
         Delivery
       <% end %>
+      <button
+        type="button"
+        data-action="timeline-drag#reset"
+        class="rounded-md bg-gray-100 px-2.5 py-1.5 text-gray-700 hover:bg-gray-200"
+      >Reset</button>
     </div>
   </header>
 
@@ -62,14 +68,14 @@
         <div
           class="relative"
           style="height: <%= @layout.total_height %>px"
-          data-controller="timeline-drag"
+          data-timeline-drag-target="canvas"
         >
           <svg
             class="pointer-events-none absolute left-52 top-0 z-[1] overflow-visible <%= dim_delivery %>"
             style="width: <%= @timeline_width %>px; height: <%= @layout.total_height %>px"
             aria-hidden="true"
           >
-            <% @layout.connectors.each do |c| %>
+            <% (@layout.connectors + @layout.so_connectors).each do |c| %>
               <%
                 x1 = c.x1
                 y1 = c.y1
@@ -80,15 +86,17 @@
                   x1 = mid
                   x2 = mid
                 end
+                stay = c.kind == :stay
               %>
               <path
-                class="timeline-connector"
+                class="<%= stay ? "timeline-connector-stay" : "timeline-connector" %>"
                 data-timeline-drag-target="edge"
                 data-from="<%= c.from_id %>"
                 data-to="<%= c.to_id %>"
+                <% if c.y2_from %>data-y2="from"<% end %>
                 d="M <%= x1 %> <%= y1 %> C <%= x1 + (x2 - x1) / 2.0 %> <%= y1 %>, <%= x1 + (x2 - x1) / 2.0 %> <%= y2 %>, <%= x2 %> <%= y2 %>"
                 fill="none"
-                stroke="#9ca3af"
+                stroke="<%= stay ? "#d1d5db" : "#9ca3af" %>"
                 stroke-width="1.5"
               />
             <% end %>

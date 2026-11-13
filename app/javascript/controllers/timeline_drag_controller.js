@@ -1,13 +1,23 @@
 import { Controller } from "@hotwired/stimulus"
 
+const KEY = "timeline-drag-positions"
+
 // Vertical drag of timeline islands. Snaps to row tops from the initial layout;
-// overlaps allowed; positions stay in the DOM only (not saved).
+// overlaps allowed; tops persisted in localStorage.
 export default class extends Controller {
-  static targets = ["block", "edge"]
+  static targets = ["block", "edge", "canvas"]
 
   connect() {
     requestAnimationFrame(() => {
       this.rows = unique(this.blockTargets.map((el) => this.topIn(el)))
+      const saved = load()
+      let dirty = false
+      this.blockTargets.forEach((el) => {
+        if (!el.id || saved[el.id] == null) return
+        el.style.top = saved[el.id]
+        dirty = true
+      })
+      if (dirty) this.drawEdges()
     })
   }
 
@@ -41,8 +51,18 @@ export default class extends Controller {
     if (!d) return
     delete d.el.dataset.dragging
     d.el.style.zIndex = ""
+    if (d.el.id) {
+      const saved = load()
+      saved[d.el.id] = d.el.style.top
+      localStorage.setItem(KEY, JSON.stringify(saved))
+    }
     this.drag = null
     this.drawEdges()
+  }
+
+  reset() {
+    localStorage.removeItem(KEY)
+    location.reload()
   }
 
   drawEdges() {
@@ -57,7 +77,8 @@ export default class extends Controller {
       const x1 = a.right - root.left
       const y1 = a.top + a.height / 2 - root.top
       const x2 = b.left - root.left
-      const y2 = b.top + b.height / 2 - root.top
+      const y2 =
+        path.dataset.y2 === "from" ? y1 : b.top + b.height / 2 - root.top
       const mx = (x1 + x2) / 2
       path.setAttribute(
         "d",
@@ -69,7 +90,15 @@ export default class extends Controller {
   }
 
   topIn(el) {
-    return el.getBoundingClientRect().top - this.element.getBoundingClientRect().top
+    return el.getBoundingClientRect().top - this.canvasTarget.getBoundingClientRect().top
+  }
+}
+
+function load() {
+  try {
+    return JSON.parse(localStorage.getItem(KEY)) || {}
+  } catch {
+    return {}
   }
 }
 

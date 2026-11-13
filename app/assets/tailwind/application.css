@@ -92,6 +92,11 @@
   animation: timeline-ants 2s linear infinite;
 }
 
+.timeline-connector-stay {
+  stroke-linecap: round;
+  stroke-dasharray: 2 6;
+}
+
 @keyframes timeline-ants {
   to {
     stroke-dashoffset: -13;

@@ -23,9 +23,9 @@ module Day
       keyword_init: true
     )
 
-    Connector = Struct.new(:x1, :y1, :x2, :y2, :delivery, :from_id, :to_id, keyword_init: true)
+    Connector = Struct.new(:x1, :y1, :x2, :y2, :delivery, :from_id, :to_id, :kind, :y2_from, keyword_init: true)
 
-    attr_reader :lanes, :connectors, :total_height, :timeline_width
+    attr_reader :lanes, :connectors, :so_connectors, :total_height, :timeline_width
 
     def initialize(graph, px_per_hour:, start_hour:, end_hour:)
       @graph = graph
@@ -33,6 +33,7 @@ module Day
       @start_minutes = start_hour * 60
       @timeline_width = (end_hour - start_hour) * px_per_hour
       @blocks_by_stop = {}
+      @blocks_by_so = {}
       build!
     end
 
@@ -83,6 +84,14 @@ module Day
           raise "crossed hub arrivals" if (ra < rb) != (a.track < b.track)
         end
       end
+
+      stay = layout.so_connectors.find { |c|
+        c.kind == :stay &&
+          c.from_id == "stop-d_jelena_to_hub-2" &&
+          c.to_id == "stop-d_hub_to_sam-1"
+      }
+      raise "missing Sam cake hub stay connector" unless stay
+
       true
     end
 
@@ -160,7 +169,9 @@ module Day
         lane
       end
       @total_height = y
+      @blocks_by_so = prep_blocks.to_h { |b| [b.object, b] }
       @connectors = build_connectors
+      @so_connectors = build_so_connectors
     end
 
     def collect_blocks
@@ -408,10 +419,67 @@ module Day
             x2: bb.left,
             y2: bb.center_y,
             delivery: delivery,
-            from_id: "stop-#{a.delivery.id}-#{a.position}",
-            to_id: "stop-#{b.delivery.id}-#{b.position}"
+            from_id: block_dom_id(ba),
+            to_id: block_dom_id(bb),
+            kind: :ride
           )
         end
+      end
+    end
+
+    # Prep → first pickup, and hub stay (unload → later load) for each supplier order.
+    # Same-delivery stop pairs are skipped — ride edges already cover that path, even when
+    # cargo rides through intermediate stops without load/unload (merge multileg).
+    def build_so_connectors
+      stops = stop_blocks
+
+      @graph.supplier_orders.flat_map do |so|
+        item_ids = so.items.map(&:id)
+        next [] if item_ids.empty?
+
+        nodes = []
+        prep = @blocks_by_so[so]
+        nodes << prep if prep
+        nodes.concat(
+          stops.select { |b| (b.object.order_item_ids & item_ids).any? }.sort_by(&:start_m)
+        )
+        nodes.uniq!
+        nodes.sort_by!(&:start_m)
+
+        nodes.each_cons(2).filter_map do |a, b|
+          next if a.kind == :stop && b.kind == :stop && a.object.delivery.equal?(b.object.delivery)
+
+          y2_from = a.kind == :prep
+          Connector.new(
+            x1: a.right,
+            y1: a.center_y,
+            x2: b.left,
+            y2: y2_from ? a.center_y : b.center_y,
+            from_id: block_dom_id(a),
+            to_id: block_dom_id(b),
+            kind: so_connector_kind(a, b, item_ids),
+            y2_from: y2_from
+          )
+        end
+      end
+    end
+
+    def so_connector_kind(a, b, item_ids)
+      if a.kind == :stop && b.kind == :stop &&
+          (a.object.unload_item_ids & item_ids).any? &&
+          (b.object.load_item_ids & item_ids).any?
+        :stay
+      else
+        :flow
+      end
+    end
+
+    def block_dom_id(block)
+      if block.kind == :prep
+        "prep-#{block.object.id}"
+      else
+        stop = block.object
+        "stop-#{stop.delivery.id}-#{stop.position}"
       end
     end
   end
