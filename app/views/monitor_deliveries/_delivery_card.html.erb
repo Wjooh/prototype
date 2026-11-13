@@ -1,0 +1,59 @@
+<%# locals: (delivery:) %>
+<article
+  class="cursor-pointer rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition
+         data-[selected=true]:ring-2 data-[selected=true]:ring-gray-900
+         data-[related=true]:bg-gray-50 data-[related=true]:ring-1 data-[related=true]:ring-gray-300
+         data-[dimmed=true]:opacity-40"
+  data-day-selection-target="delivery"
+  data-delivery-id="<%= delivery.id %>"
+  data-order-ids="<%= delivery.related_order_ids.join(" ") %>"
+  data-action="click->day-selection#selectDelivery"
+  data-selected="false"
+  data-related="false"
+  data-dimmed="false"
+>
+  <div class="mb-3 flex items-center justify-between gap-2">
+    <span class="rounded-md bg-gray-900 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">
+      <%= delivery.kind_label %>
+    </span>
+    <span class="text-xs font-medium text-gray-500"><%= delivery.cost_label %></span>
+  </div>
+
+  <div class="flex flex-wrap items-start gap-2">
+    <% delivery.stops.each_with_index do |stop, index| %>
+      <% if index.positive? %>
+        <span class="mt-2 text-gray-300" aria-hidden="true">→</span>
+      <% end %>
+      <div class="min-w-0">
+        <div class="flex items-center gap-1.5">
+          <% if stop.supplier? && stop.supplier %>
+            <span
+              class="inline-flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-bold text-white"
+              style="background-color: <%= stop.supplier.color %>"
+            ><%= stop.supplier.name.first %></span>
+          <% elsif stop.hub? %>
+            <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-rose-600 text-[9px] font-bold text-white">T</span>
+          <% else %>
+            <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-gray-700 text-[9px] font-bold text-white">
+              <%= stop.order&.avatar_initials&.first || "C" %>
+            </span>
+          <% end %>
+          <p class="text-sm font-medium text-gray-900"><%= stop.label %></p>
+        </div>
+        <% if stop.time_label.present? %>
+          <p class="mt-0.5 pl-6 text-[11px] text-gray-400"><%= stop.time_label %></p>
+        <% end %>
+        <% if stop.items.any? %>
+          <div class="mt-1 flex flex-wrap gap-1 pl-6">
+            <% stop.items.each do |item| %>
+              <span class="inline-flex items-center gap-0.5 rounded bg-gray-100 px-1.5 py-0.5 text-[11px] text-gray-700">
+                <span aria-hidden="true"><%= item.product.emoji %></span>
+                ×<%= item.quantity %>
+              </span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</article>

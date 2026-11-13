@@ -64,3 +64,24 @@
   outline: 2px solid #9ca3af;
   outline-offset: 2px;
 }
+
+.workflow-edge {
+  fill: none;
+  stroke: #9ca3af;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-dasharray: 5 4;
+  animation: workflow-ants 2.4s linear infinite;
+}
+
+.workflow-edge-label {
+  fill: #9ca3af;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+@keyframes workflow-ants {
+  to {
+    stroke-dashoffset: -18;
+  }
+}

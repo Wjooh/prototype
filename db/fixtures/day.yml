@@ -1,0 +1,599 @@
+suppliers:
+  - id: geamos
+    name: Geamos
+    color: "#2563eb"
+  - id: jelena
+    name: Jelena's Cakes
+    color: "#166534"
+  - id: tadaaa
+    name: TADAAA!
+    color: "#e11d48"
+  - id: tesco
+    name: Tesco
+    color: "#00539f"
+
+products:
+  # Geamos — hackathon morning
+  - id: cheese_croissants
+    name: Cheese Croissants
+    emoji: "🥐"
+    supplier_id: geamos
+  - id: ham_cheese_croissants
+    name: Ham & Cheese Croissants
+    emoji: "🥐"
+    supplier_id: geamos
+  - id: whole_fruit
+    name: Whole Fruit Selection
+    emoji: "🍎"
+    supplier_id: geamos
+  - id: crudites
+    name: Crudités Platter
+    emoji: "🥕"
+    supplier_id: geamos
+  - id: walnut_cookies
+    name: Walnut Cookies
+    emoji: "🍪"
+    supplier_id: geamos
+  # Geamos — hackathon lunch
+  - id: meat_sandwiches
+    name: Meat Sandwiches
+    emoji: "🥪"
+    supplier_id: geamos
+  - id: veg_sandwiches
+    name: Vegetarian Sandwiches
+    emoji: "🥪"
+    supplier_id: geamos
+  - id: tabbouleh
+    name: Tabbouleh Salad
+    emoji: "🥗"
+    supplier_id: geamos
+  - id: tuna_nicoise
+    name: Tuna Niçoise Salad
+    emoji: "🥗"
+    supplier_id: geamos
+  - id: greek_salad
+    name: Greek Salad Bowl
+    emoji: "🥗"
+    supplier_id: geamos
+  - id: chicken_avocado
+    name: Zesty Chicken & Avocado
+    emoji: "🥑"
+    supplier_id: geamos
+  - id: chicken_skewers
+    name: Chicken Skewers
+    emoji: "🍢"
+    supplier_id: geamos
+  # Geamos — hackathon dinner
+  - id: chicken_caesar
+    name: Chicken Caesar Salad
+    emoji: "🥗"
+    supplier_id: geamos
+  - id: mexican_bowl
+    name: Mexican Chicken Bowl
+    emoji: "🍗"
+    supplier_id: geamos
+  - id: southern_chicken
+    name: Southern Chicken
+    emoji: "🍗"
+    supplier_id: geamos
+  - id: spinach_mushroom
+    name: Spinach & Mushroom
+    emoji: "🍄"
+    supplier_id: geamos
+  - id: chicken_pilaf
+    name: Chicken Pilaf
+    emoji: "🍚"
+    supplier_id: geamos
+  # TADAAA hub stock
+  - id: white_cup
+    name: White Cup
+    emoji: "☕️"
+    supplier_id: tadaaa
+  - id: white_plate
+    name: White Paper Plate
+    emoji: "🍽"
+    supplier_id: tadaaa
+  - id: white_napkins
+    name: White Napkins
+    emoji: "🧻"
+    supplier_id: tadaaa
+  - id: coffee_box
+    name: Coffee Box
+    emoji: "📦"
+    supplier_id: tadaaa
+  - id: wooden_forks
+    name: Wooden Forks
+    emoji: "🍴"
+    supplier_id: tadaaa
+  # Tesco
+  - id: uht_milk
+    name: UHT Whole Milk
+    emoji: "🥛"
+    supplier_id: tesco
+  - id: prosecco
+    name: Freixenet Prosecco DOC
+    emoji: "🍾"
+    supplier_id: tesco
+  - id: orange_juice
+    name: Orange Juice
+    emoji: "🧃"
+    supplier_id: tesco
+  - id: corona
+    name: Corona
+    emoji: "🍺"
+    supplier_id: tesco
+  - id: san_pellegrino
+    name: San Pellegrino Orange
+    emoji: "🥤"
+    supplier_id: tesco
+  - id: coke_zero
+    name: Coca-Cola Zero
+    emoji: "🥤"
+    supplier_id: tesco
+  - id: water_still
+    name: Highland Spring Still
+    emoji: "💧"
+    supplier_id: tesco
+  - id: water_sparkling
+    name: Highland Spring Sparkling
+    emoji: "💧"
+    supplier_id: tesco
+  - id: white_wine
+    name: La Vieille Ferme White
+    emoji: "🍷"
+    supplier_id: tesco
+  - id: red_wine
+    name: La Vieille Ferme Red
+    emoji: "🍷"
+    supplier_id: tesco
+  # Scenario 2 / 3
+  - id: savoury_box
+    name: Savoury Food Box
+    emoji: "🍱"
+    supplier_id: geamos
+  - id: celebration_cake
+    name: Celebration Cake
+    emoji: "🎂"
+    supplier_id: jelena
+
+orders:
+  - id: hackathon
+    customer_name: Hackathon
+    avatar_initials: HK
+    slot_start: "08:00"
+    slot_end: "10:00"
+    total_pence: 428500
+    margin_pct: 24
+  - id: merge_alice
+    customer_name: Alice Chen
+    avatar_initials: AC
+    slot_start: "10:00"
+    slot_end: "12:00"
+    total_pence: 8600
+    margin_pct: 28
+  - id: eve_sam
+    customer_name: Sam Okonkwo
+    avatar_initials: SO
+    slot_start: "17:00"
+    slot_end: "19:00"
+    total_pence: 7200
+    margin_pct: 26
+  - id: eve_priya
+    customer_name: Priya Shah
+    avatar_initials: PS
+    slot_start: "17:00"
+    slot_end: "19:00"
+    total_pence: 7200
+    margin_pct: 26
+  - id: eve_tom
+    customer_name: Tom Bradley
+    avatar_initials: TB
+    slot_start: "17:00"
+    slot_end: "19:00"
+    total_pence: 7200
+    margin_pct: 26
+
+supplier_orders:
+  - id: so_hack_geamos
+    order_id: hackathon
+    supplier_id: geamos
+  - id: so_hack_tadaaa
+    order_id: hackathon
+    supplier_id: tadaaa
+  - id: so_hack_tesco
+    order_id: hackathon
+    supplier_id: tesco
+  - id: so_merge_geamos
+    order_id: merge_alice
+    supplier_id: geamos
+  - id: so_merge_jelena
+    order_id: merge_alice
+    supplier_id: jelena
+  - id: so_sam_geamos
+    order_id: eve_sam
+    supplier_id: geamos
+  - id: so_sam_jelena
+    order_id: eve_sam
+    supplier_id: jelena
+  - id: so_priya_geamos
+    order_id: eve_priya
+    supplier_id: geamos
+  - id: so_priya_jelena
+    order_id: eve_priya
+    supplier_id: jelena
+  - id: so_tom_geamos
+    order_id: eve_tom
+    supplier_id: geamos
+  - id: so_tom_jelena
+    order_id: eve_tom
+    supplier_id: jelena
+
+order_items:
+  # Hackathon Geamos morning
+  - id: hi_cheese_croissants
+    supplier_order_id: so_hack_geamos
+    product_id: cheese_croissants
+    quantity: 3
+  - id: hi_ham_croissants
+    supplier_order_id: so_hack_geamos
+    product_id: ham_cheese_croissants
+    quantity: 6
+  - id: hi_fruit
+    supplier_order_id: so_hack_geamos
+    product_id: whole_fruit
+    quantity: 2
+  - id: hi_crudites
+    supplier_order_id: so_hack_geamos
+    product_id: crudites
+    quantity: 2
+  - id: hi_cookies
+    supplier_order_id: so_hack_geamos
+    product_id: walnut_cookies
+    quantity: 4
+  # Hackathon Geamos lunch
+  - id: hi_meat_sand
+    supplier_order_id: so_hack_geamos
+    product_id: meat_sandwiches
+    quantity: 2
+  - id: hi_veg_sand
+    supplier_order_id: so_hack_geamos
+    product_id: veg_sandwiches
+    quantity: 1
+  - id: hi_tabbouleh
+    supplier_order_id: so_hack_geamos
+    product_id: tabbouleh
+    quantity: 5
+  - id: hi_tuna
+    supplier_order_id: so_hack_geamos
+    product_id: tuna_nicoise
+    quantity: 15
+  - id: hi_greek
+    supplier_order_id: so_hack_geamos
+    product_id: greek_salad
+    quantity: 10
+  - id: hi_avocado
+    supplier_order_id: so_hack_geamos
+    product_id: chicken_avocado
+    quantity: 20
+  - id: hi_skewers
+    supplier_order_id: so_hack_geamos
+    product_id: chicken_skewers
+    quantity: 20
+  # Hackathon Geamos dinner
+  - id: hi_caesar
+    supplier_order_id: so_hack_geamos
+    product_id: chicken_caesar
+    quantity: 15
+  - id: hi_mexican
+    supplier_order_id: so_hack_geamos
+    product_id: mexican_bowl
+    quantity: 15
+  - id: hi_southern
+    supplier_order_id: so_hack_geamos
+    product_id: southern_chicken
+    quantity: 4
+  - id: hi_spinach
+    supplier_order_id: so_hack_geamos
+    product_id: spinach_mushroom
+    quantity: 10
+  - id: hi_pilaf
+    supplier_order_id: so_hack_geamos
+    product_id: chicken_pilaf
+    quantity: 20
+  # Hackathon TADAAA
+  - id: hi_cups
+    supplier_order_id: so_hack_tadaaa
+    product_id: white_cup
+    quantity: 200
+  - id: hi_plates
+    supplier_order_id: so_hack_tadaaa
+    product_id: white_plate
+    quantity: 160
+  - id: hi_napkins
+    supplier_order_id: so_hack_tadaaa
+    product_id: white_napkins
+    quantity: 3
+  - id: hi_coffee
+    supplier_order_id: so_hack_tadaaa
+    product_id: coffee_box
+    quantity: 5
+  - id: hi_forks
+    supplier_order_id: so_hack_tadaaa
+    product_id: wooden_forks
+    quantity: 200
+  # Hackathon Tesco
+  - id: hi_milk
+    supplier_order_id: so_hack_tesco
+    product_id: uht_milk
+    quantity: 2
+  - id: hi_prosecco
+    supplier_order_id: so_hack_tesco
+    product_id: prosecco
+    quantity: 4
+  - id: hi_oj
+    supplier_order_id: so_hack_tesco
+    product_id: orange_juice
+    quantity: 6
+  - id: hi_corona
+    supplier_order_id: so_hack_tesco
+    product_id: corona
+    quantity: 54
+  - id: hi_pellegrino
+    supplier_order_id: so_hack_tesco
+    product_id: san_pellegrino
+    quantity: 24
+  - id: hi_coke
+    supplier_order_id: so_hack_tesco
+    product_id: coke_zero
+    quantity: 48
+  - id: hi_water_still
+    supplier_order_id: so_hack_tesco
+    product_id: water_still
+    quantity: 30
+  - id: hi_water_spark
+    supplier_order_id: so_hack_tesco
+    product_id: water_sparkling
+    quantity: 15
+  - id: hi_white_wine
+    supplier_order_id: so_hack_tesco
+    product_id: white_wine
+    quantity: 6
+  - id: hi_red_wine
+    supplier_order_id: so_hack_tesco
+    product_id: red_wine
+    quantity: 1
+  # Scenario 2
+  - id: mi_box
+    supplier_order_id: so_merge_geamos
+    product_id: savoury_box
+    quantity: 1
+  - id: mi_cake
+    supplier_order_id: so_merge_jelena
+    product_id: celebration_cake
+    quantity: 1
+  # Scenario 3
+  - id: si_box
+    supplier_order_id: so_sam_geamos
+    product_id: savoury_box
+    quantity: 1
+  - id: si_cake
+    supplier_order_id: so_sam_jelena
+    product_id: celebration_cake
+    quantity: 1
+  - id: pi_box
+    supplier_order_id: so_priya_geamos
+    product_id: savoury_box
+    quantity: 1
+  - id: pi_cake
+    supplier_order_id: so_priya_jelena
+    product_id: celebration_cake
+    quantity: 1
+  - id: ti_box
+    supplier_order_id: so_tom_geamos
+    product_id: savoury_box
+    quantity: 1
+  - id: ti_cake
+    supplier_order_id: so_tom_jelena
+    product_id: celebration_cake
+    quantity: 1
+
+deliveries:
+  # Scenario 1
+  - id: d_hack_hub_morning
+    kind: swiftee
+    cost_pence: 1800
+    stops:
+      - position: 1
+        place: hub
+        pickup_start: "08:00"
+        pickup_end: "10:00"
+        order_item_ids:
+          - hi_cups
+          - hi_plates
+          - hi_napkins
+          - hi_coffee
+          - hi_forks
+          - hi_milk
+          - hi_prosecco
+          - hi_oj
+          - hi_corona
+          - hi_pellegrino
+          - hi_coke
+          - hi_water_still
+          - hi_water_spark
+          - hi_white_wine
+          - hi_red_wine
+      - position: 2
+        place: customer
+        order_id: hackathon
+        dropoff_start: "08:00"
+        dropoff_end: "10:00"
+  - id: d_hack_geamos_morning
+    kind: swiftee
+    cost_pence: 2200
+    stops:
+      - position: 1
+        place: supplier
+        supplier_id: geamos
+        pickup_start: "08:00"
+        pickup_end: "10:00"
+        order_item_ids:
+          - hi_cheese_croissants
+          - hi_ham_croissants
+          - hi_fruit
+          - hi_crudites
+          - hi_cookies
+      - position: 2
+        place: customer
+        order_id: hackathon
+        dropoff_start: "08:00"
+        dropoff_end: "10:00"
+  - id: d_hack_geamos_lunch
+    kind: swiftee
+    cost_pence: 2400
+    stops:
+      - position: 1
+        place: supplier
+        supplier_id: geamos
+        pickup_start: "12:00"
+        pickup_end: "14:00"
+        order_item_ids:
+          - hi_meat_sand
+          - hi_veg_sand
+          - hi_tabbouleh
+          - hi_tuna
+          - hi_greek
+          - hi_avocado
+          - hi_skewers
+      - position: 2
+        place: customer
+        order_id: hackathon
+        dropoff_start: "12:00"
+        dropoff_end: "14:00"
+  - id: d_hack_geamos_dinner
+    kind: swiftee
+    cost_pence: 2400
+    stops:
+      - position: 1
+        place: supplier
+        supplier_id: geamos
+        pickup_start: "17:00"
+        pickup_end: "19:00"
+        order_item_ids:
+          - hi_caesar
+          - hi_mexican
+          - hi_southern
+          - hi_spinach
+          - hi_pilaf
+      - position: 2
+        place: customer
+        order_id: hackathon
+        dropoff_start: "17:00"
+        dropoff_end: "19:00"
+  # Scenario 2 — multileg
+  - id: d_merge_multileg
+    kind: swiftee
+    cost_pence: 2800
+    stops:
+      - position: 1
+        place: supplier
+        supplier_id: geamos
+        pickup_start: "09:00"
+        pickup_end: "11:00"
+        order_item_ids:
+          - mi_box
+      - position: 2
+        place: hub
+        pickup_start: "09:30"
+        pickup_end: "11:30"
+        order_item_ids:
+          - mi_cake
+      - position: 3
+        place: customer
+        order_id: merge_alice
+        dropoff_start: "10:00"
+        dropoff_end: "12:00"
+  # Scenario 3 — morning inbound
+  - id: d_jelena_to_hub
+    kind: swiftee
+    cost_pence: 1500
+    stops:
+      - position: 1
+        place: supplier
+        supplier_id: jelena
+        pickup_start: "08:00"
+        pickup_end: "10:00"
+        order_item_ids:
+          - si_cake
+          - pi_cake
+          - ti_cake
+      - position: 2
+        place: hub
+        dropoff_start: "08:00"
+        dropoff_end: "10:00"
+  - id: d_geamos_to_hub
+    kind: swiftee
+    cost_pence: 1600
+    stops:
+      - position: 1
+        place: supplier
+        supplier_id: geamos
+        pickup_start: "08:00"
+        pickup_end: "10:00"
+        order_item_ids:
+          - si_box
+          - pi_box
+          - ti_box
+      - position: 2
+        place: hub
+        dropoff_start: "08:00"
+        dropoff_end: "10:00"
+  # Scenario 3 — evening fan-out
+  - id: d_hub_to_sam
+    kind: swiftee
+    cost_pence: 1200
+    stops:
+      - position: 1
+        place: hub
+        pickup_start: "17:00"
+        pickup_end: "19:00"
+        order_item_ids:
+          - si_box
+          - si_cake
+      - position: 2
+        place: customer
+        order_id: eve_sam
+        dropoff_start: "17:00"
+        dropoff_end: "19:00"
+  - id: d_hub_to_priya
+    kind: swiftee
+    cost_pence: 1200
+    stops:
+      - position: 1
+        place: hub
+        pickup_start: "17:00"
+        pickup_end: "19:00"
+        order_item_ids:
+          - pi_box
+          - pi_cake
+      - position: 2
+        place: customer
+        order_id: eve_priya
+        dropoff_start: "17:00"
+        dropoff_end: "19:00"
+  - id: d_hub_to_tom
+    kind: swiftee
+    cost_pence: 1200
+    stops:
+      - position: 1
+        place: hub
+        pickup_start: "17:00"
+        pickup_end: "19:00"
+        order_item_ids:
+          - ti_box
+          - ti_cake
+      - position: 2
+        place: customer
+        order_id: eve_tom
+        dropoff_start: "17:00"
+        dropoff_end: "19:00"

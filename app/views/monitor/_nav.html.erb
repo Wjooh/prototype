@@ -1,0 +1,20 @@
+<aside class="flex w-56 shrink-0 flex-col border-r border-gray-200 bg-white">
+  <div class="border-b border-gray-200 px-4 py-4">
+    <p class="text-sm font-bold tracking-wide text-gray-900">TADAAA Monitor</p>
+    <p class="text-xs text-gray-500">Delivery planning</p>
+  </div>
+
+  <nav class="flex-1 space-y-0.5 px-2 py-3">
+    <%
+      [
+        [monitor_deliveries_path, "Deliveries"],
+        [monitor_timeline_path, "Timeline"]
+      ].each do |path, label|
+    %>
+      <%= link_to path,
+        class: "block rounded-lg px-3 py-2 text-sm font-medium #{current_page?(path) ? "bg-gray-200 text-gray-900" : "text-gray-600 hover:bg-gray-100"}" do %>
+        <%= label %>
+      <% end %>
+    <% end %>
+  </nav>
+</aside>

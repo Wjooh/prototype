@@ -1,0 +1,94 @@
+<%# Reference workflow graphs for the three fixture scenarios %>
+<%
+  node = "inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-[11px] font-semibold text-gray-800 shadow-sm"
+%>
+
+<aside class="shrink-0 border-t border-gray-200 bg-white px-4 py-3">
+  <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Scenario graphs</h2>
+
+  <div class="grid gap-3 lg:grid-cols-3">
+    <%# 1 · Hackathon — sources top→bottom by time so 4 inputs don't cross %>
+    <div
+      id="scenario-hackathon"
+      class="relative min-h-48 rounded-lg border border-dashed border-gray-200 bg-gray-50 p-3"
+      data-controller="workflow-graph"
+    >
+      <p class="mb-3 text-xs font-semibold text-gray-700">1 · Hackathon (multi-wave)</p>
+      <svg data-workflow-graph-target="canvas" class="pointer-events-none absolute inset-0 h-full w-full overflow-visible"></svg>
+
+      <div class="relative z-10 grid grid-cols-[1fr_auto] items-stretch gap-12">
+        <div class="flex flex-col justify-between gap-2">
+          <span class="<%= node %>" data-workflow-node="tadaaa-am">Tadaaa · am hub</span>
+          <span class="<%= node %>" data-workflow-node="geamos-am">Geamos · am</span>
+          <span class="<%= node %>" data-workflow-node="geamos-lunch">Geamos · lunch</span>
+          <span class="<%= node %>" data-workflow-node="geamos-dinner">Geamos · dinner</span>
+        </div>
+        <div class="flex">
+          <span class="<%= node %> flex h-full items-center px-3" data-workflow-node="hackathon">Hackathon</span>
+        </div>
+      </div>
+
+      <span hidden data-workflow-graph-target="edge" data-from="tadaaa-am" data-to="hackathon"></span>
+      <span hidden data-workflow-graph-target="edge" data-from="geamos-am" data-to="hackathon"></span>
+      <span hidden data-workflow-graph-target="edge" data-from="geamos-lunch" data-to="hackathon"></span>
+      <span hidden data-workflow-graph-target="edge" data-from="geamos-dinner" data-to="hackathon"></span>
+    </div>
+
+    <%# 2 · Merge at hub %>
+    <div
+      id="scenario-merge"
+      class="relative min-h-40 rounded-lg border border-dashed border-gray-200 bg-gray-50 p-3"
+      data-controller="workflow-graph"
+    >
+      <p class="mb-3 text-xs font-semibold text-gray-700">2 · Merge at hub</p>
+      <svg data-workflow-graph-target="canvas" class="pointer-events-none absolute inset-0 h-full w-full overflow-visible"></svg>
+
+      <div class="relative z-10 grid h-28 grid-cols-3 items-center gap-6">
+        <div class="flex justify-start">
+          <span class="<%= node %>" data-workflow-node="geamos">Geamos</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <span class="<%= node %>" data-workflow-node="tadaaa">Tadaaa</span>
+          <span class="text-[10px] text-gray-400">+ cake</span>
+        </div>
+        <div class="flex justify-end">
+          <span class="<%= node %>" data-workflow-node="alice">Alice</span>
+        </div>
+      </div>
+
+      <span hidden data-workflow-graph-target="edge" data-from="geamos" data-to="tadaaa"></span>
+      <span hidden data-workflow-graph-target="edge" data-from="tadaaa" data-to="alice"></span>
+    </div>
+
+    <%# 3 · Morning in → evening out %>
+    <div
+      id="scenario-fanout"
+      class="relative min-h-40 rounded-lg border border-dashed border-gray-200 bg-gray-50 p-3"
+      data-controller="workflow-graph"
+    >
+      <p class="mb-3 text-xs font-semibold text-gray-700">3 · Morning in → evening out</p>
+      <svg data-workflow-graph-target="canvas" class="pointer-events-none absolute inset-0 h-full w-full overflow-visible"></svg>
+
+      <div class="relative z-10 grid h-32 grid-cols-3 items-center gap-6">
+        <div class="flex flex-col items-start justify-center gap-3">
+          <span class="<%= node %>" data-workflow-node="geamos">Geamos</span>
+          <span class="<%= node %>" data-workflow-node="jelena">Jelena</span>
+        </div>
+        <div class="flex justify-center">
+          <span class="<%= node %>" data-workflow-node="tadaaa">Tadaaa</span>
+        </div>
+        <div class="flex flex-col items-end justify-center gap-2">
+          <span class="<%= node %>" data-workflow-node="sam">Sam</span>
+          <span class="<%= node %>" data-workflow-node="priya">Priya</span>
+          <span class="<%= node %>" data-workflow-node="tom">Tom</span>
+        </div>
+      </div>
+
+      <span hidden data-workflow-graph-target="edge" data-from="geamos" data-to="tadaaa" data-label="3 boxes"></span>
+      <span hidden data-workflow-graph-target="edge" data-from="jelena" data-to="tadaaa" data-label="3 cakes"></span>
+      <span hidden data-workflow-graph-target="edge" data-from="tadaaa" data-to="sam"></span>
+      <span hidden data-workflow-graph-target="edge" data-from="tadaaa" data-to="priya"></span>
+      <span hidden data-workflow-graph-target="edge" data-from="tadaaa" data-to="tom"></span>
+    </div>
+  </div>
+</aside>

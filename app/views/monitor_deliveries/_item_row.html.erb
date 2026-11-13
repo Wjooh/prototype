@@ -1,0 +1,25 @@
+<%# locals: (supplier_order:) %>
+<div class="flex gap-3">
+  <span
+    class="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white"
+    style="background-color: <%= supplier_order.supplier.color %>"
+    title="<%= supplier_order.supplier.name %>"
+  >
+    <%= supplier_order.supplier.name.first %>
+  </span>
+
+  <div class="flex min-w-0 flex-1 flex-wrap gap-2">
+    <% supplier_order.items.each do |item| %>
+      <div
+        class="relative flex h-16 w-16 items-center justify-center rounded-lg border border-gray-200 bg-white"
+        title="<%= item.product.name %>"
+      >
+        <span class="text-2xl leading-none" aria-hidden="true"><%= item.product.emoji %></span>
+        <span class="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-gray-200 px-1 text-[11px] font-semibold text-gray-900">
+          <%= item.quantity %>
+        </span>
+        <span class="sr-only"><%= item.quantity %> × <%= item.product.name %></span>
+      </div>
+    <% end %>
+  </div>
+</div>

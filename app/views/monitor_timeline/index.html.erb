@@ -1,0 +1,67 @@
+<%
+  start_minutes = @start_hour * 60
+  hours = (@start_hour...@end_hour).to_a
+  row_height = 44
+%>
+
+<div class="flex min-h-0 flex-1 flex-col">
+  <header class="shrink-0 border-b border-gray-200 bg-white px-6 py-3">
+    <h1 class="text-base font-semibold text-gray-900">Timeline</h1>
+    <p class="text-sm text-gray-500"><%= @date.strftime("%A %-d %B %Y") %> · <%= @px_per_hour %>px / hour</p>
+  </header>
+
+  <div class="min-h-0 flex-1 overflow-auto">
+    <div class="min-w-max">
+      <%# Hour ruler %>
+      <div class="sticky top-0 z-20 flex border-b border-gray-200 bg-white">
+        <div class="sticky left-0 z-30 w-48 shrink-0 border-r border-gray-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
+          Delivery
+        </div>
+        <div class="relative h-10" style="width: <%= @timeline_width %>px">
+          <% hours.each_with_index do |hour, i| %>
+            <div
+              class="absolute top-0 flex h-full items-end border-l border-gray-200 pb-2 pl-2 text-xs font-medium text-gray-500"
+              style="left: <%= i * @px_per_hour %>px; width: <%= @px_per_hour %>px"
+            >
+              <%= format("%02d:00", hour) %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%# Rows %>
+      <div class="relative">
+        <%# Vertical hour grid %>
+        <div class="pointer-events-none absolute inset-y-0 left-48" style="width: <%= @timeline_width %>px">
+          <% hours.each_with_index do |_, i| %>
+            <div
+              class="absolute inset-y-0 border-l border-gray-100"
+              style="left: <%= i * @px_per_hour %>px"
+            ></div>
+          <% end %>
+        </div>
+
+        <% @deliveries.each do |delivery| %>
+          <%
+            left = ((delivery.window_start_minutes - start_minutes).to_f / 60) * @px_per_hour
+            width = ((delivery.window_end_minutes - delivery.window_start_minutes).to_f / 60) * @px_per_hour
+          %>
+          <div class="relative flex border-b border-gray-100" style="height: <%= row_height %>px">
+            <div class="sticky left-0 z-10 flex w-48 shrink-0 items-center truncate border-r border-gray-200 bg-white px-4 text-xs text-gray-600">
+              <%= delivery.kind_label %>
+            </div>
+            <div class="relative" style="width: <%= @timeline_width %>px">
+              <div
+                class="absolute top-1.5 flex h-8 items-center overflow-hidden rounded-md bg-gray-900 px-2 text-[11px] font-medium text-white shadow-sm"
+                style="left: <%= left %>px; width: <%= [width, 24].max %>px"
+                title="<%= delivery.route_label %> · <%= delivery.window_label %> · <%= delivery.cost_label %>"
+              >
+                <span class="truncate"><%= delivery.route_label %></span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

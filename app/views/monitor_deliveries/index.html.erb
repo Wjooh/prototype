@@ -1,0 +1,44 @@
+<div
+  class="flex min-h-0 flex-1 flex-col"
+  data-controller="day-selection"
+>
+  <header class="flex shrink-0 items-center justify-between border-b border-gray-200 bg-white px-6 py-3">
+    <div>
+      <h1 class="text-base font-semibold text-gray-900">Deliveries</h1>
+      <p class="text-sm text-gray-500"><%= @date.strftime("%A %-d %B %Y") %></p>
+    </div>
+    <button
+      type="button"
+      class="text-sm text-gray-500 hover:text-gray-800"
+      data-action="day-selection#clear"
+    >
+      Clear selection
+    </button>
+  </header>
+
+  <div class="grid min-h-0 flex-1 grid-cols-2 divide-x divide-gray-200">
+    <section class="flex min-h-0 flex-col bg-white">
+      <div class="shrink-0 border-b border-gray-100 px-4 py-2">
+        <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-400">Orders · <%= @orders.size %></h2>
+      </div>
+      <div class="space-y-3 overflow-y-auto p-4">
+        <% @orders.each do |order| %>
+          <%= render "monitor_deliveries/order_card", order: order %>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="flex min-h-0 flex-col bg-gray-50">
+      <div class="shrink-0 border-b border-gray-200 bg-white px-4 py-2">
+        <h2 class="text-xs font-semibold uppercase tracking-wide text-gray-400">Deliveries · <%= @deliveries.size %></h2>
+      </div>
+      <div class="space-y-3 overflow-y-auto p-4">
+        <% @deliveries.each do |delivery| %>
+          <%= render "monitor_deliveries/delivery_card", delivery: delivery %>
+        <% end %>
+      </div>
+    </section>
+  </div>
+
+  <%= render "monitor_deliveries/scenario_graphs" %>
+</div>
