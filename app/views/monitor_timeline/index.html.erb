@@ -59,7 +59,11 @@
           <% end %>
         </div>
 
-        <div class="relative" style="height: <%= @layout.total_height %>px">
+        <div
+          class="relative"
+          style="height: <%= @layout.total_height %>px"
+          data-controller="timeline-drag"
+        >
           <svg
             class="pointer-events-none absolute left-52 top-0 z-[1] overflow-visible <%= dim_delivery %>"
             style="width: <%= @timeline_width %>px; height: <%= @layout.total_height %>px"
@@ -79,6 +83,9 @@
               %>
               <path
                 class="timeline-connector"
+                data-timeline-drag-target="edge"
+                data-from="<%= c.from_id %>"
+                data-to="<%= c.to_id %>"
                 d="M <%= x1 %> <%= y1 %> C <%= x1 + (x2 - x1) / 2.0 %> <%= y1 %>, <%= x1 + (x2 - x1) / 2.0 %> <%= y2 %>, <%= x2 %> <%= y2 %>"
                 fill="none"
                 stroke="#9ca3af"
@@ -104,7 +111,9 @@
                     <% supplier_order = block.object %>
                     <div
                       id="prep-<%= supplier_order.id %>"
-                      class="absolute z-[2] rounded-xl border border-gray-200 bg-white p-3 shadow-sm <%= dim_prep %>"
+                      data-timeline-drag-target="block"
+                      data-action="pointerdown->timeline-drag#grab pointermove->timeline-drag#move pointerup->timeline-drag#drop pointercancel->timeline-drag#drop"
+                      class="absolute z-[2] cursor-grab touch-none rounded-xl border border-gray-200 bg-white p-3 shadow-sm active:cursor-grabbing <%= dim_prep %>"
                       style="left: <%= block.left %>px; width: <%= block.width %>px; top: <%= block.top - lane.top %>px; height: <%= block.height %>px"
                       title="<%= supplier_order.label %> · prep <%= supplier_order.window_label %>"
                     >
@@ -128,7 +137,9 @@
                     <% stop = block.object %>
                     <div
                       id="stop-<%= stop.delivery.id %>-<%= stop.position %>"
-                      class="absolute z-[2] flex items-center gap-2 overflow-hidden rounded-xl border border-gray-200 bg-white p-3 shadow-sm <%= dim_delivery %>"
+                      data-timeline-drag-target="block"
+                      data-action="pointerdown->timeline-drag#grab pointermove->timeline-drag#move pointerup->timeline-drag#drop pointercancel->timeline-drag#drop"
+                      class="absolute z-[2] flex cursor-grab touch-none items-center gap-2 overflow-hidden rounded-xl border border-gray-200 bg-white p-3 shadow-sm active:cursor-grabbing <%= dim_delivery %>"
                       style="left: <%= block.left %>px; width: <%= block.width %>px; top: <%= block.top - lane.top %>px; height: <%= block.height %>px"
                       title="<%= stop.label %> · <%= stop.kind_label %> <%= stop.time_label %>"
                     >

@@ -23,7 +23,7 @@ module Day
       keyword_init: true
     )
 
-    Connector = Struct.new(:x1, :y1, :x2, :y2, :delivery, keyword_init: true)
+    Connector = Struct.new(:x1, :y1, :x2, :y2, :delivery, :from_id, :to_id, keyword_init: true)
 
     attr_reader :lanes, :connectors, :total_height, :timeline_width
 
@@ -407,7 +407,9 @@ module Day
             y1: ba.center_y,
             x2: bb.left,
             y2: bb.center_y,
-            delivery: delivery
+            delivery: delivery,
+            from_id: "stop-#{a.delivery.id}-#{a.position}",
+            to_id: "stop-#{b.delivery.id}-#{b.position}"
           )
         end
       end
