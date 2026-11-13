@@ -1,0 +1,8 @@
+<%# locals: (min_emoji:, max_emoji:, thumb_position: "left-1/2") %>
+<div class="flex w-full items-center gap-2">
+  <span class="shrink-0 text-sm leading-none md:text-base" aria-hidden="true"><%= min_emoji %></span>
+  <div class="relative h-1.5 flex-1 rounded-full bg-gray-300">
+    <div class="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-black bg-white <%= thumb_position %>"></div>
+  </div>
+  <span class="shrink-0 text-sm leading-none md:text-base" aria-hidden="true"><%= max_emoji %></span>
+</div>

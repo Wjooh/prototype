@@ -1,67 +1,82 @@
-<section class="bg-gray-100 py-10 md:py-16">
-  <div class="container mx-auto px-4 text-center md:px-6">
-    <h1 class="text-2xl font-bold text-gray-800 md:text-4xl">Setup your event in seconds</h1>
-    <p class="mt-3 text-sm text-gray-500 md:text-lg">
-      The easiest way to plan your party or event. Select what you need.
-    </p>
+<%
+  floating_circles = [
+    { size: "size-10 md:size-12", position: "top-4 left-4" },
+    { size: "size-8 md:size-10", position: "top-8 right-8" },
+    { size: "size-12 md:size-14", position: "bottom-8 left-2" },
+    { size: "size-9 md:size-11", position: "bottom-4 right-12" },
+    { size: "size-7 md:size-9", position: "top-1/2 left-0" },
+    { size: "size-11 md:size-12", position: "top-1/3 right-0" },
+    { size: "size-8 md:size-10", position: "bottom-1/3 right-2" },
+    { size: "size-10 md:size-12", position: "top-2 left-1/2" }
+  ]
+%>
 
-    <div class="container relative mx-auto mt-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:mt-12 md:p-10">
-      <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
-        <div class="absolute h-8 w-8 rounded-full bg-gray-200 md:h-10 md:w-10" style="top: 12%; left: 8%;"></div>
-        <div class="absolute h-8 w-8 rounded-full bg-gray-200 md:h-10 md:w-10" style="top: 78%; left: 12%;"></div>
-        <div class="absolute h-8 w-8 rounded-full bg-gray-200 md:h-10 md:w-10" style="top: 8%; left: 55%;"></div>
-        <div class="absolute h-8 w-8 rounded-full bg-gray-200 md:h-10 md:w-10" style="top: 85%; left: 48%;"></div>
-        <div class="absolute h-8 w-8 rounded-full bg-gray-200 md:h-10 md:w-10" style="top: 45%; left: 5%;"></div>
-        <div class="absolute h-8 w-8 rounded-full bg-gray-200 md:h-10 md:w-10" style="top: 60%; left: 72%;"></div>
-      </div>
+<section class="border-b border-gray-200 bg-gray-100 pb-10 pt-4 md:pb-16 md:pt-6">
+  <div class="container mx-auto px-4 md:px-6">
+    <div id="get-20" class="mb-6 text-center md:mb-8">
+      <h1 class="text-3xl font-extrabold tracking-tight text-black md:text-5xl">Setup your event in seconds</h1>
+      <p class="mt-3 text-base text-gray-500 md:mt-4 md:text-lg">Tell us your preferences and number of guests, and we'll assemble a cart for you</p>
+    </div>
 
-      <div class="relative mx-auto flex aspect-square max-w-xs flex-col items-center justify-center rounded-full border-4 border-gray-200 bg-gray-50 p-6 md:max-w-sm md:p-10">
-        <div class="mb-3 flex w-full max-w-[200px] items-center gap-2 md:max-w-[240px]">
-          <div class="h-6 w-6 shrink-0 rounded-full bg-gray-300"></div>
-          <div class="h-2 flex-1 rounded-full bg-gray-200">
-            <div class="h-2 rounded-full bg-gray-400" style="width: 30%;"></div>
+    <div class="relative mx-auto max-w-5xl py-4 md:py-8">
+      <% floating_circles.each do |circle| %>
+        <div
+          class="pointer-events-none absolute z-0 rounded-full border-2 border-gray-300 bg-gray-200 <%= circle[:size] %> <%= circle[:position] %>"
+          aria-hidden="true"
+        ></div>
+      <% end %>
+
+      <div class="relative z-10 mx-auto flex aspect-square size-120 flex-col items-center justify-center rounded-full bg-white p-4 shadow-xl md:max-w-2xl md:p-8">
+        <p class="text-center text-sm font-semibold text-black md:text-base">Tell us about your event</p>
+
+        <div class="mt-3 flex w-full max-w-56 items-center justify-center gap-2 md:mt-4 md:max-w-64 md:gap-3">
+          <div class="flex items-center gap-1.5 rounded-full border border-gray-400 bg-white px-3 py-1.5">
+            <span class="text-base" aria-hidden="true">😃</span>
+            <span class="text-xs font-medium text-gray-500">x</span>
+            <span class="min-w-6 text-center text-sm font-bold tabular-nums text-black">20</span>
+            <div class="flex flex-col text-xs leading-none text-gray-500">
+              <span>▲</span>
+              <span>▼</span>
+            </div>
           </div>
-          <div class="h-6 w-6 shrink-0 rounded-full bg-gray-300"></div>
-        </div>
-        <div class="mb-3 flex w-full max-w-[200px] items-center gap-2 md:max-w-[240px]">
-          <div class="h-6 w-6 shrink-0 rounded-full bg-gray-300"></div>
-          <div class="h-2 flex-1 rounded-full bg-gray-200">
-            <div class="h-2 rounded-full bg-gray-400" style="width: 45%;"></div>
+
+          <div class="flex items-center gap-1.5 rounded-full border border-gray-400 bg-white px-3 py-1.5">
+            <span class="text-base" aria-hidden="true">👶</span>
+            <span class="text-xs font-medium text-gray-500">x</span>
+            <span class="min-w-6 text-center text-sm font-bold tabular-nums text-black">0</span>
+            <div class="flex flex-col text-xs leading-none text-gray-500">
+              <span>▲</span>
+              <span>▼</span>
+            </div>
           </div>
-          <div class="h-6 w-6 shrink-0 rounded-full bg-gray-300"></div>
         </div>
-        <div class="mb-3 flex w-full max-w-[200px] items-center gap-2 md:max-w-[240px]">
-          <div class="h-6 w-6 shrink-0 rounded-full bg-gray-300"></div>
-          <div class="h-2 flex-1 rounded-full bg-gray-200">
-            <div class="h-2 rounded-full bg-gray-400" style="width: 60%;"></div>
-          </div>
-          <div class="h-6 w-6 shrink-0 rounded-full bg-gray-300"></div>
+
+        <div class="mt-3 flex w-full max-w-56 flex-col gap-2 md:mt-4 md:max-w-64 md:gap-2.5">
+          <%= render "pages/index/circle_slider", min_emoji: "☀️", max_emoji: "🌙", thumb_position: "left-1/3" %>
+          <%= render "pages/index/circle_slider", min_emoji: "🍼", max_emoji: "👫", thumb_position: "left-3/4" %>
+          <%= render "pages/index/circle_slider", min_emoji: "👨", max_emoji: "👩", thumb_position: "left-1/2" %>
+          <%= render "pages/index/circle_slider", min_emoji: "😐", max_emoji: "🎉", thumb_position: "left-2/3" %>
+          <%= render "pages/index/circle_slider", min_emoji: "🏷️", max_emoji: "💎", thumb_position: "left-2/5" %>
         </div>
-        <div class="mb-3 flex w-full max-w-[200px] items-center gap-2 md:max-w-[240px]">
-          <div class="h-6 w-6 shrink-0 rounded-full bg-gray-300"></div>
-          <div class="h-2 flex-1 rounded-full bg-gray-200">
-            <div class="h-2 rounded-full bg-gray-400" style="width: 75%;"></div>
-          </div>
-          <div class="h-6 w-6 shrink-0 rounded-full bg-gray-300"></div>
+
+        <p class="mt-3 text-xs font-medium text-gray-600 md:mt-4 md:text-sm">~£37 per guest</p>
+
+        <div class="mt-3 rounded-full border-2 border-black bg-white px-7 py-2 text-sm font-bold text-black md:mt-4 md:px-10 md:py-2.5 md:text-base">
+          See how it will be
         </div>
-        <button type="button" class="mt-4 rounded-full bg-gray-400 px-8 py-2.5 text-sm font-semibold text-white md:px-10 md:py-3 md:text-base">
-          Get Started
-        </button>
       </div>
     </div>
 
-    <div class="scrollbar-hide mt-8 flex justify-center gap-2 overflow-x-auto pb-2 md:mt-10 md:gap-3">
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
-      <div class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 bg-gray-200 md:h-12 md:w-12"></div>
+    <div class="scrollbar-hide mt-10 flex justify-start gap-4 overflow-x-auto px-1 pb-2 md:mt-14 md:justify-center md:gap-5">
+      <% default_occasion = Occasion.default(kind: "private") %>
+      <% Occasion.all.first(8).each do |occasion| %>
+        <label class="flex w-16 shrink-0 cursor-pointer flex-col items-center gap-1.5 md:w-20">
+          <%= radio_button_tag "occasion", occasion.slug, occasion.slug == default_occasion.slug, class: "peer sr-only" %>
+          <span class="size-14 rounded-full border-2 border-gray-300 bg-white peer-checked:border-black md:size-16"></span>
+          <span class="text-center text-xs font-medium leading-tight text-gray-700"><%= occasion.name %></span>
+          <span class="size-3 rounded-full border border-gray-400 bg-white peer-checked:bg-black"></span>
+        </label>
+      <% end %>
     </div>
   </div>
 </section>
