@@ -84,16 +84,25 @@
                 </div>
               </div>
               <div class="relative py-2" style="width: <%= @timeline_width %>px">
-                <div class="relative" style="margin-left: <%= left %>px">
-                  <div
-                    class="flex h-7 items-center overflow-hidden rounded-md px-2 text-[11px] font-medium text-white shadow-sm"
-                    style="width: <%= [width, 24].max %>px; background-color: <%= supplier_order.supplier&.color || "#374151" %>"
-                    title="<%= supplier_order.label %> · prep <%= supplier_order.window_label %>"
-                  >
-                    <span class="truncate">Prep <%= supplier_order.window_label %></span>
-                  </div>
-                  <div class="mt-2">
-                    <%= render "monitor_deliveries/item_row", supplier_order: supplier_order %>
+                <div
+                  class="rounded-xl border border-gray-200 bg-white p-3 shadow-sm"
+                  style="margin-left: <%= left %>px; width: <%= [width, 80].max %>px"
+                  title="<%= supplier_order.label %> · prep <%= supplier_order.window_label %>"
+                >
+                  <p class="mb-2 text-center text-[11px] font-medium text-gray-500">Prep</p>
+                  <div class="flex flex-wrap gap-2">
+                    <% supplier_order.items.each do |item| %>
+                      <div
+                        class="relative flex h-16 w-16 items-center justify-center rounded-lg border border-gray-200 bg-white"
+                        title="<%= item.product.name %>"
+                      >
+                        <span class="text-2xl leading-none" aria-hidden="true"><%= item.product.emoji %></span>
+                        <span class="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-gray-200 px-1 text-[11px] font-semibold text-gray-900">
+                          <%= item.quantity %>
+                        </span>
+                        <span class="sr-only"><%= item.quantity %> × <%= item.product.name %></span>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
