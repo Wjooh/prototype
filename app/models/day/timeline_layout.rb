@@ -1,10 +1,9 @@
 module Day
-  # Packs prep + stop islands into location swimlanes (Geamos, Hackathon, TADAAA/hub, Jelena).
-  # Other customer stops stay on the previous supplier/hub stop's lane.
+  # Packs prep + stop islands into location swimlanes (Geamos, TADAAA/hub, Jelena).
+  # Customer stops stay on the previous supplier/hub stop's lane.
   class TimelineLayout
     HUB_KEY = "hub"
-    HACKATHON_KEY = "customer:hackathon"
-    LANE_ORDER = ["supplier:geamos", HACKATHON_KEY, HUB_KEY, "supplier:jelena"].freeze
+    LANE_ORDER = ["supplier:geamos", HUB_KEY, "supplier:jelena"].freeze
     ISLAND_PAD = 12
     CARD_H = 64
     ISLAND_H = CARD_H + ISLAND_PAD * 2
@@ -114,9 +113,7 @@ module Day
     end
 
     def self.layout_lane_key(stop)
-      if stop.customer? && stop.order_id == "hackathon"
-        HACKATHON_KEY
-      elsif stop.hub? || (stop.supplier? && stop.supplier_id == "tadaaa")
+      if stop.hub? || (stop.supplier? && stop.supplier_id == "tadaaa")
         HUB_KEY
       elsif stop.supplier?
         "supplier:#{stop.supplier_id}"
@@ -225,9 +222,7 @@ module Day
     end
 
     def lane_key_for_stop(stop, prev_lane = nil)
-      if stop.customer? && stop.order_id == "hackathon"
-        HACKATHON_KEY
-      elsif stop.customer?
+      if stop.customer?
         prev_lane || HUB_KEY
       elsif stop.hub? || (stop.supplier? && hub_supplier?(stop.supplier_id))
         HUB_KEY
@@ -259,8 +254,6 @@ module Day
       case key
       when HUB_KEY
         "TADAAA!"
-      when HACKATHON_KEY
-        @graph.orders.find { |o| o.id == "hackathon" }&.customer_name || "Hackathon"
       when /\Asupplier:(.+)\z/
         @graph.suppliers.find { |s| s.id == $1 }&.name || $1
       else
@@ -272,8 +265,6 @@ module Day
       case key
       when HUB_KEY
         @graph.suppliers.find { |s| s.id == "tadaaa" }&.color
-      when HACKATHON_KEY
-        "#0d9488"
       when /\Asupplier:(.+)\z/
         @graph.suppliers.find { |s| s.id == $1 }&.color
       end
@@ -283,8 +274,6 @@ module Day
       case key
       when HUB_KEY
         "T"
-      when HACKATHON_KEY
-        "H"
       when /\Asupplier:(.+)\z/
         lane_label(key).to_s.first
       end
