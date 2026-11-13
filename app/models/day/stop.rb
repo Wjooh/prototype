@@ -60,6 +60,31 @@ module Day
     def interval_end
       pickup_end.presence || dropoff_end.presence
     end
+
+    def window_start_minutes
+      parse_hm(interval_start)
+    end
+
+    def window_end_minutes
+      parse_hm(interval_end)
+    end
+
+    def pickup?
+      pickup_start.present?
+    end
+
+    def kind_label
+      pickup? ? "Pickup" : "Dropoff"
+    end
+
+    private
+
+    def parse_hm(value)
+      return if value.blank?
+
+      hours, minutes = value.split(":").map(&:to_i)
+      hours * 60 + minutes
+    end
   end
 end
 

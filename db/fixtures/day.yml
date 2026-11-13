@@ -194,110 +194,143 @@ orders:
     margin_pct: 26
 
 supplier_orders:
-  - id: so_hack_geamos
+  # Prep ends when the collecting delivery pickup window opens.
+  - id: so_hack_geamos_am
     order_id: hackathon
     supplier_id: geamos
+    prep_start: "06:00"
+    prep_end: "08:00"
+  - id: so_hack_geamos_lunch
+    order_id: hackathon
+    supplier_id: geamos
+    prep_start: "10:00"
+    prep_end: "12:00"
+  - id: so_hack_geamos_dinner
+    order_id: hackathon
+    supplier_id: geamos
+    prep_start: "15:00"
+    prep_end: "17:00"
   - id: so_hack_tadaaa
     order_id: hackathon
     supplier_id: tadaaa
+    prep_start: "06:00"
+    prep_end: "08:00"
   - id: so_hack_tesco
     order_id: hackathon
     supplier_id: tesco
+    prep_start: "06:00"
+    prep_end: "08:00"
   - id: so_merge_geamos
     order_id: merge_alice
     supplier_id: geamos
+    prep_start: "07:00"
+    prep_end: "09:00"
   - id: so_merge_jelena
     order_id: merge_alice
     supplier_id: jelena
+    prep_start: "08:00"
+    prep_end: "10:10"
   - id: so_sam_geamos
     order_id: eve_sam
     supplier_id: geamos
+    prep_start: "06:00"
+    prep_end: "08:00"
   - id: so_sam_jelena
     order_id: eve_sam
     supplier_id: jelena
+    prep_start: "06:00"
+    prep_end: "08:00"
   - id: so_priya_geamos
     order_id: eve_priya
     supplier_id: geamos
+    prep_start: "06:00"
+    prep_end: "08:00"
   - id: so_priya_jelena
     order_id: eve_priya
     supplier_id: jelena
+    prep_start: "06:00"
+    prep_end: "08:00"
   - id: so_tom_geamos
     order_id: eve_tom
     supplier_id: geamos
+    prep_start: "06:00"
+    prep_end: "08:00"
   - id: so_tom_jelena
     order_id: eve_tom
     supplier_id: jelena
+    prep_start: "06:00"
+    prep_end: "08:00"
 
 order_items:
   # Hackathon Geamos morning
   - id: hi_cheese_croissants
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_am
     product_id: cheese_croissants
     quantity: 3
   - id: hi_ham_croissants
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_am
     product_id: ham_cheese_croissants
     quantity: 6
   - id: hi_fruit
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_am
     product_id: whole_fruit
     quantity: 2
   - id: hi_crudites
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_am
     product_id: crudites
     quantity: 2
   - id: hi_cookies
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_am
     product_id: walnut_cookies
     quantity: 4
   # Hackathon Geamos lunch
   - id: hi_meat_sand
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_lunch
     product_id: meat_sandwiches
     quantity: 2
   - id: hi_veg_sand
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_lunch
     product_id: veg_sandwiches
     quantity: 1
   - id: hi_tabbouleh
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_lunch
     product_id: tabbouleh
     quantity: 5
   - id: hi_tuna
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_lunch
     product_id: tuna_nicoise
     quantity: 15
   - id: hi_greek
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_lunch
     product_id: greek_salad
     quantity: 10
   - id: hi_avocado
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_lunch
     product_id: chicken_avocado
     quantity: 20
   - id: hi_skewers
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_lunch
     product_id: chicken_skewers
     quantity: 20
   # Hackathon Geamos dinner
   - id: hi_caesar
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_dinner
     product_id: chicken_caesar
     quantity: 15
   - id: hi_mexican
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_dinner
     product_id: mexican_bowl
     quantity: 15
   - id: hi_southern
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_dinner
     product_id: southern_chicken
     quantity: 4
   - id: hi_spinach
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_dinner
     product_id: spinach_mushroom
     quantity: 10
   - id: hi_pilaf
-    supplier_order_id: so_hack_geamos
+    supplier_order_id: so_hack_geamos_dinner
     product_id: chicken_pilaf
     quantity: 20
   # Hackathon TADAAA
@@ -398,7 +431,7 @@ order_items:
     quantity: 1
 
 deliveries:
-  # Scenario 1
+  # Windows: 30m pickup, 30–60m drive, 1h dropoff
   - id: d_hack_hub_morning
     kind: swiftee
     cost_pence: 1800
@@ -406,7 +439,7 @@ deliveries:
       - position: 1
         place: hub
         pickup_start: "08:00"
-        pickup_end: "10:00"
+        pickup_end: "08:30"
         order_item_ids:
           - hi_cups
           - hi_plates
@@ -426,8 +459,8 @@ deliveries:
       - position: 2
         place: customer
         order_id: hackathon
-        dropoff_start: "08:00"
-        dropoff_end: "10:00"
+        dropoff_start: "09:15"
+        dropoff_end: "10:15"
   - id: d_hack_geamos_morning
     kind: swiftee
     cost_pence: 2200
@@ -436,7 +469,7 @@ deliveries:
         place: supplier
         supplier_id: geamos
         pickup_start: "08:00"
-        pickup_end: "10:00"
+        pickup_end: "08:30"
         order_item_ids:
           - hi_cheese_croissants
           - hi_ham_croissants
@@ -446,8 +479,8 @@ deliveries:
       - position: 2
         place: customer
         order_id: hackathon
-        dropoff_start: "08:00"
-        dropoff_end: "10:00"
+        dropoff_start: "09:30"
+        dropoff_end: "10:30"
   - id: d_hack_geamos_lunch
     kind: swiftee
     cost_pence: 2400
@@ -456,7 +489,7 @@ deliveries:
         place: supplier
         supplier_id: geamos
         pickup_start: "12:00"
-        pickup_end: "14:00"
+        pickup_end: "12:30"
         order_item_ids:
           - hi_meat_sand
           - hi_veg_sand
@@ -468,8 +501,8 @@ deliveries:
       - position: 2
         place: customer
         order_id: hackathon
-        dropoff_start: "12:00"
-        dropoff_end: "14:00"
+        dropoff_start: "13:15"
+        dropoff_end: "14:15"
   - id: d_hack_geamos_dinner
     kind: swiftee
     cost_pence: 2400
@@ -478,7 +511,7 @@ deliveries:
         place: supplier
         supplier_id: geamos
         pickup_start: "17:00"
-        pickup_end: "19:00"
+        pickup_end: "17:30"
         order_item_ids:
           - hi_caesar
           - hi_mexican
@@ -488,9 +521,9 @@ deliveries:
       - position: 2
         place: customer
         order_id: hackathon
-        dropoff_start: "17:00"
-        dropoff_end: "19:00"
-  # Scenario 2 — multileg
+        dropoff_start: "18:30"
+        dropoff_end: "19:30"
+  # Scenario 2 — Geamos → hub (+cake) → Alice
   - id: d_merge_multileg
     kind: swiftee
     cost_pence: 2800
@@ -499,20 +532,20 @@ deliveries:
         place: supplier
         supplier_id: geamos
         pickup_start: "09:00"
-        pickup_end: "11:00"
+        pickup_end: "09:30"
         order_item_ids:
           - mi_box
       - position: 2
         place: hub
-        pickup_start: "09:30"
-        pickup_end: "11:30"
+        pickup_start: "10:10"
+        pickup_end: "10:40"
         order_item_ids:
           - mi_cake
       - position: 3
         place: customer
         order_id: merge_alice
-        dropoff_start: "10:00"
-        dropoff_end: "12:00"
+        dropoff_start: "11:25"
+        dropoff_end: "12:25"
   # Scenario 3 — morning inbound
   - id: d_jelena_to_hub
     kind: swiftee
@@ -522,15 +555,15 @@ deliveries:
         place: supplier
         supplier_id: jelena
         pickup_start: "08:00"
-        pickup_end: "10:00"
+        pickup_end: "08:30"
         order_item_ids:
           - si_cake
           - pi_cake
           - ti_cake
       - position: 2
         place: hub
-        dropoff_start: "08:00"
-        dropoff_end: "10:00"
+        dropoff_start: "09:15"
+        dropoff_end: "10:15"
   - id: d_geamos_to_hub
     kind: swiftee
     cost_pence: 1600
@@ -538,16 +571,16 @@ deliveries:
       - position: 1
         place: supplier
         supplier_id: geamos
-        pickup_start: "08:00"
-        pickup_end: "10:00"
+        pickup_start: "08:15"
+        pickup_end: "08:45"
         order_item_ids:
           - si_box
           - pi_box
           - ti_box
       - position: 2
         place: hub
-        dropoff_start: "08:00"
-        dropoff_end: "10:00"
+        dropoff_start: "09:30"
+        dropoff_end: "10:30"
   # Scenario 3 — evening fan-out
   - id: d_hub_to_sam
     kind: swiftee
@@ -556,44 +589,44 @@ deliveries:
       - position: 1
         place: hub
         pickup_start: "17:00"
-        pickup_end: "19:00"
+        pickup_end: "17:30"
         order_item_ids:
           - si_box
           - si_cake
       - position: 2
         place: customer
         order_id: eve_sam
-        dropoff_start: "17:00"
-        dropoff_end: "19:00"
+        dropoff_start: "18:15"
+        dropoff_end: "19:15"
   - id: d_hub_to_priya
     kind: swiftee
     cost_pence: 1200
     stops:
       - position: 1
         place: hub
-        pickup_start: "17:00"
-        pickup_end: "19:00"
+        pickup_start: "17:20"
+        pickup_end: "17:50"
         order_item_ids:
           - pi_box
           - pi_cake
       - position: 2
         place: customer
         order_id: eve_priya
-        dropoff_start: "17:00"
-        dropoff_end: "19:00"
+        dropoff_start: "18:35"
+        dropoff_end: "19:35"
   - id: d_hub_to_tom
     kind: swiftee
     cost_pence: 1200
     stops:
       - position: 1
         place: hub
-        pickup_start: "17:00"
-        pickup_end: "19:00"
+        pickup_start: "17:40"
+        pickup_end: "18:10"
         order_item_ids:
           - ti_box
           - ti_cake
       - position: 2
         place: customer
         order_id: eve_tom
-        dropoff_start: "17:00"
-        dropoff_end: "19:00"
+        dropoff_start: "18:55"
+        dropoff_end: "19:55"

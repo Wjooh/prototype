@@ -17,6 +17,7 @@ module Day
       @products = (data[:products] || []).map { |attrs| build_product(attrs) }
       @orders = (data[:orders] || []).map { |attrs| build_order(attrs) }
       @supplier_orders = (data[:supplier_orders] || []).map { |attrs| build_supplier_order(attrs) }
+      @supplier_orders.sort_by! { |so| so.window_start_minutes || 0 }
       @order_items = (data[:order_items] || []).map { |attrs| build_order_item(attrs) }
       @deliveries = (data[:deliveries] || []).map { |attrs| build_delivery(attrs) }
       @deliveries.sort_by!(&:first_time)

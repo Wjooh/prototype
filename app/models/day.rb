@@ -3,10 +3,16 @@ module Day
   FIXTURE_PATH = Rails.root.join("db/fixtures/day.yml")
 
   def self.graph
-    @graph ||= Graph.load
+    mtime = File.mtime(FIXTURE_PATH)
+    if @graph.nil? || @graph_mtime != mtime
+      @graph = Graph.load
+      @graph_mtime = mtime
+    end
+    @graph
   end
 
   def self.reset!
     @graph = nil
+    @graph_mtime = nil
   end
 end
