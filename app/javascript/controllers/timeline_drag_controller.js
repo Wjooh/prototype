@@ -46,9 +46,12 @@ export default class extends Controller {
     this.drawEdges()
   }
 
-  drop() {
+  drop(event) {
     const d = this.drag
     if (!d) return
+    const clicked =
+      event.type === "pointerup" && Math.abs(event.clientY - d.originClientY) < 4
+    const focusUrl = d.el.dataset.focusUrl
     delete d.el.dataset.dragging
     d.el.style.zIndex = ""
     if (d.el.id) {
@@ -58,6 +61,7 @@ export default class extends Controller {
     }
     this.drag = null
     this.drawEdges()
+    if (clicked && focusUrl) Turbo.visit(focusUrl)
   }
 
   reset() {

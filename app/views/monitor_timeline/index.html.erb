@@ -169,6 +169,7 @@
                     <div
                       id="prep-<%= supplier_order.id %>"
                       data-timeline-drag-target="block"
+                      data-focus-url="<%= focus_path.call(supplier_order.order_id) %>"
                       data-action="pointerdown->timeline-drag#grab pointermove->timeline-drag#move pointerup->timeline-drag#drop pointercancel->timeline-drag#drop"
                       class="absolute z-[2] cursor-grab touch-none rounded-xl border border-gray-200 bg-white p-3 shadow-sm active:cursor-grabbing <%= dim_prep.call(supplier_order) %>"
                       style="left: <%= block.left %>px; width: <%= block.width %>px; top: <%= block.top - lane.top %>px; height: <%= block.height %>px"

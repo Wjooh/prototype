@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   root "pages#index"
+  get "monitor/orders" => "monitor_orders#index", as: :monitor_orders
   get "monitor/deliveries" => "monitor_deliveries#index", as: :monitor_deliveries
   get "monitor/timeline" => "monitor_timeline#index", as: :monitor_timeline
+
   get "assistant" => "assistant#show", as: :assistant
   get "parties" => "pages#catalog", defaults: { category_slug: "parties" }, as: :parties
 
