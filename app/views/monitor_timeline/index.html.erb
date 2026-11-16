@@ -1,5 +1,6 @@
 <%
   hours = (@start_hour...@end_hour).to_a
+  now_left = (@graph.now_minutes - @start_hour * 60) * @px_per_hour / 60.0
   type_focus = %w[prep delivery].include?(@focus)
   supplier_focus = @focus_suppliers.any? { |s| s.id == @focus }
   dim_on = "grayscale opacity-20"
@@ -99,11 +100,17 @@
               <%= format("%02d:00", hour) %>
             </div>
           <% end %>
+          <div
+            class="pointer-events-none absolute inset-y-0 z-[1] w-0.5 bg-red-500"
+            style="left: <%= now_left %>px"
+            title="Now <%= @graph.now_hm %>"
+            aria-hidden="true"
+          ></div>
         </div>
       </div>
 
       <div class="relative">
-        <%# Vertical hour grid %>
+        <%# Vertical hour grid + now %>
         <div class="pointer-events-none absolute inset-y-0 left-52" style="width: <%= @timeline_width %>px">
           <% hours.each_with_index do |_, i| %>
             <div
@@ -111,6 +118,12 @@
               style="left: <%= i * @px_per_hour %>px"
             ></div>
           <% end %>
+          <div
+            class="absolute inset-y-0 w-0.5 bg-red-500"
+            style="left: <%= now_left %>px"
+            title="Now <%= @graph.now_hm %>"
+            aria-hidden="true"
+          ></div>
         </div>
 
         <div

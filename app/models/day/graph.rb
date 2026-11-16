@@ -1,6 +1,6 @@
 module Day
   class Graph
-    attr_reader :suppliers, :products, :orders, :supplier_orders, :order_items, :deliveries
+    attr_reader :now_hm, :suppliers, :products, :orders, :supplier_orders, :order_items, :deliveries
 
     def self.load
       new(YAML.safe_load_file(Day::FIXTURE_PATH, symbolize_names: true))
@@ -13,6 +13,7 @@ module Day
       @supplier_orders_by_id = {}
       @order_items_by_id = {}
 
+      @now_hm = data[:now].to_s.presence || "12:00"
       @suppliers = (data[:suppliers] || []).map { |attrs| build_supplier(attrs) }
       @products = (data[:products] || []).map { |attrs| build_product(attrs) }
       @orders = (data[:orders] || []).map { |attrs| build_order(attrs) }
@@ -25,6 +26,11 @@ module Day
 
     def deliveries_for_order(order)
       deliveries.select { |delivery| delivery.involves_order?(order) }
+    end
+
+    def now_minutes
+      hours, minutes = now_hm.split(":").map(&:to_i)
+      hours * 60 + minutes
     end
 
     private
@@ -103,5 +109,15 @@ module Day
       end
       true
     end
+
+    # Runnable check: fixture `now` leaves morning done, 1–2 live, rest pending.
+    def self.status_check!(graph = Day.graph)
+      by = graph.deliveries.group_by(&:status)
+      raise "now=#{graph.now_hm}: need complete rides" if by["complete"].blank?
+      raise "now=#{graph.now_hm}: need 1–2 in_progress" unless (1..2).cover?(by["in_progress"]&.size.to_i)
+      raise "now=#{graph.now_hm}: need pending rides" if by["pending"].blank?
+      true
+    end
   end
 end
+

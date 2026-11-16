@@ -1,3 +1,6 @@
+# Monitor "now" for this fixture day — morning rides done, lunch starting, evening pending.
+now: "12:00"
+
 suppliers:
   - id: geamos
     name: Geamos
@@ -421,7 +424,8 @@ order_items:
     quantity: 1
 
 deliveries:
-  # Windows: 30m pickup, 30–60m drive, 1h dropoff
+  # Windows: 30m pickup, 30–60m drive, 1h dropoff (timeline).
+  # arrived_at / eta: live tracking vs fixture `now` (deliveries UI).
   # Each stop: load = into car, unload = out of car. Cargo must balance per ride.
   # Own-stock leaves from TADAAA as a supplier pickup (not hub place).
   - id: d_hack_hub_morning
@@ -433,6 +437,7 @@ deliveries:
         supplier_id: tadaaa
         pickup_start: "08:00"
         pickup_end: "08:30"
+        arrived_at: "08:07"
         load:
           - hi_cups
           - hi_plates
@@ -454,6 +459,7 @@ deliveries:
         order_id: hackathon
         dropoff_start: "09:15"
         dropoff_end: "10:15"
+        arrived_at: "09:22"
         unload:
           - hi_cups
           - hi_plates
@@ -479,6 +485,7 @@ deliveries:
         supplier_id: geamos
         pickup_start: "08:00"
         pickup_end: "08:30"
+        arrived_at: "08:11"
         load:
           - hi_cheese_croissants
           - hi_ham_croissants
@@ -490,6 +497,7 @@ deliveries:
         order_id: hackathon
         dropoff_start: "09:30"
         dropoff_end: "10:30"
+        arrived_at: "09:41"
         unload:
           - hi_cheese_croissants
           - hi_ham_croissants
@@ -505,6 +513,7 @@ deliveries:
         supplier_id: geamos
         pickup_start: "12:00"
         pickup_end: "12:30"
+        eta: "12:08"
         load:
           - hi_meat_sand
           - hi_veg_sand
@@ -518,6 +527,7 @@ deliveries:
         order_id: hackathon
         dropoff_start: "13:15"
         dropoff_end: "14:15"
+        eta: "13:25"
         unload:
           - hi_meat_sand
           - hi_veg_sand
@@ -562,12 +572,14 @@ deliveries:
         supplier_id: geamos
         pickup_start: "09:00"
         pickup_end: "09:30"
+        arrived_at: "09:07"
         load:
           - mi_box
       - position: 2
         place: hub
         pickup_start: "10:10"
         pickup_end: "10:40"
+        arrived_at: "10:18"
         load:
           - mi_cake
       - position: 3
@@ -575,6 +587,7 @@ deliveries:
         order_id: merge_alice
         dropoff_start: "11:25"
         dropoff_end: "12:25"
+        eta: "12:05"
         unload:
           - mi_box
           - mi_cake
@@ -588,6 +601,7 @@ deliveries:
         supplier_id: jelena
         pickup_start: "08:00"
         pickup_end: "08:30"
+        arrived_at: "08:05"
         load:
           - si_cake
           - pi_cake
@@ -596,6 +610,7 @@ deliveries:
         place: hub
         dropoff_start: "09:15"
         dropoff_end: "10:15"
+        arrived_at: "09:19"
         unload:
           - si_cake
           - pi_cake
@@ -609,6 +624,7 @@ deliveries:
         supplier_id: geamos
         pickup_start: "08:15"
         pickup_end: "08:45"
+        arrived_at: "08:21"
         load:
           - si_box
           - pi_box
@@ -617,6 +633,7 @@ deliveries:
         place: hub
         dropoff_start: "09:30"
         dropoff_end: "10:30"
+        arrived_at: "09:38"
         unload:
           - si_box
           - pi_box

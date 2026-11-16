@@ -11,9 +11,13 @@ module Day
     attribute :pickup_end, :string
     attribute :dropoff_start, :string
     attribute :dropoff_end, :string
+    # Actual arrival (past) or live estimate — set in fixture relative to `now`.
+    attribute :arrived_at, :string
+    attribute :eta, :string
 
     attr_accessor :delivery, :supplier, :order
     attr_accessor :load_item_ids, :unload_item_ids, :load_items, :unload_items
+
 
     def initialize(*)
       super
@@ -60,6 +64,15 @@ module Day
         "#{dropoff_start}–#{dropoff_end}"
       end
     end
+
+    # Deliveries UI: exact arrival for past stops, ETA for live remaining stops, else window.
+    def tracking_label
+      return arrived_at if arrived_at.present?
+      return "ETA #{eta}" if eta.present?
+
+      time_label
+    end
+
 
     def sort_time
       pickup_start.presence || dropoff_start.presence || "99:99"

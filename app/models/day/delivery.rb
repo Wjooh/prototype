@@ -4,6 +4,7 @@ module Day
     include ActiveModel::Attributes
 
     KINDS = %w[swiftee uber pickup zaza].freeze
+    STATUSES = %w[complete in_progress pending].freeze
 
     attribute :id, :string
     attribute :kind, :string
@@ -23,6 +24,20 @@ module Day
     def cost_label
       format("£%.2f", cost_pence / 100.0)
     end
+
+    # Derived from stop windows vs fixture `now` (no stored status).
+    def status
+      now = graph.now_minutes
+      return "pending" if window_start_minutes && window_start_minutes > now
+      return "complete" if window_end_minutes && window_end_minutes <= now
+
+      "in_progress"
+    end
+
+    def status_label
+      status.tr("_", " ").titleize
+    end
+
 
     def first_time
       stops.map(&:sort_time).min

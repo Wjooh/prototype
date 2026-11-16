@@ -3,7 +3,10 @@ class MonitorDeliveriesController < ApplicationController
 
   def index
     @date = Day::DATE
-    @deliveries = Day.graph.deliveries
+    @graph = Day.graph
+    @now_hm = @graph.now_hm
+    @deliveries = @graph.deliveries
   end
 end
+
 
